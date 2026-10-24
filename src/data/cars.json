@@ -1,0 +1,2950 @@
+[
+  {
+    "id": "bmw-m3-e46",
+    "make": "BMW",
+    "model": "M3",
+    "generation": "E46",
+    "years": {
+      "from": 2000,
+      "to": 2006
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "BMW E46 M3"
+    ],
+    "clue": {
+      "fr": "Son six-cylindres en ligne de 3,2 litres dépasse les 340 ch.",
+      "en": "Its 3.2-litre inline-six makes more than 340 hp."
+    },
+    "funFact": {
+      "fr": "La version CSL a gagné du poids grâce, entre autres, à un toit en fibre de carbone.",
+      "en": "The CSL version saved weight with, among other things, a carbon-fibre roof."
+    },
+    "image": {
+      "src": "/cars/edfaabea71c3",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la BMW M3 (E46)",
+        "en": "Photo of the BMW M3 (E46)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:BMW_M3_coupe_e46_PL.JPG",
+      "author": "Beemwej",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
+  },
+  {
+    "id": "porsche-911-993",
+    "make": "Porsche",
+    "model": "911",
+    "generation": "993",
+    "years": {
+      "from": 1993,
+      "to": 1998
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Porsche 993",
+      "Porsche 993 Turbo",
+      "Porsche 911 Turbo 993"
+    ],
+    "clue": {
+      "fr": "La dernière génération de 911 à moteur refroidi par air.",
+      "en": "The last generation of 911 with an air-cooled engine."
+    },
+    "funFact": {
+      "fr": "Elle a inauguré une suspension arrière multibras sur la 911.",
+      "en": "It introduced a multi-link rear suspension to the 911."
+    },
+    "image": {
+      "src": "/cars/0e26788aef53",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Porsche 911 (993)",
+        "en": "Photo of the Porsche 911 (993)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Porsche,_Techno-Classica_2018,_Essen_(IMG_9729).jpg",
+      "author": "Matti Blume",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "porsche-356",
+    "make": "Porsche",
+    "model": "356",
+    "years": {
+      "from": 1948,
+      "to": 1965
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "classic",
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Porsche 356 Coupe",
+      "Porsche 356 B",
+      "Porsche 356 C"
+    ],
+    "clue": {
+      "fr": "Le tout premier modèle de série de la marque, moteur à plat à l'arrière.",
+      "en": "The brand's very first production model, with a flat engine in the back."
+    },
+    "funFact": {
+      "fr": "Ferry Porsche l'a conçue en reprenant de nombreux éléments mécaniques de la Coccinelle.",
+      "en": "Ferry Porsche based it on many mechanical parts from the Beetle."
+    },
+    "image": {
+      "src": "/cars/0f1c5c961b70",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Porsche 356",
+        "en": "Photo of the Porsche 356"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Porsche_356_Coupe_P5201218.jpg",
+      "author": "Ermell",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "porsche-carrera-gt",
+    "make": "Porsche",
+    "model": "Carrera GT",
+    "years": {
+      "from": 2004,
+      "to": 2006
+    },
+    "region": "europe",
+    "bodyType": "roadster",
+    "tags": [
+      "supercar"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Un V10 de 5,7 litres issu d'un programme de course loge derrière les sièges.",
+      "en": "A 5.7-litre V10 born from a racing programme sits behind the seats."
+    },
+    "funFact": {
+      "fr": "Seulement 1 270 exemplaires ont été produits.",
+      "en": "Only 1,270 were built."
+    },
+    "image": {
+      "src": "/cars/5cde35a1f723",
+      "width": 1200,
+      "height": 691,
+      "alt": {
+        "fr": "Photo de la Porsche Carrera GT",
+        "en": "Photo of the Porsche Carrera GT"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Porsche_Carrera_GT_Classic-Gala_2025_DSC_0837.jpg",
+      "author": "Alexander Migl",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "porsche-taycan",
+    "make": "Porsche",
+    "model": "Taycan",
+    "years": {
+      "from": 2019,
+      "to": null
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "electric",
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Une électrique dotée d'une architecture 800 volts, une première en grande série.",
+      "en": "An electric car with an 800-volt architecture, a first in series production."
+    },
+    "funFact": {
+      "fr": "Son nom évoque, selon Porsche, un « jeune cheval fougueux », comme celui du blason.",
+      "en": "According to Porsche, its name means \"lively young horse\", like the one on the crest."
+    },
+    "image": {
+      "src": "/cars/b953befbb8f2",
+      "width": 1200,
+      "height": 615,
+      "alt": {
+        "fr": "Photo de la Porsche Taycan",
+        "en": "Photo of the Porsche Taycan"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2024_Porsche_Taycan_GTS_IAA_2025_DSC_1988.jpg",
+      "author": "Alexander-93",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "vw-golf-gti-mk1",
+    "make": "Volkswagen",
+    "model": "Golf GTI",
+    "generation": "Mk1",
+    "years": {
+      "from": 1976,
+      "to": 1983
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "sports",
+      "everyday",
+      "classic"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Volkswagen Golf",
+      "Volkswagen Golf 1",
+      "Volkswagen Golf I",
+      "Volkswagen Golf 1 GTI",
+      "Volkswagen Golf I GTI"
+    ],
+    "clue": {
+      "fr": "La compacte sportive fondatrice, avec sa calandre soulignée d'un filet rouge.",
+      "en": "The original hot hatch, its grille underlined by a red stripe."
+    },
+    "funFact": {
+      "fr": "Son pommeau de vitesses en forme de balle de golf est devenu une signature.",
+      "en": "Its golf-ball gear knob became a signature detail."
+    },
+    "image": {
+      "src": "/cars/dbb799b905c6",
+      "width": 1200,
+      "height": 769,
+      "alt": {
+        "fr": "Photo de la Volkswagen Golf GTI (Mk1)",
+        "en": "Photo of the Volkswagen Golf GTI (Mk1)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Volkswagen_Golf_I_GTI_Pirelli_IMG_9592.jpg",
+      "author": "Alexander-93",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "vw-beetle",
+    "make": "Volkswagen",
+    "model": "Beetle",
+    "generation": "Type 1",
+    "years": {
+      "from": 1938,
+      "to": 2003
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "classic",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Volkswagen Coccinelle",
+      "Volkswagen Käfer",
+      "Volkswagen Cox",
+      "Volkswagen Bug"
+    ],
+    "clue": {
+      "fr": "Plus de 21 millions d'exemplaires produits en 65 ans.",
+      "en": "More than 21 million built over 65 years."
+    },
+    "funFact": {
+      "fr": "La dernière est sortie de l'usine de Puebla, au Mexique, en 2003.",
+      "en": "The last one left the Puebla plant in Mexico in 2003."
+    },
+    "image": {
+      "src": "/cars/bf6af3fb43fb",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Volkswagen Beetle (Type 1)",
+        "en": "Photo of the Volkswagen Beetle (Type 1)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:VW_K%C3%A4fer_Baujahr_1966.jpg",
+      "author": "Vwexport1300",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
+  },
+  {
+    "id": "vw-type-2",
+    "make": "Volkswagen",
+    "model": "Transporter",
+    "generation": "T1",
+    "years": {
+      "from": 1950,
+      "to": 1967
+    },
+    "region": "europe",
+    "bodyType": "van",
+    "tags": [
+      "classic",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Volkswagen Combi",
+      "Volkswagen Kombi",
+      "Volkswagen Type 2",
+      "Volkswagen Bulli",
+      "Volkswagen Bus",
+      "Volkswagen Microbus",
+      "Volkswagen Split"
+    ],
+    "clue": {
+      "fr": "Son pare-brise en deux parties lui a valu le surnom de « Splitty ».",
+      "en": "Its two-piece windscreen earned it the nickname \"Splitty\"."
+    },
+    "funFact": {
+      "fr": "Son idée a été esquissée en 1947 par l'importateur néerlandais Ben Pon.",
+      "en": "The idea was first sketched in 1947 by Dutch importer Ben Pon."
+    },
+    "image": {
+      "src": "/cars/4fae1035a34b",
+      "width": 1200,
+      "height": 943,
+      "alt": {
+        "fr": "Photo de la Volkswagen Transporter (T1)",
+        "en": "Photo of the Volkswagen Transporter (T1)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Volkswagen_Transporter_(14569927500).jpg",
+      "author": "Dennis Elzinga",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  {
+    "id": "mini-classic",
+    "make": "Austin",
+    "model": "Mini Cooper S",
+    "years": {
+      "from": 1963,
+      "to": 1971
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "classic",
+      "everyday",
+      "racing"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Mini",
+      "Mini Cooper",
+      "Austin Mini",
+      "Austin Mini Cooper",
+      "Morris Mini",
+      "Morris Mini Cooper",
+      "Mini Cooper S"
+    ],
+    "clue": {
+      "fr": "Son moteur transversal libère un habitacle étonnant pour à peine plus de 3 mètres.",
+      "en": "Its transverse engine frees up a surprising cabin for barely over 3 metres of car."
+    },
+    "funFact": {
+      "fr": "Une Mini Cooper S a remporté le rallye Monte-Carlo en 1964.",
+      "en": "A Mini Cooper S won the 1964 Monte Carlo Rally."
+    },
+    "image": {
+      "src": "/cars/68f7176e92f4",
+      "width": 1200,
+      "height": 926,
+      "alt": {
+        "fr": "Photo de la Austin Mini Cooper S",
+        "en": "Photo of the Austin Mini Cooper S"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1968_Austin_Mini_Cooper_S.jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "fiat-500-1957",
+    "make": "Fiat",
+    "model": "500",
+    "years": {
+      "from": 1957,
+      "to": 1975
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "classic",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Fiat Nuova 500",
+      "Fiat 500 R",
+      "Fiat 500 L"
+    ],
+    "clue": {
+      "fr": "Un petit bicylindre refroidi par air est installé à l'arrière.",
+      "en": "A small air-cooled twin sits in the back."
+    },
+    "funFact": {
+      "fr": "Dessinée par Dante Giacosa, elle a été produite à près de 4 millions d'exemplaires.",
+      "en": "Designed by Dante Giacosa, it sold close to 4 million units."
+    },
+    "image": {
+      "src": "/cars/f53908ddef19",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Fiat 500",
+        "en": "Photo of the Fiat 500"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fiat_500_R_(2017-06-11_Sp).jpg",
+      "author": "Lothar Spurzem",
+      "license": "CC BY-SA 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+    }
+  },
+  {
+    "id": "fiat-panda-1",
+    "make": "Fiat",
+    "model": "Panda",
+    "years": {
+      "from": 1980,
+      "to": 2003
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Fiat Panda 141",
+      "Fiat Panda Young"
+    ],
+    "clue": {
+      "fr": "Dessinée par Giorgetto Giugiaro, elle est faite de surfaces presque toutes planes.",
+      "en": "Designed by Giorgetto Giugiaro, it is made of almost entirely flat panels."
+    },
+    "funFact": {
+      "fr": "Sa banquette arrière pouvait se transformer en couchette.",
+      "en": "Its rear bench could be turned into a bed."
+    },
+    "image": {
+      "src": "/cars/474a2fa833d6",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Fiat Panda",
+        "en": "Photo of the Fiat Panda"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Fiat_Panda_Young_Type_141_FL2_Dark_Coral_Red_(1).jpg",
+      "author": "Damian B Oh",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "citroen-2cv",
+    "make": "Citroën",
+    "model": "2CV",
+    "years": {
+      "from": 1948,
+      "to": 1990
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "classic",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Citroën Deuche",
+      "Citroën Deudeuche",
+      "Citroën 2CV Charleston",
+      "Citroën Deux Chevaux"
+    ],
+    "clue": {
+      "fr": "Le cahier des charges : quatre personnes et un panier d'œufs à travers un champ labouré.",
+      "en": "The brief: four people and a basket of eggs across a ploughed field."
+    },
+    "funFact": {
+      "fr": "Plus de 5 millions d'exemplaires ont été produits, utilitaires compris.",
+      "en": "More than 5 million were built, vans included."
+    },
+    "image": {
+      "src": "/cars/98f643bf4692",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Citroën 2CV",
+        "en": "Photo of the Citroën 2CV"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Citro%C3%ABn_2_CV_Charleston_(2015-08-29_3174_b).jpg",
+      "author": "Lothar Spurzem",
+      "license": "CC BY-SA 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+    }
+  },
+  {
+    "id": "citroen-ds",
+    "make": "Citroën",
+    "model": "DS",
+    "years": {
+      "from": 1955,
+      "to": 1975
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "classic"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Citroën Déesse",
+      "Citroën DS 19",
+      "Citroën DS 21",
+      "Citroën DS 23"
+    ],
+    "clue": {
+      "fr": "Sa suspension hydropneumatique la fait littéralement flotter sur la route.",
+      "en": "Its hydropneumatic suspension makes it float over the road."
+    },
+    "funFact": {
+      "fr": "En 1962, au Petit-Clamart, elle a permis au général de Gaulle d'échapper à un attentat malgré des pneus crevés.",
+      "en": "In 1962 it carried General de Gaulle away from an assassination attempt despite shot-out tyres."
+    },
+    "image": {
+      "src": "/cars/a2596055138e",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Citroën DS",
+        "en": "Photo of the Citroën DS"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1974_Citroen_Series_III_DS23_Saloon_(32430060420).jpg",
+      "author": "Sicnag",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  {
+    "id": "renault-5-turbo",
+    "make": "Renault",
+    "model": "5 Turbo",
+    "years": {
+      "from": 1980,
+      "to": 1986
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "sports",
+      "racing",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Renault R5 Turbo",
+      "Renault 5 Turbo 2",
+      "Renault R5 Turbo 2"
+    ],
+    "clue": {
+      "fr": "Son moteur turbo est installé au milieu, à la place de la banquette arrière.",
+      "en": "Its turbo engine sits in the middle, where the rear seat would be."
+    },
+    "funFact": {
+      "fr": "Jean Ragnotti l'a menée à la victoire au rallye Monte-Carlo 1981.",
+      "en": "Jean Ragnotti drove one to victory at the 1981 Monte Carlo Rally."
+    },
+    "image": {
+      "src": "/cars/a7f047bc22ed",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Renault 5 Turbo",
+        "en": "Photo of the Renault 5 Turbo"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Nationale_oldtimerdag_Zandvoort_2010,_1981_RENAULT_5_TURBO,_JH-VZ-86_pic2.JPG",
+      "author": "Alf van Beem",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  {
+    "id": "renault-twingo-1",
+    "make": "Renault",
+    "model": "Twingo",
+    "years": {
+      "from": 1993,
+      "to": 2007
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Renault Twingo 1",
+      "Renault Twingo I"
+    ],
+    "clue": {
+      "fr": "Ses phares ronds et son capot plongeant lui donnent un visage souriant.",
+      "en": "Round headlights and a sloping bonnet give it a smiling face."
+    },
+    "funFact": {
+      "fr": "À son lancement, elle n'était proposée qu'en quatre couleurs vives.",
+      "en": "At launch it came in only four bright colours."
+    },
+    "image": {
+      "src": "/cars/974ad24c243a",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Renault Twingo",
+        "en": "Photo of the Renault Twingo"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Renault_Twingo_Liberty,_1._Generation,_li._vorn_(2017-07-28_r).JPG",
+      "author": "Lothar Spurzem",
+      "license": "CC BY-SA 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+    }
+  },
+  {
+    "id": "renault-zoe",
+    "make": "Renault",
+    "model": "Zoe",
+    "years": {
+      "from": 2012,
+      "to": 2024
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "electric",
+      "everyday"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Renault Zoé"
+    ],
+    "clue": {
+      "fr": "Une citadine 100 % électrique assemblée à Flins.",
+      "en": "A fully electric city car built in Flins, France."
+    },
+    "funFact": {
+      "fr": "Elle a longtemps figuré parmi les électriques les plus vendues en Europe.",
+      "en": "For years it was among Europe's best-selling electric cars."
+    },
+    "image": {
+      "src": "/cars/407d670ca2dc",
+      "width": 1200,
+      "height": 706,
+      "alt": {
+        "fr": "Photo de la Renault Zoe",
+        "en": "Photo of the Renault Zoe"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2018_Renault_ZOE.jpg",
+      "author": "Vauxford",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "peugeot-205-gti",
+    "make": "Peugeot",
+    "model": "205 GTI",
+    "years": {
+      "from": 1984,
+      "to": 1994
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "sports",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Peugeot 205",
+      "Peugeot 205 GTi 1.6",
+      "Peugeot 205 GTi 1.9"
+    ],
+    "clue": {
+      "fr": "Une citadine française au filet rouge et aux logos sportifs.",
+      "en": "A French supermini with a red pinstripe and sporty badges."
+    },
+    "funFact": {
+      "fr": "Elle a été proposée avec un moteur 1,6 litre puis 1,9 litre.",
+      "en": "It was offered with a 1.6-litre, then a 1.9-litre engine."
+    },
+    "image": {
+      "src": "/cars/9afa52373bd8",
+      "width": 1200,
+      "height": 717,
+      "alt": {
+        "fr": "Photo de la Peugeot 205 GTI",
+        "en": "Photo of the Peugeot 205 GTI"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1990_Peugeot_205_GTi_1.6_Front.jpg",
+      "author": "Vauxford",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "peugeot-205-t16",
+    "make": "Peugeot",
+    "model": "205 Turbo 16",
+    "years": {
+      "from": 1984,
+      "to": 1986
+    },
+    "region": "europe",
+    "bodyType": "race-car",
+    "tags": [
+      "racing",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Peugeot 205 T16",
+      "Peugeot 205 T 16"
+    ],
+    "clue": {
+      "fr": "Moteur central et quatre roues motrices sous une silhouette de citadine.",
+      "en": "Mid engine and four-wheel drive under a supermini silhouette."
+    },
+    "funFact": {
+      "fr": "Elle a offert à Peugeot les titres mondiaux des rallyes 1985 et 1986.",
+      "en": "It won Peugeot the 1985 and 1986 World Rally Championship titles."
+    },
+    "image": {
+      "src": "/cars/d605b3a4b9be",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Peugeot 205 Turbo 16",
+        "en": "Photo of the Peugeot 205 Turbo 16"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Peugeot_Talbot_Sport_205_T16_(28504430670).jpg",
+      "author": "Steven Straiton from UK",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  {
+    "id": "alpine-a110-1961",
+    "make": "Alpine",
+    "model": "A110",
+    "years": {
+      "from": 1961,
+      "to": 1977
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic",
+      "racing"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Alpine A110 Berlinette",
+      "Alpine Berlinette",
+      "Renault Alpine A110"
+    ],
+    "clue": {
+      "fr": "Une berlinette en polyester construite sur une base mécanique Renault.",
+      "en": "A fibreglass berlinette built on Renault mechanicals."
+    },
+    "funFact": {
+      "fr": "Elle a remporté le premier championnat du monde des rallyes constructeurs, en 1973.",
+      "en": "It won the first World Rally Championship for manufacturers, in 1973."
+    },
+    "image": {
+      "src": "/cars/89d0f683367b",
+      "width": 1200,
+      "height": 795,
+      "alt": {
+        "fr": "Photo de la Alpine A110",
+        "en": "Photo of the Alpine A110"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Renault_Alpine_A_110_(Sp).JPG",
+      "author": "Lothar Spurzem",
+      "license": "CC BY-SA 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en"
+    }
+  },
+  {
+    "id": "lancia-delta-integrale",
+    "make": "Lancia",
+    "model": "Delta HF Integrale",
+    "years": {
+      "from": 1987,
+      "to": 1994
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "sports",
+      "racing"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Lancia Delta",
+      "Lancia Delta Integrale",
+      "Lancia Delta HF",
+      "Lancia Delta Evoluzione",
+      "Lancia Delta Integrale Evoluzione"
+    ],
+    "clue": {
+      "fr": "Une compacte à quatre roues motrices née pour les rallyes.",
+      "en": "A four-wheel-drive hatchback born for rallying."
+    },
+    "funFact": {
+      "fr": "Lancia a remporté six titres constructeurs consécutifs en rallye, de 1987 à 1992.",
+      "en": "Lancia won six consecutive rally manufacturers' titles, from 1987 to 1992."
+    },
+    "image": {
+      "src": "/cars/e21f3de3adc6",
+      "width": 1200,
+      "height": 652,
+      "alt": {
+        "fr": "Photo de la Lancia Delta HF Integrale",
+        "en": "Photo of the Lancia Delta HF Integrale"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1995_Lancia_Delta_HF_Integrale_Evoluzione_II_2.0.jpg",
+      "author": "Chelsea Jay",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "lancia-stratos",
+    "make": "Lancia",
+    "model": "Stratos",
+    "years": {
+      "from": 1973,
+      "to": 1978
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "racing",
+      "rare",
+      "classic"
+    ],
+    "difficulty": 3,
+    "acceptedAnswers": [
+      "Lancia Stratos HF"
+    ],
+    "clue": {
+      "fr": "Dessinée chez Bertone, elle reçoit le V6 de la Ferrari Dino.",
+      "en": "Styled at Bertone, it uses the Ferrari Dino's V6."
+    },
+    "funFact": {
+      "fr": "Conçue d'emblée pour les rallyes, elle a été sacrée en 1974, 1975 et 1976.",
+      "en": "Designed from the start for rallying, it took the title in 1974, 1975 and 1976."
+    },
+    "image": {
+      "src": "/cars/71af2e5b1208",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Lancia Stratos",
+        "en": "Photo of the Lancia Stratos"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lancia_Stratos_HF_Kulmbach_2018_6170093.jpg",
+      "author": "Ermell",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "audi-quattro",
+    "make": "Audi",
+    "model": "Quattro",
+    "years": {
+      "from": 1980,
+      "to": 1991
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "racing",
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Audi Ur-Quattro",
+      "Audi Urquattro"
+    ],
+    "clue": {
+      "fr": "Elle a popularisé la transmission intégrale sur une voiture de sport.",
+      "en": "It made four-wheel drive popular on a performance car."
+    },
+    "funFact": {
+      "fr": "Michèle Mouton y a remporté le rallye Sanremo 1981, première victoire d'une femme en championnat du monde.",
+      "en": "Michèle Mouton won the 1981 Sanremo Rally in one, the first World Championship win by a woman."
+    },
+    "image": {
+      "src": "/cars/b8e89bef3bc1",
+      "width": 1200,
+      "height": 702,
+      "alt": {
+        "fr": "Photo de la Audi Quattro",
+        "en": "Photo of the Audi Quattro"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Audi_Ur-Quattro_(9532193009).jpg",
+      "author": "Ross",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
+  },
+  {
+    "id": "audi-r8-1",
+    "make": "Audi",
+    "model": "R8",
+    "generation": "Type 42",
+    "years": {
+      "from": 2006,
+      "to": 2015
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Audi R8 V10",
+      "Audi R8 V8"
+    ],
+    "clue": {
+      "fr": "Ses flancs portent une grande lame latérale, souvent d'une autre couleur.",
+      "en": "Its flanks carry a large side blade, often in a contrasting colour."
+    },
+    "funFact": {
+      "fr": "Elle partage de nombreux éléments avec la Lamborghini Gallardo.",
+      "en": "It shares many components with the Lamborghini Gallardo."
+    },
+    "image": {
+      "src": "/cars/80e465ca8813",
+      "width": 1200,
+      "height": 801,
+      "alt": {
+        "fr": "Photo de la Audi R8 (Type 42)",
+        "en": "Photo of the Audi R8 (Type 42)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2015_Audi_R8_V10_Quattro_Plus_2.jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "ferrari-f40",
+    "make": "Ferrari",
+    "model": "F40",
+    "years": {
+      "from": 1987,
+      "to": 1992
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "La dernière Ferrari dont Enzo Ferrari a validé le lancement.",
+      "en": "The last Ferrari launched with Enzo Ferrari's approval."
+    },
+    "funFact": {
+      "fr": "Elle a été la première voiture de série à revendiquer plus de 320 km/h.",
+      "en": "It was the first production car to claim more than 200 mph."
+    },
+    "image": {
+      "src": "/cars/fee57859128d",
+      "width": 1200,
+      "height": 577,
+      "alt": {
+        "fr": "Photo de la Ferrari F40",
+        "en": "Photo of the Ferrari F40"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ferrari_F40_7.jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "ferrari-testarossa",
+    "make": "Ferrari",
+    "model": "Testarossa",
+    "years": {
+      "from": 1984,
+      "to": 1991
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "classic"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "De longues ouïes latérales alimentent ses radiateurs arrière.",
+      "en": "Long side strakes feed its rear-mounted radiators."
+    },
+    "funFact": {
+      "fr": "Son nom, « tête rouge », vient de la couleur des couvre-culasses de son 12-cylindres à plat.",
+      "en": "Its name, \"red head\", comes from the colour of its flat-12's cam covers."
+    },
+    "image": {
+      "src": "/cars/c3d7e8308d96",
+      "width": 1200,
+      "height": 675,
+      "alt": {
+        "fr": "Photo de la Ferrari Testarossa",
+        "en": "Photo of the Ferrari Testarossa"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ferrari_Testarossa-20190419.jpg",
+      "author": "JoachimKohler-HB",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "lamborghini-countach",
+    "make": "Lamborghini",
+    "model": "Countach",
+    "years": {
+      "from": 1974,
+      "to": 1990
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "classic"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Lamborghini Countach LP5000S",
+      "Lamborghini Countach LP400"
+    ],
+    "clue": {
+      "fr": "Ses portes s'ouvrent en élytre, vers le haut.",
+      "en": "Its doors open upwards, scissor-style."
+    },
+    "funFact": {
+      "fr": "Son nom vient d'une exclamation d'admiration en piémontais.",
+      "en": "Its name comes from an exclamation of amazement in Piedmontese."
+    },
+    "image": {
+      "src": "/cars/e9c77e6be38e",
+      "width": 1200,
+      "height": 635,
+      "alt": {
+        "fr": "Photo de la Lamborghini Countach",
+        "en": "Photo of the Lamborghini Countach"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Lamborghini_Countach_LP_5000S_1983.jpg",
+      "author": "Palauenc05",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "lamborghini-miura",
+    "make": "Lamborghini",
+    "model": "Miura",
+    "years": {
+      "from": 1966,
+      "to": 1973
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "classic",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Lamborghini Miura SV",
+      "Lamborghini Miura P400"
+    ],
+    "clue": {
+      "fr": "Souvent présentée comme la première supercar à moteur central, avec un V12 transversal.",
+      "en": "Often called the first mid-engined supercar, with a transverse V12."
+    },
+    "funFact": {
+      "fr": "Elle porte le nom d'un célèbre élevage espagnol de taureaux de combat.",
+      "en": "It is named after a famous Spanish fighting-bull ranch."
+    },
+    "image": {
+      "src": "/cars/40ffc976f89a",
+      "width": 1200,
+      "height": 585,
+      "alt": {
+        "fr": "Photo de la Lamborghini Miura",
+        "en": "Photo of the Lamborghini Miura"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1971_Lamborghini_Miura_P400_SV.jpg",
+      "author": "Chelsea Jay",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "mclaren-f1",
+    "make": "McLaren",
+    "model": "F1",
+    "years": {
+      "from": 1992,
+      "to": 1998
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Le conducteur est assis au centre, entre deux passagers placés en retrait.",
+      "en": "The driver sits in the middle, flanked by two set-back passengers."
+    },
+    "funFact": {
+      "fr": "Son compartiment moteur est tapissé de feuille d'or pour renvoyer la chaleur.",
+      "en": "Its engine bay is lined with gold foil to reflect heat."
+    },
+    "image": {
+      "src": "/cars/d7b4a9695398",
+      "width": 1200,
+      "height": 653,
+      "alt": {
+        "fr": "Photo de la McLaren F1",
+        "en": "Photo of the McLaren F1"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1996_McLaren_F1_Chassis_No_63_6.1_Front.jpg",
+      "author": "Chelsea Jay",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "bugatti-veyron",
+    "make": "Bugatti",
+    "model": "Veyron",
+    "years": {
+      "from": 2005,
+      "to": 2015
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Bugatti Veyron 16.4"
+    ],
+    "clue": {
+      "fr": "Son W16 à quatre turbos développe 1 001 ch.",
+      "en": "Its quad-turbo W16 makes 1,001 PS."
+    },
+    "funFact": {
+      "fr": "Elle porte le nom de Pierre Veyron, vainqueur des 24 Heures du Mans 1939 sur Bugatti.",
+      "en": "It is named after Pierre Veyron, who won the 1939 Le Mans 24 Hours for Bugatti."
+    },
+    "image": {
+      "src": "/cars/b2f5b6a343b5",
+      "width": 1200,
+      "height": 639,
+      "alt": {
+        "fr": "Photo de la Bugatti Veyron",
+        "en": "Photo of the Bugatti Veyron"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_(2),_5._April_2012,_D%C3%BCsseldorf.jpg",
+      "author": "M 93",
+      "license": "CC BY-SA 3.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"
+    }
+  },
+  {
+    "id": "mercedes-300sl",
+    "make": "Mercedes-Benz",
+    "model": "300 SL",
+    "generation": "W198",
+    "years": {
+      "from": 1954,
+      "to": 1957
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "classic",
+      "sports",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Mercedes-Benz 300 SL Gullwing",
+      "Mercedes-Benz 300 SL Papillon",
+      "Mercedes-Benz 300SL"
+    ],
+    "clue": {
+      "fr": "Ses portes s'ouvrent vers le haut, en ailes de papillon.",
+      "en": "Its doors open upwards like gull wings."
+    },
+    "funFact": {
+      "fr": "Elle a été l'une des premières voitures de série à injection directe d'essence.",
+      "en": "It was one of the first production cars with direct fuel injection."
+    },
+    "image": {
+      "src": "/cars/4f496ee92947",
+      "width": 1200,
+      "height": 801,
+      "alt": {
+        "fr": "Photo de la Mercedes-Benz 300 SL (W198)",
+        "en": "Photo of the Mercedes-Benz 300 SL (W198)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_W198_300_SL_Gullwing_1X7A0196.jpg",
+      "author": "Alexander Migl",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "mercedes-g-class",
+    "make": "Mercedes-Benz",
+    "model": "G-Class",
+    "years": {
+      "from": 1979,
+      "to": null
+    },
+    "region": "europe",
+    "bodyType": "offroad",
+    "tags": [],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Mercedes-Benz Classe G",
+      "Mercedes-Benz G-Klasse",
+      "Mercedes-Benz G Wagen",
+      "Mercedes-Benz G Wagon",
+      "Mercedes-Benz G 350",
+      "Mercedes-Benz G 63"
+    ],
+    "clue": {
+      "fr": "Assemblé à Graz, en Autriche, depuis 1979, sous une silhouette presque inchangée.",
+      "en": "Built in Graz, Austria, since 1979 with an almost unchanged silhouette."
+    },
+    "funFact": {
+      "fr": "Il a d'abord été conçu comme véhicule militaire, avec Steyr-Daimler-Puch.",
+      "en": "It was first designed as a military vehicle, with Steyr-Daimler-Puch."
+    },
+    "image": {
+      "src": "/cars/65d3a181c676",
+      "width": 1200,
+      "height": 796,
+      "alt": {
+        "fr": "Photo de la Mercedes-Benz G-Class",
+        "en": "Photo of the Mercedes-Benz G-Class"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_W465_DSC_8927.jpg",
+      "author": "Alexander Migl",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "jaguar-e-type",
+    "make": "Jaguar",
+    "model": "E-Type",
+    "years": {
+      "from": 1961,
+      "to": 1975
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Jaguar Type E",
+      "Jaguar XKE",
+      "Jaguar XK-E"
+    ],
+    "clue": {
+      "fr": "Son capot interminable bascule d'une seule pièce vers l'avant.",
+      "en": "Its endless bonnet tilts forward in one piece."
+    },
+    "funFact": {
+      "fr": "Enzo Ferrari l'aurait qualifiée de plus belle voiture jamais construite.",
+      "en": "Enzo Ferrari reportedly called it the most beautiful car ever made."
+    },
+    "image": {
+      "src": "/cars/530667179f2a",
+      "width": 1200,
+      "height": 579,
+      "alt": {
+        "fr": "Photo de la Jaguar E-Type",
+        "en": "Photo of the Jaguar E-Type"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jaguar_E-Type_series_1_coup%C3%A9_1964.jpg",
+      "author": "DeFacto",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "aston-martin-db5",
+    "make": "Aston Martin",
+    "model": "DB5",
+    "years": {
+      "from": 1963,
+      "to": 1965
+    },
+    "region": "europe",
+    "bodyType": "coupe",
+    "tags": [
+      "classic",
+      "sports"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Une grand tourisme britannique devenue une star de cinéma.",
+      "en": "A British grand tourer that became a film star."
+    },
+    "funFact": {
+      "fr": "Elle accompagne James Bond pour la première fois dans Goldfinger, en 1964.",
+      "en": "It first appeared alongside James Bond in Goldfinger, in 1964."
+    },
+    "image": {
+      "src": "/cars/13b17b7df209",
+      "width": 1200,
+      "height": 658,
+      "alt": {
+        "fr": "Photo de la Aston Martin DB5",
+        "en": "Photo of the Aston Martin DB5"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1964_Aston_Martin_DB5_4.0_Front.jpg",
+      "author": "Vauxford",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "land-rover-defender",
+    "make": "Land Rover",
+    "model": "Defender",
+    "years": {
+      "from": 1990,
+      "to": 2016
+    },
+    "region": "europe",
+    "bodyType": "offroad",
+    "tags": [
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Land Rover Defender 90",
+      "Land Rover Defender 110"
+    ],
+    "clue": {
+      "fr": "L'héritier direct des Land Rover Series de 1948.",
+      "en": "The direct descendant of the 1948 Land Rover Series."
+    },
+    "funFact": {
+      "fr": "Sa production historique à Solihull s'est arrêtée en janvier 2016.",
+      "en": "Its original production in Solihull ended in January 2016."
+    },
+    "image": {
+      "src": "/cars/cd5f547bc9e4",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Land Rover Defender",
+        "en": "Photo of the Land Rover Defender"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Defender_in_Alderney_IMG_3900acc_.jpg",
+      "author": "Christof46",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "volvo-240",
+    "make": "Volvo",
+    "model": "240",
+    "years": {
+      "from": 1974,
+      "to": 1993
+    },
+    "region": "europe",
+    "bodyType": "sedan",
+    "tags": [
+      "everyday",
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Volvo 244",
+      "Volvo 240 GL",
+      "Volvo 240 DL"
+    ],
+    "clue": {
+      "fr": "Une berline suédoise aux lignes très carrées, réputée inusable.",
+      "en": "A boxy Swedish saloon famous for being nearly indestructible."
+    },
+    "funFact": {
+      "fr": "La famille 200 a été produite à près de 2,7 millions d'exemplaires en 19 ans.",
+      "en": "The 200 family sold nearly 2.7 million units over 19 years."
+    },
+    "image": {
+      "src": "/cars/b2ba02d0b8ae",
+      "width": 1200,
+      "height": 738,
+      "alt": {
+        "fr": "Photo de la Volvo 240",
+        "en": "Photo of the Volvo 240"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1988_Volvo_240_DL_sedan,_front_right,_05-02-2022.jpg",
+      "author": "MercurySable99",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "saab-900",
+    "make": "Saab",
+    "model": "900",
+    "years": {
+      "from": 1978,
+      "to": 1993
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "classic",
+      "everyday"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Saab 900 Turbo",
+      "Saab 900 Classic"
+    ],
+    "clue": {
+      "fr": "Son pare-brise très bombé rappelle les origines aéronautiques de la marque.",
+      "en": "Its wraparound windscreen hints at the brand's aircraft roots."
+    },
+    "funFact": {
+      "fr": "Sa clé de contact se trouve entre les sièges, près du levier de vitesses.",
+      "en": "Its ignition key sits between the seats, next to the gear lever."
+    },
+    "image": {
+      "src": "/cars/8092727394c9",
+      "width": 1200,
+      "height": 781,
+      "alt": {
+        "fr": "Photo de la Saab 900",
+        "en": "Photo of the Saab 900"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1979_Saab_900_Turbo_five-door_in_Aquamarine,_front_right.jpg",
+      "author": "Mr.choppers",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
+  },
+  {
+    "id": "bmw-i3",
+    "make": "BMW",
+    "model": "i3",
+    "years": {
+      "from": 2013,
+      "to": 2022
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "electric",
+      "everyday"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Sa cellule passagers est en plastique renforcé de fibre de carbone.",
+      "en": "Its passenger cell is made of carbon-fibre-reinforced plastic."
+    },
+    "funFact": {
+      "fr": "Ses portes arrière s'ouvrent à contresens, sans montant central.",
+      "en": "Its rear doors are rear-hinged, with no central pillar."
+    },
+    "image": {
+      "src": "/cars/06e104619684",
+      "width": 1200,
+      "height": 737,
+      "alt": {
+        "fr": "Photo de la BMW i3",
+        "en": "Photo of the BMW i3"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2018_BMW_i3_facelift_(1).jpg",
+      "author": "Vauxford",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "smart-fortwo",
+    "make": "Smart",
+    "model": "Fortwo",
+    "generation": "451",
+    "years": {
+      "from": 2007,
+      "to": 2014
+    },
+    "region": "europe",
+    "bodyType": "hatchback",
+    "tags": [
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Smart Fortwo Coupe"
+    ],
+    "clue": {
+      "fr": "Moins de 2,7 mètres de long : on peut la garer perpendiculairement au trottoir.",
+      "en": "Under 2.7 metres long: it can park nose-in to the kerb."
+    },
+    "funFact": {
+      "fr": "Le projet est né d'une association entre Mercedes-Benz et Swatch.",
+      "en": "The project began as a partnership between Mercedes-Benz and Swatch."
+    },
+    "image": {
+      "src": "/cars/034eebe91497",
+      "width": 1200,
+      "height": 822,
+      "alt": {
+        "fr": "Photo de la Smart Fortwo (451)",
+        "en": "Photo of the Smart Fortwo (451)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Smart_Fortwo_Coup%C3%A9_1.0_mhd_Passion_(451)_%E2%80%93_Frontansicht,_25._April_2011,_Ratingen.jpg",
+      "author": "M 93",
+      "license": "CC BY-SA 3.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"
+    }
+  },
+  {
+    "id": "nissan-skyline-r34",
+    "make": "Nissan",
+    "model": "Skyline GT-R",
+    "generation": "R34",
+    "years": {
+      "from": 1999,
+      "to": 2002
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Nissan Skyline",
+      "Nissan GT-R R34",
+      "Nissan Skyline R34"
+    ],
+    "clue": {
+      "fr": "Son six-cylindres en ligne RB26DETT est une légende de la préparation.",
+      "en": "Its RB26DETT inline-six is a tuning legend."
+    },
+    "funFact": {
+      "fr": "Elle n'a jamais été vendue officiellement aux États-Unis.",
+      "en": "It was never officially sold in the United States."
+    },
+    "image": {
+      "src": "/cars/59876f14894b",
+      "width": 1200,
+      "height": 687,
+      "alt": {
+        "fr": "Photo de la Nissan Skyline GT-R (R34)",
+        "en": "Photo of the Nissan Skyline GT-R (R34)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2001_Nissan_Skyline_GT-R_V-Spec_II_R34.jpg",
+      "author": "MrWalkr",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "nissan-gt-r-r35",
+    "make": "Nissan",
+    "model": "GT-R",
+    "generation": "R35",
+    "years": {
+      "from": 2007,
+      "to": 2025
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "sports"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Chaque V6 biturbo est assemblé à la main par un seul artisan, un « takumi ».",
+      "en": "Each twin-turbo V6 is hand-built by a single craftsman, a \"takumi\"."
+    },
+    "funFact": {
+      "fr": "Elle a abandonné le nom Skyline pour devenir un modèle à part entière.",
+      "en": "It dropped the Skyline name to become a model in its own right."
+    },
+    "image": {
+      "src": "/cars/cd1343e7c173",
+      "width": 1200,
+      "height": 643,
+      "alt": {
+        "fr": "Photo de la Nissan GT-R (R35)",
+        "en": "Photo of the Nissan GT-R (R35)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:NISSAN_GT-R_(R35,_2011_FACELIFT)_China.jpg",
+      "author": "Dinkun Chen",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "nissan-leaf",
+    "make": "Nissan",
+    "model": "Leaf",
+    "years": {
+      "from": 2010,
+      "to": 2017
+    },
+    "region": "japan",
+    "bodyType": "hatchback",
+    "tags": [
+      "electric",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "L'une des premières voitures électriques produites en très grande série.",
+      "en": "One of the first electric cars built in truly large numbers."
+    },
+    "funFact": {
+      "fr": "Son nom serait l'acronyme anglais de « Leading, Environmentally friendly, Affordable, Family car ».",
+      "en": "Its name is said to stand for \"Leading, Environmentally friendly, Affordable, Family car\"."
+    },
+    "image": {
+      "src": "/cars/289cf61a0f39",
+      "width": 1200,
+      "height": 702,
+      "alt": {
+        "fr": "Photo de la Nissan Leaf",
+        "en": "Photo of the Nissan Leaf"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2011_Nissan_Leaf_SL_--_10-28-2011.jpg",
+      "author": "IFCAR",
+      "license": "Public domain",
+      "licenseUrl": null
+    }
+  },
+  {
+    "id": "datsun-240z",
+    "make": "Datsun",
+    "model": "240Z",
+    "years": {
+      "from": 1969,
+      "to": 1973
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Nissan 240Z",
+      "Nissan Fairlady Z",
+      "Datsun Fairlady Z",
+      "Nissan S30"
+    ],
+    "clue": {
+      "fr": "Un coupé japonais à long capot, vendu sous une marque aujourd'hui disparue en Occident.",
+      "en": "A long-nosed Japanese coupé sold under a brand later dropped in the West."
+    },
+    "funFact": {
+      "fr": "Yutaka Katayama, patron de Nissan aux États-Unis, est surnommé le père de la « Z ».",
+      "en": "Yutaka Katayama, head of Nissan in the US, is known as the father of the Z."
+    },
+    "image": {
+      "src": "/cars/9a5ee7c6be2f",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Datsun 240Z",
+        "en": "Photo of the Datsun 240Z"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Yellow_Datsun_240Z_dllu.jpg",
+      "author": "Dllu",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "toyota-supra-a80",
+    "make": "Toyota",
+    "model": "Supra",
+    "generation": "A80",
+    "years": {
+      "from": 1993,
+      "to": 2002
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "sports"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Toyota Supra Mk4",
+      "Toyota Supra Mk IV"
+    ],
+    "clue": {
+      "fr": "Son six-cylindres 2JZ-GTE biturbo a fait sa légende auprès des préparateurs.",
+      "en": "Its twin-turbo 2JZ-GTE inline-six made it a tuner legend."
+    },
+    "funFact": {
+      "fr": "Le premier film Fast and Furious, en 2001, en a fait une icône.",
+      "en": "The first Fast and Furious film, in 2001, made it an icon."
+    },
+    "image": {
+      "src": "/cars/ce1a2bb1a10a",
+      "width": 1200,
+      "height": 709,
+      "alt": {
+        "fr": "Photo de la Toyota Supra (A80)",
+        "en": "Photo of the Toyota Supra (A80)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1994_Toyota_Supra_Sport_Roof_in_Red,_front_left.jpg",
+      "author": "Mr.choppers",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
+  },
+  {
+    "id": "toyota-ae86",
+    "make": "Toyota",
+    "model": "Sprinter Trueno",
+    "generation": "AE86",
+    "years": {
+      "from": 1983,
+      "to": 1987
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Toyota AE86",
+      "Toyota Trueno",
+      "Toyota Corolla AE86",
+      "Toyota Corolla Trueno",
+      "Toyota Hachiroku"
+    ],
+    "clue": {
+      "fr": "Une petite propulsion à phares escamotables, reine du drift.",
+      "en": "A small rear-drive coupé with pop-up headlights, the queen of drifting."
+    },
+    "funFact": {
+      "fr": "Le manga Initial D en a fait une star, livraisons de tofu comprises.",
+      "en": "The manga Initial D made it a star, tofu deliveries included."
+    },
+    "image": {
+      "src": "/cars/cf736c0c82c7",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Toyota Sprinter Trueno (AE86)",
+        "en": "Photo of the Toyota Sprinter Trueno (AE86)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Toyota_E-AE86_Sprinter_Trueno_GT_APEX_(22010314081).jpg",
+      "author": "先従隗始",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  {
+    "id": "toyota-2000gt",
+    "make": "Toyota",
+    "model": "2000GT",
+    "years": {
+      "from": 1967,
+      "to": 1970
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic",
+      "rare"
+    ],
+    "difficulty": 3,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Seulement 351 exemplaires, développés avec Yamaha.",
+      "en": "Only 351 were built, developed with Yamaha."
+    },
+    "funFact": {
+      "fr": "Deux cabriolets ont été créés spécialement pour le James Bond On ne vit que deux fois.",
+      "en": "Two convertibles were made specially for the Bond film You Only Live Twice."
+    },
+    "image": {
+      "src": "/cars/d54a796d78ec",
+      "width": 1200,
+      "height": 822,
+      "alt": {
+        "fr": "Photo de la Toyota 2000GT",
+        "en": "Photo of the Toyota 2000GT"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Toyota_2000GT_(58142).jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "toyota-prius-2",
+    "make": "Toyota",
+    "model": "Prius",
+    "generation": "XW20",
+    "years": {
+      "from": 2003,
+      "to": 2009
+    },
+    "region": "japan",
+    "bodyType": "hatchback",
+    "tags": [
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Toyota Prius 2",
+      "Toyota Prius II"
+    ],
+    "clue": {
+      "fr": "Une hybride en forme de goutte d'eau, symbole de la voiture « verte » des années 2000.",
+      "en": "A teardrop-shaped hybrid that symbolised the \"green\" car of the 2000s."
+    },
+    "funFact": {
+      "fr": "Son arrière tronqué a été dessiné pour réduire la traînée aérodynamique.",
+      "en": "Its cut-off tail was shaped to reduce aerodynamic drag."
+    },
+    "image": {
+      "src": "/cars/08868c5d7460",
+      "width": 1200,
+      "height": 776,
+      "alt": {
+        "fr": "Photo de la Toyota Prius (XW20)",
+        "en": "Photo of the Toyota Prius (XW20)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2nd_Toyota_Prius.jpg",
+      "author": "IFCAR",
+      "license": "Public domain",
+      "licenseUrl": null
+    }
+  },
+  {
+    "id": "lexus-lfa",
+    "make": "Lexus",
+    "model": "LFA",
+    "years": {
+      "from": 2010,
+      "to": 2012
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Son V10 de 4,8 litres monte si vite en régime qu'il a fallu un compte-tours numérique.",
+      "en": "Its 4.8-litre V10 revs so fast it needed a digital rev counter."
+    },
+    "funFact": {
+      "fr": "Seulement 500 exemplaires ont été produits.",
+      "en": "Only 500 were built."
+    },
+    "image": {
+      "src": "/cars/c5bd6d59b59f",
+      "width": 1200,
+      "height": 696,
+      "alt": {
+        "fr": "Photo de la Lexus LFA",
+        "en": "Photo of the Lexus LFA"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2011_Lexus_LFA_White.jpg",
+      "author": "MrWalkr",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "mazda-mx5-na",
+    "make": "Mazda",
+    "model": "MX-5",
+    "generation": "NA",
+    "years": {
+      "from": 1989,
+      "to": 1997
+    },
+    "region": "japan",
+    "bodyType": "roadster",
+    "tags": [
+      "sports",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Mazda Miata",
+      "Mazda MX-5 Miata",
+      "Eunos Roadster"
+    ],
+    "clue": {
+      "fr": "Un roadster léger à phares escamotables, inspiré des britanniques des années 60.",
+      "en": "A light roadster with pop-up headlights, inspired by 1960s British sports cars."
+    },
+    "funFact": {
+      "fr": "Le Livre Guinness des records l'a reconnu comme le roadster deux places le plus vendu.",
+      "en": "Guinness World Records recognises it as the best-selling two-seat roadster."
+    },
+    "image": {
+      "src": "/cars/5611b7bad4c0",
+      "width": 1200,
+      "height": 799,
+      "alt": {
+        "fr": "Photo de la Mazda MX-5 (NA)",
+        "en": "Photo of the Mazda MX-5 (NA)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mazda_MX-5_(NA)_IMG_0206.jpg",
+      "author": "Alexander-93",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "mazda-rx7-fd",
+    "make": "Mazda",
+    "model": "RX-7",
+    "generation": "FD",
+    "years": {
+      "from": 1992,
+      "to": 2002
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Mazda RX-7 FD3S"
+    ],
+    "clue": {
+      "fr": "Son moteur rotatif birotor est suralimenté par deux turbos séquentiels.",
+      "en": "Its twin-rotor rotary engine uses sequential twin turbos."
+    },
+    "funFact": {
+      "fr": "C'est la dernière RX-7 ; la RX-8 lui a succédé.",
+      "en": "It was the last RX-7; the RX-8 replaced it."
+    },
+    "image": {
+      "src": "/cars/b2fa01c9b42e",
+      "width": 1200,
+      "height": 769,
+      "alt": {
+        "fr": "Photo de la Mazda RX-7 (FD)",
+        "en": "Photo of the Mazda RX-7 (FD)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1994_Mazda_RX-7_R2_in_Vintage_Red,_front_left_(Lime_Rock).jpg",
+      "author": "Mr.choppers",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
+  },
+  {
+    "id": "mazda-787b",
+    "make": "Mazda",
+    "model": "787B",
+    "years": {
+      "from": 1991,
+      "to": 1991
+    },
+    "region": "japan",
+    "bodyType": "race-car",
+    "tags": [
+      "racing",
+      "rare"
+    ],
+    "difficulty": 3,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Un prototype d'endurance au moteur rotatif à quatre rotors, au son strident.",
+      "en": "An endurance prototype with a shrieking four-rotor rotary engine."
+    },
+    "funFact": {
+      "fr": "En 1991, elle est devenue la première voiture japonaise à gagner les 24 Heures du Mans.",
+      "en": "In 1991 it became the first Japanese car to win the Le Mans 24 Hours."
+    },
+    "image": {
+      "src": "/cars/c55645d0f276",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Mazda 787B",
+        "en": "Photo of the Mazda 787B"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mazda-787B-No55-July2011.jpg",
+      "author": "韋駄天狗",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/"
+    }
+  },
+  {
+    "id": "honda-nsx-1",
+    "make": "Honda",
+    "model": "NSX",
+    "generation": "NA1",
+    "years": {
+      "from": 1990,
+      "to": 2005
+    },
+    "region": "japan",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar",
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Acura NSX"
+    ],
+    "clue": {
+      "fr": "La première voiture de série à carrosserie entièrement en aluminium.",
+      "en": "The first production car with an all-aluminium body."
+    },
+    "funFact": {
+      "fr": "Ayrton Senna a participé à la mise au point de son châssis.",
+      "en": "Ayrton Senna helped fine-tune its chassis."
+    },
+    "image": {
+      "src": "/cars/d7a7965f37d1",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Honda NSX (NA1)",
+        "en": "Photo of the Honda NSX (NA1)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_E-NA1_NSX_(23110313233).jpg",
+      "author": "先従隗始",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  {
+    "id": "honda-s2000",
+    "make": "Honda",
+    "model": "S2000",
+    "years": {
+      "from": 1999,
+      "to": 2009
+    },
+    "region": "japan",
+    "bodyType": "roadster",
+    "tags": [
+      "sports"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Honda S 2000"
+    ],
+    "clue": {
+      "fr": "Son quatre-cylindres atmosphérique hurle jusqu'à 9 000 tr/min.",
+      "en": "Its naturally aspirated four-cylinder screams to 9,000 rpm."
+    },
+    "funFact": {
+      "fr": "Son nom salue les 50 ans de Honda et sa cylindrée de 2 000 cm³.",
+      "en": "Its name celebrates Honda's 50th anniversary and its 2.0-litre engine."
+    },
+    "image": {
+      "src": "/cars/a83cdd3562a9",
+      "width": 1200,
+      "height": 901,
+      "alt": {
+        "fr": "Photo de la Honda S2000",
+        "en": "Photo of the Honda S2000"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_S2000_2004_1.jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "mitsubishi-lancer-evo",
+    "make": "Mitsubishi",
+    "model": "Lancer Evolution",
+    "generation": "VI",
+    "years": {
+      "from": 1999,
+      "to": 2001
+    },
+    "region": "japan",
+    "bodyType": "sedan",
+    "tags": [
+      "sports",
+      "racing"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Mitsubishi Lancer Evo",
+      "Mitsubishi Evo",
+      "Mitsubishi Lancer Evolution 6",
+      "Mitsubishi Lancer Evo 6",
+      "Mitsubishi Lancer Evo VI",
+      "Mitsubishi Evo 6",
+      "Mitsubishi Evo VI"
+    ],
+    "clue": {
+      "fr": "Une berline à quatre roues motrices conçue pour le championnat du monde des rallyes.",
+      "en": "A four-wheel-drive saloon engineered for the World Rally Championship."
+    },
+    "funFact": {
+      "fr": "Tommi Mäkinen a remporté quatre titres pilotes consécutifs en Lancer Evolution, de 1996 à 1999.",
+      "en": "Tommi Mäkinen won four straight drivers' titles in a Lancer Evolution, from 1996 to 1999."
+    },
+    "image": {
+      "src": "/cars/a63e90c36e77",
+      "width": 1200,
+      "height": 691,
+      "alt": {
+        "fr": "Photo de la Mitsubishi Lancer Evolution (VI)",
+        "en": "Photo of the Mitsubishi Lancer Evolution (VI)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mitsubishi_Lancer_Evolution_VI_IMG_0346.jpg",
+      "author": "Alexander-93",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "subaru-impreza-gc8",
+    "make": "Subaru",
+    "model": "Impreza",
+    "generation": "GC8",
+    "years": {
+      "from": 1992,
+      "to": 2000
+    },
+    "region": "japan",
+    "bodyType": "sedan",
+    "tags": [
+      "sports",
+      "racing",
+      "everyday"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Subaru Impreza WRX",
+      "Subaru Impreza STI",
+      "Subaru Impreza WRX STI",
+      "Subaru WRX",
+      "Subaru Impreza Turbo"
+    ],
+    "clue": {
+      "fr": "Moteur boxer et quatre roues motrices, souvent en bleu avec des jantes dorées.",
+      "en": "Boxer engine and four-wheel drive, often in blue with gold wheels."
+    },
+    "funFact": {
+      "fr": "Colin McRae a été sacré champion du monde des rallyes en 1995 au volant d'une Impreza.",
+      "en": "Colin McRae won the 1995 World Rally Championship driving an Impreza."
+    },
+    "image": {
+      "src": "/cars/048deaddfe0e",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Subaru Impreza (GC8)",
+        "en": "Photo of the Subaru Impreza (GC8)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Subaru_IMPREZA_WRX_type_RA_STi_(GF-GC8)_front.jpg",
+      "author": "Tokumeigakarinoaoshima",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "suzuki-jimny",
+    "make": "Suzuki",
+    "model": "Jimny",
+    "years": {
+      "from": 2018,
+      "to": null
+    },
+    "region": "japan",
+    "bodyType": "offroad",
+    "tags": [
+      "everyday"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Suzuki Jimny Sierra"
+    ],
+    "clue": {
+      "fr": "Un petit 4x4 à châssis séparé et à la silhouette très cubique.",
+      "en": "A small body-on-frame 4x4 with a very boxy shape."
+    },
+    "funFact": {
+      "fr": "Sa ligne carrée rend hommage aux premières générations de Jimny.",
+      "en": "Its square styling pays tribute to the earliest Jimny generations."
+    },
+    "image": {
+      "src": "/cars/5714c72ae3bc",
+      "width": 1200,
+      "height": 649,
+      "alt": {
+        "fr": "Photo de la Suzuki Jimny",
+        "en": "Photo of the Suzuki Jimny"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2018-2024_Suzuki_Jimny_Sierra_JC.jpg",
+      "author": "TTTNIS",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    }
+  },
+  {
+    "id": "hyundai-ioniq-5",
+    "make": "Hyundai",
+    "model": "Ioniq 5",
+    "years": {
+      "from": 2021,
+      "to": null
+    },
+    "region": "korea",
+    "bodyType": "suv",
+    "tags": [
+      "electric"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Son design aux détails « pixelisés » rend hommage à la Pony de 1975.",
+      "en": "Its \"pixel\" design details pay tribute to the 1975 Pony."
+    },
+    "funFact": {
+      "fr": "Elle a été élue Voiture mondiale de l'année 2022.",
+      "en": "It was named 2022 World Car of the Year."
+    },
+    "image": {
+      "src": "/cars/a8d723b7b2b0",
+      "width": 1200,
+      "height": 621,
+      "alt": {
+        "fr": "Photo de la Hyundai Ioniq 5",
+        "en": "Photo of the Hyundai Ioniq 5"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hyundai_Ioniq_5_1X7A7085.jpg",
+      "author": "Alexander-93",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "ford-mustang-1",
+    "make": "Ford",
+    "model": "Mustang",
+    "years": {
+      "from": 1964,
+      "to": 1973
+    },
+    "region": "usa",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Ford Mustang 1965",
+      "Ford Mustang 1964"
+    ],
+    "clue": {
+      "fr": "Elle a lancé la catégorie des « pony cars » américaines.",
+      "en": "It launched the American \"pony car\" class."
+    },
+    "funFact": {
+      "fr": "Elle a été présentée à l'Exposition universelle de New York en avril 1964.",
+      "en": "It was unveiled at the New York World's Fair in April 1964."
+    },
+    "image": {
+      "src": "/cars/38e81881c9ed",
+      "width": 1200,
+      "height": 901,
+      "alt": {
+        "fr": "Photo de la Ford Mustang",
+        "en": "Photo of the Ford Mustang"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ford_Mustang_Hardtop_Coupe_1965.jpg",
+      "author": "Ethan Llamas",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "ford-gt40",
+    "make": "Ford",
+    "model": "GT40",
+    "years": {
+      "from": 1964,
+      "to": 1969
+    },
+    "region": "usa",
+    "bodyType": "race-car",
+    "tags": [
+      "racing",
+      "classic",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Conçue pour battre Ferrari, elle mesure à peine 40 pouces de haut.",
+      "en": "Built to beat Ferrari, it stands just 40 inches tall."
+    },
+    "funFact": {
+      "fr": "Elle a remporté les 24 Heures du Mans quatre fois de suite, de 1966 à 1969.",
+      "en": "It won the Le Mans 24 Hours four years running, from 1966 to 1969."
+    },
+    "image": {
+      "src": "/cars/926f8812cbdf",
+      "width": 1200,
+      "height": 703,
+      "alt": {
+        "fr": "Photo de la Ford GT40",
+        "en": "Photo of the Ford GT40"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Ford_GT40_1.jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "ford-gt-2005",
+    "make": "Ford",
+    "model": "GT",
+    "years": {
+      "from": 2004,
+      "to": 2006
+    },
+    "region": "usa",
+    "bodyType": "coupe",
+    "tags": [
+      "supercar"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Un hommage moderne à une légende du Mans des années 60.",
+      "en": "A modern tribute to a 1960s Le Mans legend."
+    },
+    "funFact": {
+      "fr": "Elle a été présentée pour le centenaire de Ford, en 2003.",
+      "en": "It was introduced for Ford's centenary, in 2003."
+    },
+    "image": {
+      "src": "/cars/19cfffa4abc4",
+      "width": 1200,
+      "height": 636,
+      "alt": {
+        "fr": "Photo de la Ford GT",
+        "en": "Photo of the Ford GT"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2005_Ford_GT_GT101.jpg",
+      "author": "MrWalkr",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "ford-model-t",
+    "make": "Ford",
+    "model": "Model T",
+    "years": {
+      "from": 1908,
+      "to": 1927
+    },
+    "region": "usa",
+    "bodyType": "convertible",
+    "tags": [
+      "classic",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "Ford T",
+      "Ford Modèle T",
+      "Ford Tin Lizzie"
+    ],
+    "clue": {
+      "fr": "Produite à la chaîne dès 1913, elle a motorisé l'Amérique.",
+      "en": "Assembly-line built from 1913, it put America on wheels."
+    },
+    "funFact": {
+      "fr": "Plus de 15 millions d'exemplaires ont été construits.",
+      "en": "More than 15 million were built."
+    },
+    "image": {
+      "src": "/cars/a62034f84075",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Ford Model T",
+        "en": "Photo of the Ford Model T"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1925_Ford_Model_T_touring.jpg",
+      "author": "ModelTMitch",
+      "license": "Public domain",
+      "licenseUrl": null
+    }
+  },
+  {
+    "id": "chevrolet-corvette-c2",
+    "make": "Chevrolet",
+    "model": "Corvette",
+    "generation": "C2",
+    "years": {
+      "from": 1963,
+      "to": 1967
+    },
+    "region": "usa",
+    "bodyType": "convertible",
+    "tags": [
+      "sports",
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Chevrolet Corvette Sting Ray",
+      "Chevrolet Corvette Stingray"
+    ],
+    "clue": {
+      "fr": "Ses phares escamotables pivotent pour s'ouvrir.",
+      "en": "Its hidden headlights rotate open."
+    },
+    "funFact": {
+      "fr": "Le coupé de 1963 se reconnaît à sa lunette arrière en deux parties, propre à ce millésime.",
+      "en": "The 1963 coupé is known for its split rear window, unique to that year."
+    },
+    "image": {
+      "src": "/cars/af72bbf5f9bf",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Chevrolet Corvette (C2)",
+        "en": "Photo of the Chevrolet Corvette (C2)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Chevrolet_Corvette_C2_Sting_Ray_2012-07-15_14-48-40.JPG",
+      "author": "Berthold Werner",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    }
+  },
+  {
+    "id": "chevrolet-camaro-1",
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "years": {
+      "from": 1967,
+      "to": 1969
+    },
+    "region": "usa",
+    "bodyType": "coupe",
+    "tags": [
+      "sports",
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Chevrolet Camaro Z28",
+      "Chevrolet Camaro SS",
+      "Chevrolet Camaro 1969"
+    ],
+    "clue": {
+      "fr": "La réponse de Chevrolet à la Ford Mustang.",
+      "en": "Chevrolet's answer to the Ford Mustang."
+    },
+    "funFact": {
+      "fr": "La version Z/28 a été conçue pour courir en championnat Trans-Am.",
+      "en": "The Z/28 version was created to race in the Trans-Am series."
+    },
+    "image": {
+      "src": "/cars/cb6c99223067",
+      "width": 1200,
+      "height": 661,
+      "alt": {
+        "fr": "Photo de la Chevrolet Camaro",
+        "en": "Photo of the Chevrolet Camaro"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1969_Chevrolet_Camaro_Z28_Rally_Sport,_front_right,_09-09-2023.jpg",
+      "author": "MercurySable99",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "chevrolet-bel-air-1957",
+    "make": "Chevrolet",
+    "model": "Bel Air",
+    "years": {
+      "from": 1957,
+      "to": 1957
+    },
+    "region": "usa",
+    "bodyType": "coupe",
+    "tags": [
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Chevrolet Bel Air 1957",
+      "Chevrolet Bel-Air"
+    ],
+    "clue": {
+      "fr": "Ses ailerons et ses chromes en font une icône des années 50.",
+      "en": "Tail fins and chrome make it a 1950s icon."
+    },
+    "funFact": {
+      "fr": "Avec les modèles 1955 et 1956, il forme la célèbre trilogie « Tri-Five ».",
+      "en": "With the 1955 and 1956 models it forms the famous \"Tri-Five\" trio."
+    },
+    "image": {
+      "src": "/cars/98608fec5758",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "fr": "Photo de la Chevrolet Bel Air",
+        "en": "Photo of the Chevrolet Bel Air"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1957_Chevrolet_Bel_Air_Sport_Coupe_P5200937.jpg",
+      "author": "Ermell",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "dodge-viper-1",
+    "make": "Dodge",
+    "model": "Viper",
+    "generation": "RT/10",
+    "years": {
+      "from": 1992,
+      "to": 1995
+    },
+    "region": "usa",
+    "bodyType": "roadster",
+    "tags": [
+      "supercar"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Chrysler Viper",
+      "Dodge Viper SR"
+    ],
+    "clue": {
+      "fr": "Un roadster sans vitres latérales, mû par un énorme V10 de 8 litres.",
+      "en": "A roadster without side windows, powered by a huge 8-litre V10."
+    },
+    "funFact": {
+      "fr": "Lamborghini, alors propriété de Chrysler, a participé à la conception de son V10.",
+      "en": "Lamborghini, then owned by Chrysler, helped develop its V10."
+    },
+    "image": {
+      "src": "/cars/8031669f6955",
+      "width": 1200,
+      "height": 806,
+      "alt": {
+        "fr": "Photo de la Dodge Viper (RT/10)",
+        "en": "Photo of the Dodge Viper (RT/10)"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1994_Dodge_Viper_(SR_I)_Classic-Gala_2025_DSC_0942.jpg",
+      "author": "Alexander Migl",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "dodge-charger-daytona",
+    "make": "Dodge",
+    "model": "Charger Daytona",
+    "years": {
+      "from": 1969,
+      "to": 1969
+    },
+    "region": "usa",
+    "bodyType": "coupe",
+    "tags": [
+      "racing",
+      "rare",
+      "classic"
+    ],
+    "difficulty": 3,
+    "acceptedAnswers": [
+      "Dodge Daytona"
+    ],
+    "clue": {
+      "fr": "Un nez profilé et un immense aileron arrière, pensés pour les ovales de NASCAR.",
+      "en": "A pointed nose and a towering rear wing, built for NASCAR ovals."
+    },
+    "funFact": {
+      "fr": "Elle a été la première voiture à dépasser 200 mph (322 km/h) en NASCAR, en 1970.",
+      "en": "In 1970 it became the first car to top 200 mph in NASCAR."
+    },
+    "image": {
+      "src": "/cars/528f36eac40a",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Dodge Charger Daytona",
+        "en": "Photo of the Dodge Charger Daytona"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1969_Dodge_Charger_Daytona_(13419983895).jpg",
+      "author": "Sicnag",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  {
+    "id": "tesla-model-s",
+    "make": "Tesla",
+    "model": "Model S",
+    "years": {
+      "from": 2012,
+      "to": 2026
+    },
+    "region": "usa",
+    "bodyType": "sedan",
+    "tags": [
+      "electric"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Une grande berline électrique pilotée depuis un vaste écran tactile central.",
+      "en": "A large electric saloon controlled through a huge central touchscreen."
+    },
+    "funFact": {
+      "fr": "Elle a été la voiture électrique la plus vendue au monde en 2015 et 2016.",
+      "en": "It was the world's best-selling electric car in 2015 and 2016."
+    },
+    "image": {
+      "src": "/cars/dbdd1cb8fc4a",
+      "width": 1200,
+      "height": 675,
+      "alt": {
+        "fr": "Photo de la Tesla Model S",
+        "en": "Photo of the Tesla Model S"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:20180630_Tesla_Model_S_70D_2015_midnight_blue_left_front.jpg",
+      "author": "Granada",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "tesla-model-3",
+    "make": "Tesla",
+    "model": "Model 3",
+    "years": {
+      "from": 2017,
+      "to": null
+    },
+    "region": "usa",
+    "bodyType": "sedan",
+    "tags": [
+      "electric",
+      "everyday"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Sa planche de bord se résume presque à un écran central, sans compteur derrière le volant.",
+      "en": "Its dashboard is little more than a central screen, with no gauges behind the wheel."
+    },
+    "funFact": {
+      "fr": "Elle a longtemps été la voiture électrique la plus vendue de l'histoire.",
+      "en": "For years it was the best-selling electric car in history."
+    },
+    "image": {
+      "src": "/cars/98c96fd97ef0",
+      "width": 1200,
+      "height": 818,
+      "alt": {
+        "fr": "Photo de la Tesla Model 3",
+        "en": "Photo of the Tesla Model 3"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Tesla_Model_3_in_M%C3%BCnchen_geparkt.jpg",
+      "author": "AuHaidhausen",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
+    }
+  },
+  {
+    "id": "tesla-roadster-2008",
+    "make": "Tesla",
+    "model": "Roadster",
+    "years": {
+      "from": 2008,
+      "to": 2012
+    },
+    "region": "usa",
+    "bodyType": "roadster",
+    "tags": [
+      "electric",
+      "sports",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [],
+    "clue": {
+      "fr": "Une électrique dont la carrosserie dérive de la Lotus Elise.",
+      "en": "An electric car whose body is derived from the Lotus Elise."
+    },
+    "funFact": {
+      "fr": "Un exemplaire a été envoyé dans l'espace en 2018 par une fusée Falcon Heavy.",
+      "en": "One was launched into space in 2018 on a Falcon Heavy rocket."
+    },
+    "image": {
+      "src": "/cars/6ae8d96562ca",
+      "width": 1200,
+      "height": 750,
+      "alt": {
+        "fr": "Photo de la Tesla Roadster",
+        "en": "Photo of the Tesla Roadster"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:2008_Tesla_Roadster_(73530299).jpeg",
+      "author": "Doug Fawley",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
+    }
+  },
+  {
+    "id": "jeep-willys-mb",
+    "make": "Willys",
+    "model": "MB",
+    "years": {
+      "from": 1941,
+      "to": 1945
+    },
+    "region": "usa",
+    "bodyType": "offroad",
+    "tags": [
+      "classic"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Willys Jeep",
+      "Jeep Willys",
+      "Jeep Willys MB",
+      "Willys MB Jeep",
+      "Ford GPW"
+    ],
+    "clue": {
+      "fr": "Le véhicule de liaison emblématique des troupes alliées pendant la Seconde Guerre mondiale.",
+      "en": "The iconic light utility vehicle of the Allied forces in World War II."
+    },
+    "funFact": {
+      "fr": "Ford en a produit une version quasi identique, la GPW.",
+      "en": "Ford built an almost identical version, the GPW."
+    },
+    "image": {
+      "src": "/cars/e5d7012a22fc",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Willys MB",
+        "en": "Photo of the Willys MB"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Jeep_-_Bedfordshire_Steam_%26_Country_Fayre_2017_(36515507253).jpg",
+      "author": "Airwolfhound from Hertfordshire, UK",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+    }
+  },
+  {
+    "id": "hummer-h1",
+    "make": "Hummer",
+    "model": "H1",
+    "years": {
+      "from": 1992,
+      "to": 2006
+    },
+    "region": "usa",
+    "bodyType": "offroad",
+    "tags": [
+      "rare"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "AM General Hummer"
+    ],
+    "clue": {
+      "fr": "La version civile d'un véhicule militaire américain, le Humvee.",
+      "en": "The civilian version of a US military vehicle, the Humvee."
+    },
+    "funFact": {
+      "fr": "Arnold Schwarzenegger a été l'un des premiers à en réclamer une version civile.",
+      "en": "Arnold Schwarzenegger was among the first to push for a civilian version."
+    },
+    "image": {
+      "src": "/cars/3deb961ee8d3",
+      "width": 1200,
+      "height": 800,
+      "alt": {
+        "fr": "Photo de la Hummer H1",
+        "en": "Photo of the Hummer H1"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Hummer_H1.jpg",
+      "author": "Brian Snelson from Hockley, Essex, England",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  {
+    "id": "cadillac-eldorado-1959",
+    "make": "Cadillac",
+    "model": "Eldorado",
+    "years": {
+      "from": 1959,
+      "to": 1959
+    },
+    "region": "usa",
+    "bodyType": "convertible",
+    "tags": [
+      "classic",
+      "rare"
+    ],
+    "difficulty": 2,
+    "acceptedAnswers": [
+      "Cadillac Eldorado Biarritz",
+      "Cadillac Eldorado 1959",
+      "Cadillac 1959"
+    ],
+    "clue": {
+      "fr": "Ses ailerons, parmi les plus hauts de l'histoire, encadrent des feux en forme de fusée.",
+      "en": "Its fins, among the tallest ever, frame rocket-shaped tail lights."
+    },
+    "funFact": {
+      "fr": "Le millésime 1959 marque l'apogée de la mode des ailerons aux États-Unis.",
+      "en": "The 1959 model year marks the peak of America's tail-fin craze."
+    },
+    "image": {
+      "src": "/cars/578e3b101f6e",
+      "width": 1200,
+      "height": 615,
+      "alt": {
+        "fr": "Photo de la Cadillac Eldorado",
+        "en": "Photo of the Cadillac Eldorado"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:1959_Cadillac_Eldorado_Biarritz_Convertible_(22891).jpg",
+      "author": "Calreyn88",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  },
+  {
+    "id": "delorean-dmc-12",
+    "make": "DeLorean",
+    "model": "DMC-12",
+    "years": {
+      "from": 1981,
+      "to": 1983
+    },
+    "region": "usa",
+    "bodyType": "coupe",
+    "tags": [
+      "rare"
+    ],
+    "difficulty": 1,
+    "acceptedAnswers": [
+      "DMC DeLorean"
+    ],
+    "clue": {
+      "fr": "Carrosserie en acier inoxydable brossé et portes papillon.",
+      "en": "Brushed stainless-steel body and gull-wing doors."
+    },
+    "funFact": {
+      "fr": "La trilogie Retour vers le futur en a fait une star.",
+      "en": "The Back to the Future trilogy made it a star."
+    },
+    "image": {
+      "src": "/cars/04bbd83d4998",
+      "width": 1200,
+      "height": 799,
+      "alt": {
+        "fr": "Photo de la DeLorean DMC-12",
+        "en": "Photo of the DeLorean DMC-12"
+      },
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:DeLorean_DMC-12_Classic-Days_2022_IMG_7217.jpg",
+      "author": "Alexander Migl",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    }
+  }
+]
