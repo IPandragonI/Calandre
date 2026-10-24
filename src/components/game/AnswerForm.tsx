@@ -11,9 +11,13 @@ interface AnswerFormProps {
   /** Changes on every submission, to replay the feedback animation. */
   verdictCount: number;
   attemptsLeft: number | null;
+  /** Generations mode asks for the generation too. */
+  generationMode?: boolean;
+  /** Brand challenge: the make is implied, typing the model is enough. */
+  impliedMake?: string | null;
 }
 
-export function AnswerForm({ onSubmit, verdict, verdictCount, attemptsLeft }: AnswerFormProps) {
+export function AnswerForm({ onSubmit, verdict, verdictCount, attemptsLeft, generationMode = false, impliedMake = null }: AnswerFormProps) {
   const { t } = useI18n();
   const [answer, setAnswer] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -58,7 +62,7 @@ export function AnswerForm({ onSubmit, verdict, verdictCount, attemptsLeft }: An
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2" noValidate>
       <label htmlFor="answer" className="sr-only">
-        {t.game.inputLabel}
+        {generationMode ? t.game.inputLabelGeneration : t.game.inputLabel}
       </label>
       <div ref={fieldRef} className="join w-full">
         <input
@@ -74,7 +78,7 @@ export function AnswerForm({ onSubmit, verdict, verdictCount, attemptsLeft }: An
           enterKeyHint="go"
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
-          placeholder={t.game.placeholder}
+          placeholder={impliedMake ? t.game.placeholderBrand(impliedMake) : generationMode ? t.game.placeholderGeneration : t.game.placeholder}
           aria-describedby={messageId}
           aria-invalid={wrong || undefined}
           className={`input join-item input-lg w-full min-w-0 text-base sm:text-lg ${wrong ? "input-error" : ""}`}
@@ -85,6 +89,7 @@ export function AnswerForm({ onSubmit, verdict, verdictCount, attemptsLeft }: An
           <span className="sr-only sm:hidden">{t.game.submit}</span>
         </button>
       </div>
+      {impliedMake && !message && <p className="text-xs text-base-content/65">{t.game.brandHint(impliedMake)}</p>}
       <p id={messageId} role="status" aria-live="polite" className="min-h-5 text-sm">
         {message && (
           <span key={verdictCount} className={`animate-fade-up inline-block ${message.tone}`}>
@@ -109,11 +114,10 @@ function feedbackText(
       return { text: t.game.feedback.empty, tone: "text-base-content/70" };
     case "close":
       return { text: `${t.game.feedback.close[verdict.reason]} ${t.game.feedback.notCounted}`, tone: "text-info font-medium" };
-    case "wrong":
-      return {
-        text: attemptsLeft === null ? t.game.feedback.wrong : t.game.feedback.wrongTryAgain(attemptsLeft),
-        tone: "text-error font-medium",
-      };
+    case "wrong": {
+      const base = attemptsLeft === null ? t.game.feedback.wrong : t.game.feedback.wrongTryAgain(attemptsLeft);
+      return { text: verdict.sameModel ? `${t.game.feedback.wrongGeneration} ${base}` : base, tone: "text-error font-medium" };
+    }
     case "correct":
       return null;
   }

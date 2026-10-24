@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { Eye, SkipForward, Square } from "lucide-react";
 import type { GameState } from "@/types/game";
+import type { EngineContext } from "@/lib/game/engine";
 import { carName } from "@/lib/data/dataset";
 import { useGame } from "@/hooks/use-game";
 import { useI18n } from "@/hooks/use-i18n";
@@ -14,12 +15,16 @@ import { HintPanel } from "./HintPanel";
 import { ResultsScreen } from "./ResultsScreen";
 
 interface GameScreenProps {
+  engine: EngineContext;
   initial: GameState;
   onPlayAgain: (finished: GameState) => void;
 }
 
-export function GameScreen({ initial, onPlayAgain }: GameScreenProps) {
-  const game = useGame(initial);
+/** Zoom mode: close-up levels, widening with each attempt or hint. */
+const ZOOM_LEVELS = [2.4, 1.8, 1.35, 1.1, 1];
+
+export function GameScreen({ engine, initial, onPlayAgain }: GameScreenProps) {
+  const game = useGame(engine, initial);
   const { state, question, car } = game;
   const { t } = useI18n();
   const quitDialog = useRef<HTMLDialogElement>(null);
@@ -27,8 +32,10 @@ export function GameScreen({ initial, onPlayAgain }: GameScreenProps) {
   if (state.phase === "over") {
     return (
       <ResultsScreen
+        engine={engine}
         state={state}
         previousBest={game.previousBest}
+        newlyFound={game.newlyFound}
         onPlayAgain={state.config.mode === "daily" ? undefined : () => onPlayAgain(state)}
       />
     );
@@ -40,6 +47,7 @@ export function GameScreen({ initial, onPlayAgain }: GameScreenProps) {
   const attemptsLeft = maxAttempts === null || maxAttempts === 1 ? null : maxAttempts - question.guesses.length;
   const giveUpLabel = mode === "timed" ? t.game.skip : mode === "endless" ? t.game.revealEndless : t.game.reveal;
   const GiveUpIcon = mode === "timed" ? SkipForward : Eye;
+  const zoom = mode === "zoom" ? ZOOM_LEVELS[Math.min(question.guesses.length + question.hintsUsed, ZOOM_LEVELS.length - 1)] : 1;
   const announcement = !revealed
     ? ""
     : question.status === "solved"
@@ -56,7 +64,8 @@ export function GameScreen({ initial, onPlayAgain }: GameScreenProps) {
           car={car}
           number={state.questions.length}
           revealed={revealed}
-          onReplace={mode === "daily" ? undefined : game.replaceCar}
+          zoom={zoom}
+          onReplace={game.replaceCar}
         />
 
         <div className="flex flex-col gap-4">
@@ -77,8 +86,10 @@ export function GameScreen({ initial, onPlayAgain }: GameScreenProps) {
                 verdict={state.lastVerdict}
                 verdictCount={state.verdictCount}
                 attemptsLeft={attemptsLeft}
+                generationMode={mode === "generation"}
+                impliedMake={state.config.make}
               />
-              <HintPanel car={car} hintsUsed={question.hintsUsed} onHint={game.hint} disabled={revealed} />
+              <HintPanel car={car} hintsUsed={question.hintsUsed} onHint={game.hint} disabled={revealed} makeKnown={Boolean(state.config.make)} />
               <div className="flex items-center justify-between gap-2 border-t border-base-content/10 pt-3">
                 <button type="button" className="btn btn-ghost min-h-11" onClick={game.reveal}>
                   <GiveUpIcon className="size-4" aria-hidden="true" />

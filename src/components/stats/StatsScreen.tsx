@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { BarChart3, CalendarDays, Flame, Play, Target, Trophy } from "lucide-react";
+import { Award, BarChart3, CalendarDays, Flame, Lock, Play, Target, Trophy } from "lucide-react";
 import { GAME_MODES } from "@/types/game";
 import { CATEGORY_IDS } from "@/lib/game/categories";
 import { localDateKey } from "@/lib/game/daily-challenge";
 import { dailyStreak, favoriteCategory, overallAccuracy } from "@/lib/stats/statistics";
+import { achievements } from "@/lib/stats/achievements";
 import { useHydrated, useStatistics } from "@/hooks/use-persistent";
 import { useI18n } from "@/hooks/use-i18n";
 
@@ -148,6 +149,8 @@ export function StatsScreen() {
         </>
       )}
 
+      <AchievementList stats={stats} />
+
       <section aria-labelledby="daily-stats-title" className="flex flex-col gap-3">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="daily-stats-title" className="eyebrow flex items-center gap-1.5">
@@ -187,5 +190,53 @@ export function StatsScreen() {
         </ol>
       </section>
     </div>
+  );
+}
+
+function AchievementList({ stats }: { stats: Parameters<typeof achievements>[0] }) {
+  const { t, number } = useI18n();
+  const list = achievements(stats);
+  const unlocked = list.filter((a) => a.unlocked).length;
+  return (
+    <section aria-labelledby="achievements-title" className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 id="achievements-title" className="eyebrow flex items-center gap-1.5">
+          <Award className="size-4" aria-hidden="true" />
+          {t.stats.achievements}
+        </h2>
+        <p className="text-sm text-base-content/70">{t.stats.achievementsHint(unlocked, list.length)}</p>
+      </div>
+      <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        {list.map((a) => {
+          const copy = t.achievements[a.id];
+          return (
+            <li
+              key={a.id}
+              className={`flex gap-3 rounded-box border p-3 ${a.unlocked ? "border-primary/40 bg-primary/5" : "border-base-content/10 bg-base-100"}`}
+            >
+              <span
+                className={`grid size-10 shrink-0 place-items-center rounded-full ${a.unlocked ? "bg-primary text-primary-content" : "bg-base-200 text-base-content/40"}`}
+              >
+                {a.unlocked ? <Award className="size-5" aria-hidden="true" /> : <Lock className="size-4" aria-hidden="true" />}
+              </span>
+              <span className="flex min-w-0 flex-1 flex-col gap-1">
+                <span className="font-semibold leading-tight">{copy.name}</span>
+                <span className="text-xs text-base-content/70">{copy.description}</span>
+                {!a.unlocked && (
+                  <span className="flex items-center gap-2">
+                    <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-base-300" aria-hidden="true">
+                      <span className="block h-full rounded-full bg-accent" style={{ width: `${(a.progress / a.target) * 100}%` }} />
+                    </span>
+                    <span className="text-[0.7rem] text-base-content/60 tabular-nums">
+                      {number(a.progress)}/{number(a.target)}
+                    </span>
+                  </span>
+                )}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }

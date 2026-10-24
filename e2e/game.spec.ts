@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { answer, answerCorrectly, currentCar } from "./helpers";
+import { answer, answerCorrectly, currentCar, WRONG } from "./helpers";
 
 test.describe("classic quiz", () => {
   test("plays a full game and shows the results", async ({ page }) => {
@@ -11,11 +11,11 @@ test.describe("classic quiz", () => {
     // 1: right first time (100).
     await answerCorrectly(page);
     await expect(page.getByText("Bien vu !")).toBeVisible();
-    await expect(page.getByText("Le saviez-vous ?")).toBeVisible();
+    await expect(page.getByText("En savoir plus")).toBeVisible();
     await page.getByRole("button", { name: "Voiture suivante" }).click();
 
     // 2: one wrong attempt, then right (70).
-    await answer(page, "Trabant 601");
+    await answer(page, WRONG);
     await expect(page.getByText(/Pas tout à fait\. Encore 2 essais/)).toBeVisible();
     await answerCorrectly(page);
     await page.getByRole("button", { name: "Voiture suivante" }).click();
@@ -109,7 +109,7 @@ test.describe("preferences", () => {
   test("resets statistics after confirmation", async ({ page }) => {
     await page.goto("/play?mode=endless");
     for (let i = 0; i < 3; i++) {
-      await answer(page, "Trabant 601");
+      await answer(page, WRONG);
       await page.getByRole("button", { name: /Voiture suivante|Voir les résultats/ }).click();
     }
     await expect(page.getByRole("heading", { name: "Partie terminée" })).toBeVisible();

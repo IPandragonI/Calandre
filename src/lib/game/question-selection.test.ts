@@ -1,15 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { availableCategories, carInCategory } from "./categories";
-import { endlessMaxDifficulty, pickNextCar, selectQuestions } from "./question-selection";
+import { availableCategories, availableMakes, carInCategory } from "./categories";
+import { endlessMaxDifficulty, mixedPlan, pickNextCar, selectQuestions } from "./question-selection";
 import { createRandom } from "./random";
-import { FIXTURE_CARS } from "./test-fixtures";
+import { FIXTURE_CARS, makeCar } from "./test-fixtures";
+
+const difficultyOf = (id: string) => FIXTURE_CARS.find((c) => c.id === id)!.difficulty;
 
 describe("selectQuestions", () => {
   it("returns distinct cars, easiest first", () => {
     const ids = selectQuestions(FIXTURE_CARS, 10, createRandom(1));
     expect(ids).toHaveLength(10);
     expect(new Set(ids).size).toBe(10);
-    const difficulties = ids.map((id) => FIXTURE_CARS.find((c) => c.id === id)!.difficulty);
+    const difficulties = ids.map(difficultyOf);
     expect([...difficulties].sort()).toEqual(difficulties);
   });
 
@@ -19,23 +21,31 @@ describe("selectQuestions", () => {
     expect(new Set(ids).size).toBe(FIXTURE_CARS.length);
   });
 
-  it("applies the category as a hard filter", () => {
-    const ids = selectQuestions(FIXTURE_CARS, 10, createRandom(3), { category: "japanese" });
-    expect(ids.length).toBe(3);
-    for (const id of ids) expect(carInCategory(FIXTURE_CARS.find((c) => c.id === id)!, "japanese")).toBe(true);
+  it("prefers the chosen difficulty and tops up with the closest tiers", () => {
+    const easy = FIXTURE_CARS.filter((c) => c.difficulty === 1).length;
+    expect(selectQuestions(FIXTURE_CARS, easy, createRandom(4), { difficulty: "easy" }).every((id) => difficultyOf(id) === 1)).toBe(true);
+    const topped = selectQuestions(FIXTURE_CARS, easy + 2, createRandom(4), { difficulty: "easy" });
+    expect(topped).toHaveLength(easy + 2);
+    // The top-up comes from "medium" (2) before "hard" or "expert".
+    expect(topped.filter((id) => difficultyOf(id) !== 1).every((id) => difficultyOf(id) === 2)).toBe(true);
+    expect(selectQuestions(FIXTURE_CARS, 1, createRandom(4), { difficulty: "expert" }).map(difficultyOf)).toEqual([4]);
   });
 
-  it("prefers the chosen difficulty and tops up when it runs short", () => {
-    const easyCount = FIXTURE_CARS.filter((c) => c.difficulty === 1).length;
-    const ids = selectQuestions(FIXTURE_CARS, easyCount, createRandom(4), { difficulty: "easy" });
-    expect(ids.every((id) => FIXTURE_CARS.find((c) => c.id === id)!.difficulty === 1)).toBe(true);
-    expect(selectQuestions(FIXTURE_CARS, easyCount + 2, createRandom(4), { difficulty: "easy" })).toHaveLength(easyCount + 2);
+  it("spreads a mixed game over every tier", () => {
+    expect(mixedPlan(10)).toEqual({ 1: 4, 2: 3, 3: 2, 4: 1 });
+    expect(mixedPlan(5)).toEqual({ 1: 2, 2: 1, 3: 1, 4: 1 });
+    expect(Object.values(mixedPlan(7)).reduce((a, b) => a + b, 0)).toBe(7);
+    const pool = Array.from({ length: 40 }, (_, i) => makeCar({ id: `c${i}`, make: "X", model: `M${i}`, difficulty: ((i % 4) + 1) as 1 | 2 | 3 | 4 }));
+    const ids = selectQuestions(pool, 10, createRandom(3));
+    const tiers = ids.map((id) => pool.find((c) => c.id === id)!.difficulty);
+    expect(tiers.filter((d) => d === 1)).toHaveLength(4);
+    expect(tiers.filter((d) => d === 4)).toHaveLength(1);
   });
 
   it("puts recently seen cars last", () => {
     const recent = FIXTURE_CARS.slice(0, 6).map((c) => c.id);
-    const ids = selectQuestions(FIXTURE_CARS, 6, createRandom(5), { avoidIds: recent });
-    expect(ids.some((id) => recent.includes(id))).toBe(false);
+    const ids = selectQuestions(FIXTURE_CARS, 6, createRandom(5), { avoidIds: recent, difficulty: "mixed" });
+    expect(ids.filter((id) => recent.includes(id)).length).toBeLessThanOrEqual(1);
   });
 
   it("is deterministic for a given seed and handles an empty dataset", () => {
@@ -49,38 +59,44 @@ describe("pickNextCar", () => {
     const seen: string[] = [];
     let state = 7;
     for (let i = 0; i < FIXTURE_CARS.length; i++) {
-      const [id, next] = pickNextCar(FIXTURE_CARS, seen, 3, state);
+      const [id, next] = pickNextCar(FIXTURE_CARS, seen, 4, state);
       expect(id).not.toBeNull();
       expect(seen).not.toContain(id);
       seen.push(id!);
       state = next;
     }
-    const [again] = pickNextCar(FIXTURE_CARS, seen, 3, state);
-    expect(again).not.toBeNull();
+    expect(pickNextCar(FIXTURE_CARS, seen, 4, state)[0]).not.toBeNull();
   });
 
   it("respects the difficulty ceiling while possible", () => {
     const [id] = pickNextCar(FIXTURE_CARS, [], 1, 99);
-    expect(FIXTURE_CARS.find((c) => c.id === id)!.difficulty).toBe(1);
+    expect(difficultyOf(id!)).toBe(1);
   });
 
   it("returns null for an empty dataset", () => {
     expect(pickNextCar([], [], 3, 1)[0]).toBeNull();
   });
 
-  it("ramps endless difficulty up", () => {
-    expect(endlessMaxDifficulty(0)).toBe(1);
-    expect(endlessMaxDifficulty(6)).toBe(2);
-    expect(endlessMaxDifficulty(20)).toBe(3);
+  it("ramps endless difficulty up to expert", () => {
+    expect([0, 6, 15, 30].map(endlessMaxDifficulty)).toEqual([1, 2, 3, 4]);
   });
 });
 
-describe("availableCategories", () => {
-  it("only lists categories with enough cars", () => {
+describe("categories", () => {
+  it("match on region, country, style and body type", () => {
+    const leaf = FIXTURE_CARS.find((c) => c.id === "nissan-leaf")!;
+    expect(carInCategory(leaf, "japanese")).toBe(true);
+    expect(carInCategory(leaf, "electric")).toBe(true);
+    expect(carInCategory(FIXTURE_CARS.find((c) => c.id === "citroen-2cv")!, "france")).toBe(true);
+    expect(carInCategory(makeCar({ id: "x", make: "Jeep", model: "Wrangler", bodyType: "offroad" }), "suv")).toBe(true);
+    expect(carInCategory(makeCar({ id: "y", make: "Bugatti", model: "Chiron", tags: ["hypercar"] }), "supercar")).toBe(true);
+  });
+
+  it("only lists categories and brands with enough cars", () => {
     const ids = availableCategories(FIXTURE_CARS).map((c) => c.id);
     expect(ids).toContain("european");
-    expect(ids).not.toContain("japanese");
-    expect(ids).not.toContain("rare");
+    expect(ids).not.toContain("korean");
     expect(availableCategories([])).toEqual([]);
+    expect(availableMakes(FIXTURE_CARS, 3)).toEqual([{ make: "BMW", count: 3 }]);
   });
 });

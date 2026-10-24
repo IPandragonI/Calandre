@@ -1,13 +1,15 @@
 import type { Car } from "@/types/car";
 import type { GameConfig, GameMode, GameState, QuestionState } from "@/types/game";
-import { validateAnswer } from "./answer-validation";
+import { hintKinds } from "@/lib/data/dataset";
+import { buildAnswerIndex, modelKey, validateAnswer, type AnswerIndex } from "./answer-validation";
 import { carInCategory, type CategoryId } from "./categories";
 import { dailyCarIds, DAILY_QUESTION_COUNT } from "./daily-challenge";
 import { endlessMaxDifficulty, pickNextCar, selectQuestions, type DifficultyFilter } from "./question-selection";
 import { createRandom, nextRandom } from "./random";
 import { questionScore, TIMED_BONUS_SECONDS } from "./scoring";
 
-export const HINT_COUNT = 4;
+/** The most hints a car can have (make, period, type, clue); many have fewer. */
+export const MAX_HINTS = 4;
 export const CLASSIC_QUESTION_COUNT = 10;
 export const ENDLESS_LIVES = 3;
 export const TIMED_LIMIT_MS = 60_000;
@@ -16,11 +18,12 @@ export const TIMED_MAX_REMAINING_MS = 90_000;
 
 export function configFor(
   mode: GameMode,
-  options: { category?: CategoryId | null; difficulty?: DifficultyFilter; dateKey?: string | null } = {},
+  options: { category?: CategoryId | null; make?: string | null; difficulty?: DifficultyFilter; dateKey?: string | null } = {},
 ): GameConfig {
   const base: GameConfig = {
     mode,
     category: null,
+    make: null,
     difficulty: options.difficulty ?? "mixed",
     questionCount: CLASSIC_QUESTION_COUNT,
     maxAttempts: 3,
@@ -30,9 +33,13 @@ export function configFor(
   };
   switch (mode) {
     case "classic":
+    // Zoom: classic rules, the photo starts cropped and widens with each attempt or hint.
+    case "zoom":
+    // Generation: classic rules, but the generation must be named.
+    case "generation":
       return base;
     case "category":
-      return { ...base, category: options.category ?? null };
+      return { ...base, category: options.category ?? null, make: options.category ? null : (options.make ?? null) };
     case "daily":
       return { ...base, difficulty: "mixed", questionCount: DAILY_QUESTION_COUNT, dateKey: options.dateKey ?? null };
     case "endless":
@@ -46,21 +53,42 @@ export function configFor(
 export interface EngineContext {
   cars: readonly Car[];
   carsById: ReadonlyMap<string, Car>;
+  /** Every accepted answer in the catalogue, to tell other cars apart from typos. */
+  index: AnswerIndex;
+  /** Model families with at least two generations in the catalogue. */
+  generationFamilies: ReadonlySet<string>;
 }
 
 export function createEngineContext(cars: readonly Car[]): EngineContext {
-  return { cars, carsById: new Map(cars.map((car) => [car.id, car])) };
+  const generations = new Map<string, number>();
+  for (const car of cars) if (car.generation) generations.set(modelKey(car), (generations.get(modelKey(car)) ?? 0) + 1);
+  return {
+    cars,
+    carsById: new Map(cars.map((car) => [car.id, car])),
+    index: buildAnswerIndex(cars),
+    generationFamilies: new Set([...generations].filter(([, n]) => n >= 2).map(([key]) => key)),
+  };
+}
+
+/** Cars a game may draw from: category, brand or generation mode narrow the catalogue. */
+export function poolFor(ctx: EngineContext, config: GameConfig): readonly Car[] {
+  const { category, make, mode } = config;
+  if (mode === "generation") return ctx.cars.filter((c) => c.generation && ctx.generationFamilies.has(modelKey(c)));
+  if (category) return ctx.cars.filter((c) => carInCategory(c, category));
+  if (make) return ctx.cars.filter((c) => c.make === make);
+  return ctx.cars;
 }
 
 function newQuestion(carId: string): QuestionState {
   return { carId, status: "playing", guesses: [], hintsUsed: 0, points: 0, precise: false };
 }
 
-/** Next car for open-ended modes; endless mode ramps the difficulty up. */
+/** Next car for open-ended modes: endless ramps the difficulty up, time attack stays brisk. */
 function pickOpenEnded(ctx: EngineContext, state: Pick<GameState, "config" | "questions" | "randomState">) {
-  const maxDifficulty = state.config.mode === "endless" ? endlessMaxDifficulty(state.questions.length) : 3;
+  const index = state.questions.length;
+  const maxDifficulty = state.config.mode === "endless" ? endlessMaxDifficulty(index) : index < 10 ? 2 : 3;
   return pickNextCar(
-    ctx.cars,
+    poolFor(ctx, state.config),
     state.questions.map((q) => q.carId),
     maxDifficulty,
     state.randomState,
@@ -80,11 +108,7 @@ export function createGame(
     queue = dailyCarIds(ctx.cars, config.dateKey);
   } else if (config.questionCount !== null) {
     const random = createRandom(seed);
-    queue = selectQuestions(ctx.cars, config.questionCount, random, {
-      category: config.category,
-      difficulty: config.difficulty,
-      avoidIds,
-    });
+    queue = selectQuestions(poolFor(ctx, config), config.questionCount, random, { difficulty: config.difficulty, avoidIds });
     randomState = nextRandom(seed)[1];
   }
 
@@ -190,15 +214,18 @@ export function gameReducer(ctx: EngineContext, state: GameState, action: GameAc
       return state.phase === "feedback" ? advance(ctx, state, action.now) : state;
 
     case "hint":
-      if (state.phase !== "question" || question.hintsUsed >= HINT_COUNT) return state;
+      if (state.phase !== "question" || !car || question.hintsUsed >= hintKinds(car, { makeKnown: Boolean(state.config.make) }).length) return state;
       return { ...state, questions: updateCurrent(state, { hintsUsed: question.hintsUsed + 1 }) };
 
     case "replace-car": {
-      if (state.phase !== "question" || state.config.mode === "daily") return state;
+      // Photos are hosted remotely: a car whose photo can't load is swapped without penalty
+      // (deterministically from the game's random state, so a daily stays fair).
+      if (state.phase !== "question") return state;
       const used = new Set([...state.queue, ...state.questions.map((q) => q.carId)]);
       const [roll, randomState] = nextRandom(state.randomState);
-      const { category } = state.config;
-      const candidates = ctx.cars.filter((c) => !used.has(c.id) && (!category || carInCategory(c, category)));
+      const pool = poolFor(ctx, state.config);
+      const sameLevel = pool.filter((c) => !used.has(c.id) && c.difficulty === car?.difficulty);
+      const candidates = sameLevel.length > 0 ? sameLevel : pool.filter((c) => !used.has(c.id));
       if (candidates.length === 0) return state;
       const replacement = candidates[Math.floor(roll * candidates.length)].id;
       const queue = state.queue.map((id) => (id === question.carId ? replacement : id));
@@ -219,7 +246,11 @@ export function gameReducer(ctx: EngineContext, state: GameState, action: GameAc
       if (state.phase !== "question" || !car) return state;
       if (isTimeUp(state, action.now)) return { ...state, phase: "over", lastVerdict: null };
 
-      const verdict = validateAnswer(action.answer, car, ctx.cars);
+      const verdict = validateAnswer(action.answer, car, ctx.index, {
+        requireGeneration: state.config.mode === "generation",
+        // Brand challenge: typing the model is enough.
+        impliedMake: state.config.make,
+      });
       const verdictCount = state.verdictCount + 1;
       if (verdict.kind === "empty" || verdict.kind === "close") {
         return { ...state, lastVerdict: verdict, verdictCount };

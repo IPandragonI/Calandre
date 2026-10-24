@@ -4,21 +4,21 @@
   themes: false;
 }
 
-/* Paper and ink, a racing-orange accent and a Gulf-blue counterpoint.
+/* Ivory and ink, a coachbuilder's bordeaux and a chrome steel-blue, echoing the swan mascot.
    Light is the default; Settings switches data-theme on <html>. */
 @plugin "daisyui/theme" {
   name: "calandre-light";
   default: true;
   color-scheme: light;
-  --color-base-100: #f7f5f0;
-  --color-base-200: #eeebe3;
-  --color-base-300: #dcd7cb;
-  --color-base-content: #17181b;
-  --color-primary: #c2410c;
+  --color-base-100: #f7f6f2;
+  --color-base-200: #eeece6;
+  --color-base-300: #dcd9d0;
+  --color-base-content: #16171b;
+  --color-primary: #8c1d2c;
   --color-primary-content: #ffffff;
   --color-secondary: #17181b;
   --color-secondary-content: #f7f5f0;
-  --color-accent: #2f6f9f;
+  --color-accent: #4f6475;
   --color-accent-content: #ffffff;
   --color-neutral: #24262b;
   --color-neutral-content: #f7f5f0;
@@ -28,7 +28,7 @@
   --color-success-content: #ffffff;
   --color-warning: #9a5204;
   --color-warning-content: #ffffff;
-  --color-error: #b42318;
+  --color-error: #c4281c;
   --color-error-content: #ffffff;
   --radius-selector: 0.5rem;
   --radius-field: 0.75rem;
@@ -47,12 +47,12 @@
   --color-base-200: #0b0c0d;
   --color-base-300: #2a2c31;
   --color-base-content: #ecebe6;
-  --color-primary: #f47634;
-  --color-primary-content: #1a0b02;
+  --color-primary: #ec7c89;
+  --color-primary-content: #1c0509;
   --color-secondary: #ecebe6;
   --color-secondary-content: #121315;
-  --color-accent: #8cc2ea;
-  --color-accent-content: #0b1a26;
+  --color-accent: #a9b8c6;
+  --color-accent-content: #0d1218;
   --color-neutral: #1d1f23;
   --color-neutral-content: #ecebe6;
   --color-info: #79b0ee;
@@ -82,6 +82,19 @@
   --animate-rise: rise 900ms ease-out both;
   --animate-fade-up: fade-up 320ms ease-out both;
   --animate-reveal: reveal 500ms ease-out both;
+  --animate-glide: glide 1.6s ease-in-out infinite;
+}
+
+@keyframes glide {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(3px, -2px);
+    opacity: 0.7;
+  }
 }
 
 @keyframes pop {
@@ -167,13 +180,22 @@
 }
 
 @layer components {
-  /* Expanded italic headline: the "magazine cover" voice. */
+  /* Expanded headline: the coachbuilder's voice. */
   .font-display {
     font-family: var(--font-display);
     font-stretch: 125%;
-    font-style: italic;
-    font-weight: 800;
+    font-style: normal;
+    font-weight: 700;
     letter-spacing: -0.01em;
+  }
+
+  /* Wordmark: spaced capitals, like a badge on a boot lid. */
+  .wordmark {
+    font-family: var(--font-display);
+    font-stretch: 125%;
+    font-weight: 650;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 
   .font-wide {

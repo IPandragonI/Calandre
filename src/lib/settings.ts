@@ -46,7 +46,7 @@ export const settingsSchema: StorageSchema<Settings> = {
 export const THEME_NAMES: Record<Theme, string> = { light: "calandre-light", dark: "calandre-dark" };
 
 /** Browser chrome colour per theme (matches base-100 in globals.css). */
-export const THEME_COLORS: Record<Theme, string> = { light: "#f7f5f0", dark: "#121315" };
+export const THEME_COLORS: Record<Theme, string> = { light: "#f7f6f2", dark: "#121315" };
 
 /**
  * Inline <head> script: applies the saved theme, language and motion preference

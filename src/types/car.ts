@@ -2,8 +2,8 @@ export type Locale = "fr" | "en";
 
 export type Localized = Record<Locale, string>;
 
-/** Where the manufacturer comes from; drives the regional categories. */
-export type Region = "europe" | "japan" | "usa" | "korea";
+/** Broad origin of the brand; drives the regional categories. */
+export type Region = "europe" | "japan" | "usa" | "korea" | "china" | "other";
 
 export type BodyType =
   | "coupe"
@@ -15,26 +15,42 @@ export type BodyType =
   | "offroad"
   | "wagon"
   | "van"
+  | "minivan"
+  | "pickup"
   | "race-car";
 
-/** Editorial tags; each maps to a category when enough cars carry it. */
-export type CarTag = "sports" | "supercar" | "classic" | "electric" | "racing" | "everyday" | "rare";
+/** Editorial or derived tags; each maps to a category when enough cars carry it. */
+export type CarTag =
+  | "sports"
+  | "supercar"
+  | "hypercar"
+  | "hot-hatch"
+  | "luxury"
+  | "classic"
+  | "electric"
+  | "racing"
+  | "everyday"
+  | "rare"
+  | "concept";
 
-/** 1 = iconic, 2 = enthusiast, 3 = expert. */
-export type Difficulty = 1 | 2 | 3;
+/**
+ * 1 easy (iconic), 2 medium (common, recognisable), 3 hard (less common, similar
+ * generations), 4 expert (rare, obscure, special editions). See lib/game/difficulty.ts.
+ */
+export type Difficulty = 1 | 2 | 3 | 4;
 
 export interface CarImage {
-  /** Path prefix of the bundled renditions: `${src}-640.webp` and `${src}-1200.webp`. */
-  src: string;
-  /** Intrinsic size of the 1200px rendition, to reserve layout space. */
+  /** Remote image URL (Wikimedia Commons thumbnail); never stored locally. */
+  url: string;
+  /** Intrinsic size of the original file, used for the aspect ratio. */
   width: number;
   height: number;
   /** CSS object-position, for photos whose subject is off-centre. */
   position?: string;
-  /** Descriptive alt text, only exposed once the answer is revealed. */
-  alt: Localized;
+  /** Page where the image and its license can be verified. */
   sourcePage: string;
   author: string;
+  /** License short name, e.g. "CC BY-SA 4.0" or "Public domain". */
   license: string;
   licenseUrl: string | null;
 }
@@ -44,15 +60,22 @@ export interface Car {
   make: string;
   model: string;
   generation?: string;
-  years: { from: number; to: number | null };
+  /** Only present when the source states it; never guessed. */
+  years?: { from: number; to: number | null };
+  /** ISO 3166-1 alpha-2 country of the brand. */
+  country: string;
   region: Region;
-  bodyType: BodyType;
+  bodyType?: BodyType;
   tags: CarTag[];
   difficulty: Difficulty;
   /** Extra accepted spellings; "make model" and "make model generation" are always accepted. */
   acceptedAnswers: string[];
-  /** The fourth, curated hint. */
-  clue: Localized;
-  funFact: Localized;
+  /** A distinctive clue (curated, or derived from structured data such as the designer). */
+  clue?: Localized;
+  funFact?: Localized;
+  /** Wikidata item the entry comes from. */
+  wikidata?: string;
+  /** Wikipedia articles, for "learn more". */
+  links?: Partial<Localized>;
   image: CarImage;
 }

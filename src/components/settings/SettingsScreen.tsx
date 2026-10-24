@@ -2,20 +2,22 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { CircleAlert, Download, Image as ImageIcon, Languages, Moon, RotateCcw, Smartphone, Sun, Volume2, Waves } from "lucide-react";
+import { CircleAlert, Download, Image as ImageIcon, Languages, Moon, RotateCcw, Smartphone, Sun, Volume2, Waves, WifiOff } from "lucide-react";
 import type { Locale } from "@/types/car";
-import { CARS } from "@/lib/data/dataset";
 import { isStorageAvailable } from "@/lib/storage/local-storage";
 import type { Theme } from "@/lib/settings";
 import { statisticsStore, updateSettings, useHydrated, useSettings } from "@/hooks/use-persistent";
 import { isIos, useInstallPrompt } from "@/hooks/use-install-prompt";
+import { useCatalogue } from "@/hooks/use-catalogue";
 import { useI18n } from "@/hooks/use-i18n";
 
 const LANGUAGE_NAMES: Record<Locale, string> = { fr: "Français", en: "English" };
 
 export function SettingsScreen() {
-  const { t } = useI18n();
+  const { t, number } = useI18n();
   const settings = useSettings();
+  const catalogue = useCatalogue();
+  const carCount = catalogue.status === "ready" ? number(catalogue.catalogue.cars.length) : "…";
   const hydrated = useHydrated();
   const { state: installState, install } = useInstallPrompt();
   const resetDialog = useRef<HTMLDialogElement>(null);
@@ -140,7 +142,11 @@ export function SettingsScreen() {
       <Section title={t.settings.photos}>
         <p className="flex gap-2 text-sm">
           <ImageIcon className="size-5 shrink-0" aria-hidden="true" />
-          {t.settings.photosText(CARS.length)}
+          {t.settings.photosText(carCount)}
+        </p>
+        <p className="flex gap-2 text-sm text-base-content/75">
+          <WifiOff className="size-5 shrink-0" aria-hidden="true" />
+          {t.settings.photosOffline}
         </p>
         <Link href="/credits" className="link link-primary w-fit text-sm font-medium">
           {t.settings.creditsLink}

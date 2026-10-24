@@ -9,6 +9,7 @@ import {
   emptyStatistics,
   favoriteCategory,
   HISTORY_LIMIT,
+  longestDailyStreak,
   overallAccuracy,
   sanitizeStatistics,
   statisticsSchema,
@@ -70,6 +71,29 @@ describe("dailyStreak", () => {
     expect(dailyStreak(daily, new Date(2026, 9, 24, 12))).toBe(3);
     expect(dailyStreak(daily, new Date(2026, 9, 25, 12))).toBe(3);
     expect(dailyStreak(daily, new Date(2026, 9, 27, 12))).toBe(0);
+  });
+});
+
+describe("garage", () => {
+  it("collects every car identified, keeping the first date", () => {
+    const first = applyGame(emptyStatistics(), finishedGame("classic", 3), ctx.carsById, new Date(2026, 9, 24));
+    expect(Object.keys(first.collection)).toHaveLength(3);
+    expect(Object.values(first.collection)).toEqual(["2026-10-24", "2026-10-24", "2026-10-24"]);
+    const again = applyGame(first, finishedGame("classic", 3), ctx.carsById, new Date(2026, 9, 30));
+    for (const [id, date] of Object.entries(first.collection)) expect(again.collection[id]).toBe(date);
+  });
+
+  it("migrates v1 statistics, which had no garage", () => {
+    const v1 = JSON.stringify({ v: 1, data: { ...emptyStatistics(), gamesPlayed: 7, collection: undefined } });
+    const migrated = decode(statisticsSchema, v1);
+    expect(migrated.gamesPlayed).toBe(7);
+    expect(migrated.collection).toEqual({});
+  });
+
+  it("measures the longest daily run", () => {
+    const r = { score: 0, correct: 0, total: 5, outcomes: [0, 0, 0, 0, 0] as 0[] };
+    expect(longestDailyStreak({ "2026-01-30": r, "2026-01-31": r, "2026-02-01": r, "2026-02-03": r })).toBe(3);
+    expect(longestDailyStreak({})).toBe(0);
   });
 });
 

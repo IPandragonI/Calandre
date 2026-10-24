@@ -3,25 +3,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Car } from "@/types/car";
 import type { GameState } from "@/types/game";
-import { CARS, imageRendition } from "@/lib/data/dataset";
+import { thumbnailUrl } from "@/lib/data/dataset";
 import { localDateKey } from "@/lib/game/daily-challenge";
-import {
-  configFor,
-  createEngineContext,
-  createGame,
-  currentQuestion,
-  gameReducer,
-  timeRemaining,
-  type GameAction,
-} from "@/lib/game/engine";
+import { configFor, createGame, currentQuestion, gameReducer, timeRemaining, type EngineContext, type GameAction } from "@/lib/game/engine";
 import { randomSeed } from "@/lib/game/random";
 import type { PlayParams } from "@/lib/game/routes";
 import { RESUMABLE_MODES } from "@/lib/game/session";
 import { playCue, type SoundCue } from "@/lib/sound";
 import { applyGame, type DailyResult } from "@/lib/stats/statistics";
 import { sessionStore, settingsStore, statisticsStore } from "./use-persistent";
-
-export const engine = createEngineContext(CARS);
 
 export type GameRequest = PlayParams;
 
@@ -30,8 +20,8 @@ export type GameInit =
   | { kind: "daily-done"; dateKey: string; result: DailyResult }
   | { kind: "unavailable" };
 
-/** A saved session is usable only if every car it references still exists. */
-function savedSession(): GameState | null {
+/** A saved session is usable only if every car it references still exists in the catalogue. */
+export function savedSession(engine: EngineContext): GameState | null {
   const saved = sessionStore.get();
   if (!saved || saved.phase === "over") return null;
   const known = (id: string) => engine.carsById.has(id);
@@ -42,14 +32,15 @@ function savedSession(): GameState | null {
 const RESUME_WINDOW_MS = 6 * 60 * 60 * 1000;
 
 /** Resolves what the game page should show. Reads storage, so client-only. */
-export function initGame(request: GameRequest, now: number): GameInit {
-  const saved = savedSession();
+export function initGame(engine: EngineContext, request: GameRequest, now: number): GameInit {
+  const saved = savedSession(engine);
   if (request.resume && saved) return { kind: "game", state: saved };
   if (
     saved &&
     saved.config.mode === request.mode &&
     saved.config.mode !== "daily" &&
     saved.config.category === request.category &&
+    (saved.config.make ?? null) === request.make &&
     saved.config.difficulty === request.difficulty &&
     now - saved.startedAt < RESUME_WINDOW_MS
   ) {
@@ -58,6 +49,7 @@ export function initGame(request: GameRequest, now: number): GameInit {
 
   const config = configFor(request.mode, {
     category: request.category,
+    make: request.make,
     difficulty: request.difficulty,
     dateKey: localDateKey(new Date(now)),
   });
@@ -68,7 +60,7 @@ export function initGame(request: GameRequest, now: number): GameInit {
   } else {
     config.dateKey = null;
   }
-  if (config.mode === "category" && !config.category) return { kind: "unavailable" };
+  if (config.mode === "category" && !config.category && !config.make) return { kind: "unavailable" };
 
   const state = createGame(engine, config, { seed: randomSeed(), now, avoidIds: statisticsStore.get().recentCarIds });
   return state ? { kind: "game", state } : { kind: "unavailable" };
@@ -81,26 +73,32 @@ function cue(sound: SoundCue) {
 }
 
 /** Drives one game: pure engine transitions plus their side effects (storage, sound, timers). */
-export function useGame(initial: GameState) {
+export function useGame(engine: EngineContext, initial: GameState) {
   const [state, setState] = useState(initial);
   const stateRef = useRef(initial);
   const [now, setNow] = useState(() => Date.now());
-  // Personal best before this game, to celebrate a new record on the results screen.
-  const [previousBest] = useState(() => statisticsStore.get().bestScores[initial.config.mode] ?? 0);
+  // Snapshot before this game: personal best and garage, for the results screen.
+  const [before] = useState(() => {
+    const stats = statisticsStore.get();
+    return { best: stats.bestScores[initial.config.mode] ?? 0, collection: new Set(Object.keys(stats.collection)) };
+  });
 
-  const apply = useCallback((action: GameAction) => {
-    const previous = stateRef.current;
-    const next = gameReducer(engine, previous, action);
-    if (next === previous) return;
-    stateRef.current = next;
-    setState(next);
+  const apply = useCallback(
+    (action: GameAction) => {
+      const previous = stateRef.current;
+      const next = gameReducer(engine, previous, action);
+      if (next === previous) return;
+      stateRef.current = next;
+      setState(next);
 
-    if (action.type === "submit" && next.lastVerdict) {
-      const kind = next.lastVerdict.kind;
-      cue(kind === "correct" ? "correct" : kind === "wrong" ? "wrong" : "close");
-    }
-    if (next.phase === "over" && previous.phase !== "over") cue("finish");
-  }, []);
+      if (action.type === "submit" && next.lastVerdict) {
+        const kind = next.lastVerdict.kind;
+        cue(kind === "correct" ? "correct" : kind === "wrong" ? "wrong" : "close");
+      }
+      if (next.phase === "over" && previous.phase !== "over") cue("finish");
+    },
+    [engine],
+  );
 
   // Time attack keeps the pace: a correct answer moves on by itself.
   const autoAdvance = state.config.mode === "timed" && state.phase === "feedback";
@@ -132,6 +130,18 @@ export function useGame(initial: GameState) {
     };
   }, [timed, apply]);
 
+  // A car joins the garage as soon as it is identified, even if the game is abandoned.
+  useEffect(() => {
+    const solved = state.questions.filter((q) => q.status === "solved").map((q) => q.carId);
+    if (solved.length === 0) return;
+    statisticsStore.set((stats) => {
+      const missing = solved.filter((id) => !stats.collection[id]);
+      if (missing.length === 0) return stats;
+      const today = localDateKey();
+      return { ...stats, collection: { ...stats.collection, ...Object.fromEntries(missing.map((id) => [id, today])) } };
+    });
+  }, [state.questions]);
+
   // Persistence: save resumable games after every move; record finished games once.
   useEffect(() => {
     if (state.phase === "over") {
@@ -142,25 +152,27 @@ export function useGame(initial: GameState) {
     } else if (RESUMABLE_MODES.includes(state.config.mode)) {
       sessionStore.set(state);
     }
-  }, [state]);
+  }, [state, engine]);
 
-  // Warm the cache with the next planned photo.
+  // Ask the browser for the next planned photo early (one request, from the remote host).
   const nextId = state.queue[state.questions.length];
   useEffect(() => {
     const nextCar = nextId ? engine.carsById.get(nextId) : undefined;
-    if (!nextCar) return;
+    if (!nextCar || !navigator.onLine) return;
     const img = new Image();
-    img.src = imageRendition(nextCar.image, window.innerWidth > 700 ? 1200 : 640);
-  }, [nextId]);
+    img.src = thumbnailUrl(nextCar.image, window.innerWidth > 700 ? 1280 : 960);
+  }, [nextId, engine]);
 
   const question = currentQuestion(state);
   const car = engine.carsById.get(question.carId) as Car;
+  const newlyFound = state.questions.filter((q) => q.status === "solved" && !before.collection.has(q.carId)).length;
 
   return {
     state,
     question,
     car,
-    previousBest,
+    previousBest: before.best,
+    newlyFound,
     remainingMs: timeRemaining(state, now),
     submit: (answer: string) => apply({ type: "submit", answer, now: Date.now() }),
     hint: () => apply({ type: "hint" }),

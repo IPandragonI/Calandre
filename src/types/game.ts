@@ -2,12 +2,14 @@ import type { AnswerVerdict } from "@/lib/game/answer-validation";
 import type { CategoryId } from "@/lib/game/categories";
 import type { DifficultyFilter } from "@/lib/game/question-selection";
 
-export const GAME_MODES = ["classic", "daily", "endless", "timed", "category"] as const;
+export const GAME_MODES = ["classic", "daily", "endless", "timed", "category", "generation", "zoom"] as const;
 export type GameMode = (typeof GAME_MODES)[number];
 
 export interface GameConfig {
   mode: GameMode;
   category: CategoryId | null;
+  /** Brand challenge: only this make's cars. */
+  make: string | null;
   difficulty: DifficultyFilter;
   /** Fixed number of questions, or null for open-ended modes. */
   questionCount: number | null;

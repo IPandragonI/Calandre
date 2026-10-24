@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { answerCorrectly, horizontalOverflow } from "./helpers";
 
 test("mobile layout has no horizontal scroll and keeps the answer field reachable", async ({ page }) => {
-  for (const path of ["/", "/categories", "/stats", "/settings", "/credits"]) {
+  for (const path of ["/", "/categories", "/garage", "/stats", "/settings", "/credits"]) {
     await page.goto(path);
     await page.waitForLoadState("networkidle");
     expect(await horizontalOverflow(page), path).toBeLessThanOrEqual(0);

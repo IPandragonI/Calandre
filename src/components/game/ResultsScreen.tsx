@@ -2,20 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, Flag, Home, RotateCcw, Share2, Trophy, XCircle } from "lucide-react";
+import { CheckCircle2, Flag, Home, RotateCcw, Share2, Trophy, Warehouse, XCircle } from "lucide-react";
 import type { GameState, QuestionStatus } from "@/types/game";
-import { carName, imageRendition } from "@/lib/data/dataset";
+import { carName, thumbnailUrl } from "@/lib/data/dataset";
 import { dailyNumber } from "@/lib/game/daily-challenge";
-import { summarizeGame } from "@/lib/game/engine";
+import { summarizeGame, type EngineContext } from "@/lib/game/engine";
 import { canShare, dailyGrid, shareText } from "@/lib/share";
 import { dailyOutcomes } from "@/lib/stats/statistics";
 import { useHydrated } from "@/hooks/use-persistent";
 import { useI18n } from "@/hooks/use-i18n";
-import { engine } from "@/hooks/use-game";
 
 interface ResultsScreenProps {
+  engine: EngineContext;
   state: GameState;
   previousBest: number;
+  /** Cars identified for the first time in this game. */
+  newlyFound: number;
   onPlayAgain?: () => void;
 }
 
@@ -26,7 +28,7 @@ const STATUS_ICON: Record<QuestionStatus, typeof CheckCircle2> = {
   playing: Flag,
 };
 
-export function ResultsScreen({ state, previousBest, onPlayAgain }: ResultsScreenProps) {
+export function ResultsScreen({ engine, state, previousBest, newlyFound, onPlayAgain }: ResultsScreenProps) {
   const { t, number, percent } = useI18n();
   const hydrated = useHydrated();
   const [shareStatus, setShareStatus] = useState<string | null>(null);
@@ -56,11 +58,19 @@ export function ResultsScreen({ state, previousBest, onPlayAgain }: ResultsScree
         </h1>
         <p className="mt-2 text-sm text-base-content/70">{t.results.finalScore}</p>
         <p className="font-display text-6xl leading-none text-primary tabular-nums sm:text-7xl">{number(summary.score)}</p>
-        {newRecord && (
+        {newRecord ? (
           <p className="badge badge-primary badge-lg mt-2 gap-1.5 font-semibold">
             <Trophy className="size-4" aria-hidden="true" />
             {t.results.newRecord}
           </p>
+        ) : (
+          previousBest > 0 && <p className="text-sm text-base-content/70">{t.results.personalBest(number(previousBest))}</p>
+        )}
+        {newlyFound > 0 && (
+          <Link href="/garage" className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent link-hover">
+            <Warehouse className="size-4" aria-hidden="true" />
+            {t.results.newInGarage(newlyFound)}
+          </Link>
         )}
       </section>
 
@@ -114,11 +124,12 @@ export function ResultsScreen({ state, previousBest, onPlayAgain }: ResultsScree
                 <li key={`${q.carId}-${i}`} className="flex gap-3 rounded-box border border-base-content/10 bg-base-100 p-2.5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={imageRendition(car.image, 640)}
+                    src={thumbnailUrl(car.image, 330)}
                     alt=""
                     width={96}
                     height={60}
                     loading="lazy"
+                    onError={(e) => (e.currentTarget.style.visibility = "hidden")}
                     decoding="async"
                     style={{ objectPosition: car.image.position ?? "center" }}
                     className="h-15 w-24 shrink-0 rounded-field bg-base-300 object-cover"

@@ -1,30 +1,17 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, Moon, Settings, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { useI18n } from "@/hooks/use-i18n";
 import { updateSettings, useSettings } from "@/hooks/use-persistent";
+import { NAV_ITEMS } from "./nav-items";
 
 export function AppHeader() {
   const { t, locale } = useI18n();
   const { theme } = useSettings();
-  const pathname = usePathname();
-
-  const navLink = (href: "/stats" | "/settings", label: string, Icon: typeof Settings) => {
-    const active = pathname === href;
-    return (
-      <Link
-        href={href}
-        aria-current={active ? "page" : undefined}
-        className={`btn btn-ghost btn-square min-h-11 min-w-11 sm:w-auto sm:px-3 ${active ? "bg-base-200" : ""}`}
-      >
-        <Icon className="size-5" aria-hidden="true" />
-        <span className="sr-only sm:not-sr-only sm:text-sm">{label}</span>
-      </Link>
-    );
-  };
 
   return (
     <header className="sticky top-0 z-30 bg-base-100/90 pt-[env(safe-area-inset-top)] backdrop-blur supports-[backdrop-filter]:bg-base-100/75">
@@ -36,8 +23,10 @@ export function AppHeader() {
           <Logo />
         </Link>
         <nav aria-label={t.nav.mainLabel} className="flex items-center gap-0.5">
-          {navLink("/stats", t.nav.stats, BarChart3)}
-          {navLink("/settings", t.nav.settings, Settings)}
+          {/* The current path is request data: the links render first, the highlight follows. */}
+          <Suspense fallback={<HeaderLinks pathname={null} />}>
+            <ActiveHeaderLinks />
+          </Suspense>
           <button
             type="button"
             className="btn btn-ghost btn-square min-h-11 min-w-11"
@@ -59,5 +48,32 @@ export function AppHeader() {
       </div>
       <div className="livery" aria-hidden="true" />
     </header>
+  );
+}
+
+function ActiveHeaderLinks() {
+  return <HeaderLinks pathname={usePathname()} />;
+}
+
+/** Desktop navigation links (on phones they live in the bottom tab bar). */
+function HeaderLinks({ pathname }: { pathname: string | null }) {
+  const { t } = useI18n();
+  return (
+    <div className="hidden items-center gap-0.5 md:flex">
+      {NAV_ITEMS.filter((item) => item.href !== "/").map(({ href, label, Icon }) => {
+        const active = pathname !== null && (pathname === href || pathname.startsWith(`${href}/`));
+        return (
+          <Link
+            key={href}
+            href={href}
+            aria-current={active ? "page" : undefined}
+            className={`btn btn-ghost min-h-11 px-3 text-sm ${active ? "bg-base-200" : ""}`}
+          >
+            <Icon className="size-4.5" aria-hidden="true" />
+            {label(t)}
+          </Link>
+        );
+      })}
+    </div>
   );
 }

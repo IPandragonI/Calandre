@@ -1,46 +1,62 @@
 import type { Car, Difficulty } from "@/types/car";
-import { carInCategory, type CategoryId } from "./categories";
 import { nextRandom, shuffle } from "./random";
 
-export const DIFFICULTY_FILTERS = ["mixed", "easy", "hard"] as const;
+export const DIFFICULTY_FILTERS = ["mixed", "easy", "medium", "hard", "expert"] as const;
 export type DifficultyFilter = (typeof DIFFICULTY_FILTERS)[number];
 
-type SelectableCar = Pick<Car, "id" | "difficulty" | "region" | "tags">;
+const LEVEL: Record<Exclude<DifficultyFilter, "mixed">, Difficulty> = { easy: 1, medium: 2, hard: 3, expert: 4 };
 
-function matchesDifficulty(difficulty: Difficulty, filter: DifficultyFilter): boolean {
-  if (filter === "easy") return difficulty === 1;
-  if (filter === "hard") return difficulty >= 2;
-  return true;
-}
+/** Share of each difficulty in a "mixed" game: mostly recognisable, a few hard ones. */
+const MIXED_WEIGHTS: Record<Difficulty, number> = { 1: 0.35, 2: 0.3, 3: 0.2, 4: 0.15 };
 
-export interface SelectionOptions {
-  category?: CategoryId | null;
-  difficulty?: DifficultyFilter;
-  /** Recently played cars, used only when there is nothing fresher. */
-  avoidIds?: readonly string[];
+type SelectableCar = Pick<Car, "id" | "difficulty">;
+
+/** Per-difficulty quotas for a mixed game of `count` cars (largest-remainder rounding). */
+export function mixedPlan(count: number): Record<Difficulty, number> {
+  const levels = [1, 2, 3, 4] as const;
+  const raw = levels.map((d) => MIXED_WEIGHTS[d] * count);
+  const plan = raw.map(Math.floor);
+  const order = levels.map((_, i) => i).sort((a, b) => raw[b] - plan[b] - (raw[a] - plan[a]));
+  for (let i = 0, left = count - plan.reduce((s, n) => s + n, 0); left > 0; i++, left--) plan[order[i % 4]]++;
+  return { 1: plan[0], 2: plan[1], 3: plan[2], 4: plan[3] };
 }
 
 /**
- * Picks `count` distinct cars for a fixed-length game, easiest first.
- * The category is a hard filter; the difficulty filter is topped up with other
- * cars when it matches too few. Returns fewer ids only when the pool is too small.
+ * Picks `count` distinct cars from `pool` for a fixed-length game, easiest first.
+ * The difficulty filter is a preference: when a tier runs short it is topped up with the
+ * closest tiers. Recently seen cars are used only when nothing fresher is left.
  */
 export function selectQuestions(
-  cars: readonly SelectableCar[],
+  pool: readonly SelectableCar[],
   count: number,
   random: () => number,
-  { category = null, difficulty = "mixed", avoidIds = [] }: SelectionOptions = {},
+  { difficulty = "mixed", avoidIds = [] }: { difficulty?: DifficultyFilter; avoidIds?: readonly string[] } = {},
 ): string[] {
-  const pool = category ? cars.filter((car) => carInCategory(car, category)) : [...cars];
   const avoid = new Set(avoidIds);
-  // Fresh cars first, recently seen ones only as a fallback; both shuffled.
-  const ordered = [
-    ...shuffle(pool.filter((c) => !avoid.has(c.id)), random),
-    ...shuffle(pool.filter((c) => avoid.has(c.id)), random),
-  ];
-  const preferred = ordered.filter((c) => matchesDifficulty(c.difficulty, difficulty));
-  const rest = ordered.filter((c) => !matchesDifficulty(c.difficulty, difficulty));
-  const picked = [...preferred, ...rest].slice(0, Math.max(0, count));
+  const ordered = [...shuffle(pool.filter((c) => !avoid.has(c.id)), random), ...shuffle(pool.filter((c) => avoid.has(c.id)), random)];
+  const target = Math.min(Math.max(0, count), ordered.length);
+  const picked: SelectableCar[] = [];
+  const taken = new Set<string>();
+  const take = (car: SelectableCar) => {
+    picked.push(car);
+    taken.add(car.id);
+  };
+
+  if (difficulty === "mixed") {
+    const plan = mixedPlan(target);
+    for (const level of [1, 2, 3, 4] as const) {
+      for (const car of ordered.filter((c) => c.difficulty === level).slice(0, plan[level])) take(car);
+    }
+  } else {
+    for (const car of ordered.filter((c) => c.difficulty === LEVEL[difficulty]).slice(0, target)) take(car);
+  }
+  // Top up with the closest difficulties first.
+  const goal = difficulty === "mixed" ? 2 : LEVEL[difficulty];
+  const rest = ordered.filter((c) => !taken.has(c.id)).sort((a, b) => Math.abs(a.difficulty - goal) - Math.abs(b.difficulty - goal));
+  for (const car of rest) {
+    if (picked.length >= target) break;
+    take(car);
+  }
   // Stable sort: a gentle ramp from iconic to expert.
   return picked.sort((a, b) => a.difficulty - b.difficulty).map((c) => c.id);
 }
@@ -49,7 +65,8 @@ export function selectQuestions(
 export function endlessMaxDifficulty(questionIndex: number): Difficulty {
   if (questionIndex < 5) return 1;
   if (questionIndex < 12) return 2;
-  return 3;
+  if (questionIndex < 20) return 3;
+  return 4;
 }
 
 /**

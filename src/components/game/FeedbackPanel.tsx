@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ArrowRight, CheckCircle2, Flag, Sparkles, XCircle } from "lucide-react";
+import { ArrowRight, BookOpen, Camera, CheckCircle2, Flag, Sparkles, XCircle } from "lucide-react";
 import type { Car } from "@/types/car";
 import type { GameState, QuestionState } from "@/types/game";
 import type { AnswerVerdict } from "@/lib/game/answer-validation";
-import { carName } from "@/lib/data/dataset";
+import { carName, formatYears } from "@/lib/data/dataset";
 import { useI18n } from "@/hooks/use-i18n";
 
 interface FeedbackPanelProps {
@@ -31,6 +31,9 @@ export function FeedbackPanel({ car, question, verdict, state, onNext }: Feedbac
     nextRef.current?.focus({ preventScroll: true });
   }, []);
 
+  const years = formatYears(car);
+  // Wikipedia in the player's language, else the other one.
+  const wiki = car.links?.[locale] ?? car.links?.[locale === "fr" ? "en" : "fr"];
   const headline = solved ? t.game.feedback.correct : question.status === "skipped" ? t.game.feedback.skipped : t.game.feedback.missed;
   const Icon = solved ? CheckCircle2 : question.status === "skipped" ? Flag : XCircle;
 
@@ -49,9 +52,7 @@ export function FeedbackPanel({ car, question, verdict, state, onNext }: Feedbac
       <div>
         <p className="text-sm text-base-content/70">{t.game.feedback.itWas}</p>
         <p className="font-display text-2xl leading-tight sm:text-3xl">{carName(car)}</p>
-        <p className="text-sm text-base-content/70 tabular-nums">
-          {car.years.to === null ? `${car.years.from} –` : car.years.from === car.years.to ? car.years.from : `${car.years.from} – ${car.years.to}`}
-        </p>
+        {years && <p className="text-sm text-base-content/70 tabular-nums">{years}</p>}
       </div>
 
       {solved && verdict?.kind === "correct" && (verdict.precise || verdict.typoTolerated) && (
@@ -61,11 +62,27 @@ export function FeedbackPanel({ car, question, verdict, state, onNext }: Feedbac
         </p>
       )}
 
-      {!timed && (
+      {!timed && car.funFact && (
         <div className="rounded-field bg-base-100 p-3 text-sm leading-relaxed">
           <p className="eyebrow mb-1">{t.game.funFact}</p>
           <p>{car.funFact[locale]}</p>
         </div>
+      )}
+
+      {!timed && (wiki || car.image.sourcePage) && (
+        <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+          <span className="eyebrow">{t.game.learnMore}</span>
+          {wiki && (
+            <a href={wiki} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1">
+              <BookOpen className="size-4" aria-hidden="true" />
+              {t.game.wikipedia}
+            </a>
+          )}
+          <a href={car.image.sourcePage} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1">
+            <Camera className="size-4" aria-hidden="true" />
+            {t.game.photoInfo}
+          </a>
+        </p>
       )}
 
       {!(timed && solved) && (

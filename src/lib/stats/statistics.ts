@@ -48,6 +48,8 @@ export interface Statistics {
   recentCarIds: string[];
   /** Most recent last. */
   history: GameRecord[];
+  /** The player's garage: every car identified at least once, with the date it was first found. */
+  collection: Record<string, string>;
 }
 
 export const HISTORY_LIMIT = 50;
@@ -67,6 +69,7 @@ export function emptyStatistics(): Statistics {
     daily: {},
     recentCarIds: [],
     history: [],
+    collection: {},
   };
 }
 
@@ -86,7 +89,7 @@ export function dailyOutcomes(game: Pick<GameState, "queue" | "questions">): Dai
 export function applyGame(
   stats: Statistics,
   game: GameState,
-  carsById: ReadonlyMap<string, Pick<Car, "region" | "tags">>,
+  carsById: ReadonlyMap<string, Pick<Car, "region" | "tags" | "country" | "bodyType">>,
   finishedAt: Date,
 ): Statistics {
   const answered = game.questions.filter((q) => q.status !== "playing");
@@ -107,11 +110,15 @@ export function applyGame(
     }
   }
 
+  const today = localDateKey(finishedAt);
+  const collection = { ...stats.collection };
+  for (const q of answered) if (q.status === "solved" && !collection[q.carId]) collection[q.carId] = today;
+
   const record: GameRecord = {
     id: game.id,
     mode,
     category,
-    dateKey: localDateKey(finishedAt),
+    dateKey: today,
     score: game.score,
     correct,
     answered: answered.length,
@@ -140,7 +147,25 @@ export function applyGame(
       RECENT_CARS_LIMIT,
     ),
     history: lastEntries([...stats.history, record], HISTORY_LIMIT),
+    collection,
   };
+}
+
+/** Longest run of consecutive days with a completed daily challenge. */
+export function longestDailyStreak(daily: Statistics["daily"]): number {
+  const days = Object.keys(daily)
+    .sort()
+    .map((key) => {
+      const [y, m, d] = key.split("-").map(Number);
+      return Math.round(Date.UTC(y, m - 1, d) / 86_400_000);
+    });
+  let best = 0;
+  let run = 0;
+  days.forEach((day, i) => {
+    run = i > 0 && day === days[i - 1] + 1 ? run + 1 : 1;
+    best = Math.max(best, run);
+  });
+  return best;
 }
 
 /** 0–1, or null before the first answer. */
@@ -261,12 +286,19 @@ export function sanitizeStatistics(data: unknown): Statistics | null {
     history: Array.isArray(data.history)
       ? lastEntries(data.history.map(sanitizeRecord).filter((r): r is GameRecord => r !== null), HISTORY_LIMIT)
       : [],
+    collection: isRecord(data.collection)
+      ? (Object.fromEntries(Object.entries(data.collection).filter(([id, date]) => /^[a-z0-9-]+$/.test(id) && isDateKey(date))) as Record<string, string>)
+      : {},
   };
 }
 
 export const statisticsSchema: StorageSchema<Statistics> = {
   key: "calandre.statistics",
-  version: 1,
+  version: 2,
   defaults: emptyStatistics,
+  migrations: {
+    // v2 introduced the garage. v1 didn't record which cars were found, so it starts empty.
+    1: (data) => (isRecord(data) ? { ...data, collection: {} } : data),
+  },
   sanitize: sanitizeStatistics,
 };

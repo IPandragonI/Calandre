@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { GameState } from "@/types/game";
 import { configFor, createEngineContext, createGame, currentQuestion, gameReducer, summarizeGame, type GameAction } from "./engine";
 import { FIXTURE_CARS } from "./test-fixtures";
+import { hintKinds } from "@/lib/data/dataset";
 
 const ctx = createEngineContext(FIXTURE_CARS);
 const NOW = 1_000_000;
@@ -64,9 +65,16 @@ describe("classic game", () => {
     expect(game.lastVerdict?.kind).toBe("empty");
   });
 
-  it("caps hints at four", () => {
+  it("caps hints at what the car's data supports", () => {
     const game = run(start(), { type: "hint" }, { type: "hint" }, { type: "hint" }, { type: "hint" }, { type: "hint" });
-    expect(currentQuestion(game).hintsUsed).toBe(4);
+    const car = ctx.carsById.get(currentQuestion(game).carId)!;
+    expect(currentQuestion(game).hintsUsed).toBe(hintKinds(car).length);
+
+    // A car with only a make on record offers a single hint.
+    const leafOnly = createEngineContext(FIXTURE_CARS.filter((c) => c.id === "nissan-leaf"));
+    let leaf = createGame(leafOnly, configFor("classic"), { seed: 1, now: NOW })!;
+    leaf = gameReducer(leafOnly, gameReducer(leafOnly, leaf, { type: "hint" }), { type: "hint" });
+    expect(currentQuestion(leaf).hintsUsed).toBe(1);
   });
 
   it("ends after the last question with a summary", () => {
@@ -134,6 +142,31 @@ describe("daily and category games", () => {
   it("only asks cars from the chosen category", () => {
     const game = createGame(ctx, configFor("category", { category: "european" }), { seed: 1, now: NOW })!;
     for (const id of game.queue) expect(ctx.carsById.get(id)!.region).toBe("europe");
+  });
+
+  it("draws a brand challenge from that brand only", () => {
+    const game = createGame(ctx, configFor("category", { make: "BMW" }), { seed: 1, now: NOW })!;
+    expect(game.queue).toHaveLength(3);
+    for (const id of game.queue) expect(ctx.carsById.get(id)!.make).toBe("BMW");
+  });
+
+  it("generation mode uses models with several generations and asks for the generation", () => {
+    let game = createGame(ctx, configFor("generation"), { seed: 2, now: NOW })!;
+    expect(new Set(game.queue)).toEqual(new Set(["bmw-m3-e46", "bmw-m3-e30", "vw-golf-4", "vw-golf-7"]));
+    const car = ctx.carsById.get(currentQuestion(game).carId)!;
+    game = run(game, { type: "submit", answer: `${car.make} ${car.model}`, now: NOW });
+    expect(game.lastVerdict).toEqual({ kind: "close", reason: "generation" });
+    expect(currentQuestion(game).guesses).toEqual([]);
+    game = run(game, { type: "submit", answer: `${car.make} ${car.model} ${car.generation}`, now: NOW });
+    expect(currentQuestion(game)).toMatchObject({ status: "solved", precise: true });
+  });
+
+  it("can replace a daily car whose photo fails, deterministically", () => {
+    const config = configFor("daily", { dateKey: "2026-10-24" });
+    const a = run(createGame(ctx, config, { seed: 1, now: NOW })!, { type: "replace-car" });
+    const b = run(createGame(ctx, config, { seed: 1, now: NOW })!, { type: "replace-car" });
+    expect(currentQuestion(a).carId).toBe(currentQuestion(b).carId);
+    expect(a.queue).not.toContain(createGame(ctx, config, { seed: 1, now: NOW })!.queue[0]);
   });
 
   it("cannot start without cars", () => {

@@ -44,6 +44,8 @@ next-env.d.ts
 /test-results
 /playwright-report
 
-# dataset review artefacts (regenerate with `pnpm dataset:import --sheets`)
-/data/review/sheets
+# build logs
 /data/*.log
+
+# catalogue builder cache (regenerate with `pnpm catalogue --refresh`)
+/data/catalogue/cache

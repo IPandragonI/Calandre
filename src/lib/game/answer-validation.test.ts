@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { acceptedAnswersFor, editDistance, normalizeAnswer, validateAnswer } from "./answer-validation";
+import { acceptedAnswersFor, buildAnswerIndex, editDistance, normalizeAnswer, validateAnswer } from "./answer-validation";
 import { FIXTURE_CARS } from "./test-fixtures";
 
 const car = (id: string) => FIXTURE_CARS.find((c) => c.id === id)!;
@@ -55,7 +55,58 @@ describe("validateAnswer", () => {
     expect(check("Mazda MX5", "mazda-mx5").kind).toBe("correct");
     expect(check("mazda mx 5", "mazda-mx5").kind).toBe("correct");
     expect(check("Citroen 2 CV", "citroen-2cv").kind).toBe("correct");
-    expect(check("VW Golf GTI", "vw-golf").kind).toBe("correct");
+    expect(check("VW Golf", "vw-golf-4").kind).toBe("correct");
+  });
+
+  it("treats generation spellings alike (Mk4 = Mark IV = IV = 4)", () => {
+    for (const input of ["Volkswagen Golf Mk4", "VW Golf IV", "Volkswagen Golf 4", "volkswagen golf mark iv", "VW Golf MkIV"]) {
+      expect(check(input, "vw-golf-4"), input).toEqual({ kind: "correct", typoTolerated: false, precise: true });
+    }
+    expect(normalizeAnswer("BMW Série 3")).toBe(normalizeAnswer("BMW Serie 3"));
+    for (const input of ["Honda Civic fourth generation", "Honda Civic 4th generation", "Honda Civic quatrième génération", "Honda Civic 4e gen"]) {
+      expect(normalizeAnswer(input), input).toBe("honda civic 4");
+    }
+    expect(normalizeAnswer("Mercedes Classe G")).toBe("mercedes benz class g");
+  });
+
+  it("accepts the model without its generation, but flags the wrong generation", () => {
+    expect(check("BMW M3", "bmw-m3-e46")).toEqual({ kind: "correct", typoTolerated: false, precise: false });
+    expect(check("BMW M3", "bmw-m3-e30").kind).toBe("correct");
+    expect(check("BMW M3 E30", "bmw-m3-e46")).toEqual({ kind: "wrong", sameModel: true });
+    expect(check("Volkswagen Golf Mk7", "vw-golf-4")).toEqual({ kind: "wrong", sameModel: true });
+    expect(check("BMW M5", "bmw-m3-e46")).toEqual({ kind: "wrong", sameModel: false });
+  });
+
+  it("asks for the generation in Generations mode", () => {
+    const strict = (input: string, id: string) => validateAnswer(input, car(id), FIXTURE_CARS, { requireGeneration: true });
+    expect(strict("BMW M3", "bmw-m3-e46")).toEqual({ kind: "close", reason: "generation" });
+    expect(strict("BMW M3 E46", "bmw-m3-e46").kind).toBe("correct");
+    // Cars without a generation are judged as usual.
+    expect(strict("Citroën 2CV", "citroen-2cv").kind).toBe("correct");
+  });
+
+  it("implies the make in brand challenges", () => {
+    const brand = (input: string, id: string) => validateAnswer(input, car(id), FIXTURE_CARS, { impliedMake: car(id).make });
+    for (const input of ["Countach", "  COUNTACH ", "countach", "Lamborghini Countach", "Lambo Countach"]) {
+      expect(brand(input, "lambo-countach").kind, input).toBe("correct");
+    }
+    expect(brand("993", "porsche-911")).toEqual({ kind: "correct", typoTolerated: false, precise: true });
+    expect(brand("911", "porsche-911").kind).toBe("correct");
+    expect(brand("M3 E46", "bmw-m3-e46").kind).toBe("correct");
+    // Still strict: another model, or another generation, is wrong.
+    expect(brand("M5", "bmw-m3-e46")).toEqual({ kind: "wrong", sameModel: false });
+    expect(brand("M3 E30", "bmw-m3-e46")).toEqual({ kind: "wrong", sameModel: true });
+    expect(brand("Miura", "lambo-countach").kind).toBe("wrong");
+    expect(brand("912", "porsche-911").kind).toBe("wrong");
+    // Small typos in long model names stay tolerated.
+    expect(brand("Countash", "lambo-countach")).toEqual({ kind: "correct", typoTolerated: true, precise: false });
+  });
+
+  it("gives the same verdicts with a prebuilt index", () => {
+    const index = buildAnswerIndex(FIXTURE_CARS);
+    for (const input of ["BMW M5", "Porsche 993", "Porsche 912", "Lamborgini Countach", "BMW M3 E30"]) {
+      expect(validateAnswer(input, car("bmw-m3-e46"), index), input).toEqual(validateAnswer(input, car("bmw-m3-e46"), FIXTURE_CARS));
+    }
   });
 
   it("accepts explicit aliases and reports generation precision", () => {
@@ -79,7 +130,7 @@ describe("validateAnswer", () => {
   });
 
   it("rejects the exact name of another car in the dataset", () => {
-    expect(check("BMW M5", "bmw-m3-e46")).toEqual({ kind: "wrong" });
+    expect(check("BMW M5", "bmw-m3-e46")).toEqual({ kind: "wrong", sameModel: false });
   });
 
   it("does not accept arbitrary substrings", () => {
