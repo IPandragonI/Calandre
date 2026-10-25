@@ -64,7 +64,8 @@ export function carProblem(value: unknown): string | null {
   if (!REGIONS.includes(value.region as Region)) return "invalid region";
   if (value.bodyType !== undefined && !BODY_TYPES.includes(value.bodyType as BodyType)) return "invalid bodyType";
   if (!Array.isArray(value.tags) || !value.tags.every((t) => TAGS.includes(t as CarTag))) return "invalid tags";
-  if (![1, 2, 3, 4].includes(value.difficulty as number)) return "invalid difficulty";
+  if (![1, 2, 3].includes(value.difficulty as number)) return "invalid difficulty";
+  if (value.recognition !== undefined && !(typeof value.recognition === "number" && value.recognition >= 0 && value.recognition <= 100)) return "invalid recognition";
   if (!Array.isArray(value.acceptedAnswers) || !value.acceptedAnswers.every(isString)) return "invalid acceptedAnswers";
   if (value.clue !== undefined && !isLocalized(value.clue)) return "clue must be localised";
   if (value.funFact !== undefined && !isLocalized(value.funFact)) return "funFact must be localised";
@@ -80,7 +81,9 @@ export function parseDataset(raw: unknown): { cars: Car[]; errors: string[] } {
   const cars: Car[] = [];
   const errors: string[] = [];
   const ids = new Set<string>();
-  raw.forEach((entry, index) => {
+  raw.forEach((original, index) => {
+    // Catalogues built before the three-tier scale used 4 for "expert": that is now hard.
+    const entry = isRecord(original) && original.difficulty === 4 ? { ...original, difficulty: 3 } : original;
     const problem = carProblem(entry);
     const id = isRecord(entry) && typeof entry.id === "string" ? entry.id : `#${index}`;
     if (problem) errors.push(`${id}: ${problem}`);

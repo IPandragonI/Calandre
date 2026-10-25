@@ -30,7 +30,7 @@ export function SettingsScreen() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 px-4 pt-6 sm:pt-10">
-      <h1 className="font-display text-3xl sm:text-4xl">{t.settings.title}</h1>
+      <h1 className="font-display text-2xl sm:text-3xl">{t.settings.title}</h1>
 
       {hydrated && !isStorageAvailable() && (
         <p role="alert" className="alert alert-warning">
@@ -50,7 +50,7 @@ export function SettingsScreen() {
               <label
                 key={locale}
                 lang={locale}
-                className="join-item btn min-h-11 flex-1 has-[:checked]:btn-neutral has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary"
+                className="join-item btn min-h-11 flex-1 border-base-content/15 bg-base-100 font-medium has-[:checked]:border-neutral has-[:checked]:bg-neutral has-[:checked]:text-neutral-content has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary"
               >
                 <input
                   type="radio"
@@ -74,7 +74,7 @@ export function SettingsScreen() {
             {themeOptions.map(({ value, label, Icon }) => (
               <label
                 key={value}
-                className="join-item btn min-h-11 flex-1 has-[:checked]:btn-neutral has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary"
+                className="join-item btn min-h-11 flex-1 border-base-content/15 bg-base-100 font-medium has-[:checked]:border-neutral has-[:checked]:bg-neutral has-[:checked]:text-neutral-content has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary"
               >
                 <input
                   type="radio"
@@ -184,7 +184,7 @@ export function SettingsScreen() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="flex flex-col gap-5 rounded-box border border-base-content/10 bg-base-100 p-5 shadow-sm">
+    <section className="flex flex-col gap-5 surface p-5">
       <h2 className="eyebrow">{title}</h2>
       {children}
     </section>

@@ -1,5 +1,5 @@
 import type { Locale } from "@/types/car";
-import { DIFFICULTY_FILTERS, type DifficultyFilter } from "@/lib/game/question-selection";
+import { parseDifficultyFilter, type DifficultyFilter } from "@/lib/game/question-selection";
 import { isRecord, pickBoolean, pickEnum, type StorageSchema } from "@/lib/storage/storage-schema";
 
 export const LOCALES = ["fr", "en"] as const satisfies readonly Locale[];
@@ -37,7 +37,7 @@ export const settingsSchema: StorageSchema<Settings> = {
       theme: pickEnum(data.theme, THEMES, DEFAULT_SETTINGS.theme),
       sound: pickBoolean(data.sound, DEFAULT_SETTINGS.sound),
       reducedMotion: pickBoolean(data.reducedMotion, DEFAULT_SETTINGS.reducedMotion),
-      difficulty: pickEnum(data.difficulty, DIFFICULTY_FILTERS, DEFAULT_SETTINGS.difficulty),
+      difficulty: parseDifficultyFilter(data.difficulty) ?? DEFAULT_SETTINGS.difficulty,
     };
   },
 };

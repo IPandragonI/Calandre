@@ -24,22 +24,22 @@ export function DailyDone({ dateKey, result }: { dateKey: string; result: DailyR
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-col items-center gap-4 px-4 pt-10 text-center">
-      <CalendarCheck className="size-10 text-primary" aria-hidden="true" />
+      <CalendarCheck className="size-8 text-base-content/50" aria-hidden="true" />
       <p className="eyebrow">
         {t.daily.title} · {t.daily.number(dailyNumber(dateKey))} · {date(dateKey, { day: "numeric", month: "long" })}
       </p>
-      <h1 className="font-display text-3xl">{t.daily.done}</h1>
-      <p className="text-3xl tracking-widest" role="img" aria-label={t.daily.result(result.correct, result.total, result.score)}>
+      <h1 className="font-display text-2xl">{t.daily.done}</h1>
+      <p className="text-2xl tracking-widest" role="img" aria-label={t.daily.result(result.correct, result.total, result.score)}>
         {grid}
       </p>
-      <p className="font-wide text-lg font-semibold tabular-nums">{t.daily.result(result.correct, result.total, result.score)}</p>
+      <p className="font-semibold tabular-nums">{t.daily.result(result.correct, result.total, result.score)}</p>
       <p className="text-base-content/70">{t.daily.comeBack}</p>
       <div className="flex flex-wrap justify-center gap-2">
         <Link href={playHref({ mode: "classic" })} className="btn btn-primary">
           <Play className="size-4" aria-hidden="true" />
           {t.modes.classic.name}
         </Link>
-        <Link href="/" className="btn">
+        <Link href="/" className="btn border-base-content/20 bg-base-100">
           <Home className="size-4" aria-hidden="true" />
           {t.results.home}
         </Link>

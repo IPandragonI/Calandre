@@ -34,10 +34,11 @@ export type CarTag =
   | "concept";
 
 /**
- * 1 easy (iconic), 2 medium (common, recognisable), 3 hard (less common, similar
- * generations), 4 expert (rare, obscure, special editions). See lib/game/difficulty.ts.
+ * How hard the model is to recognise: 1 easy (popular, familiar to a broad audience),
+ * 2 medium (needs some car knowledge), 3 hard (rare, obscure, pre-war, concepts).
+ * Assigned from a recognisability score by scripts/catalogue/difficulty.ts.
  */
-export type Difficulty = 1 | 2 | 3 | 4;
+export type Difficulty = 1 | 2 | 3;
 
 export interface CarImage {
   /** Remote image URL (Wikimedia Commons thumbnail); never stored locally. */
@@ -68,6 +69,8 @@ export interface Car {
   bodyType?: BodyType;
   tags: CarTag[];
   difficulty: Difficulty;
+  /** Recognisability score, 0–100, behind the difficulty (absent on old data). */
+  recognition?: number;
   /** Extra accepted spellings; "make model" and "make model generation" are always accepted. */
   acceptedAnswers: string[];
   /** A distinctive clue (curated, or derived from structured data such as the designer). */

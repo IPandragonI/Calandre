@@ -81,15 +81,15 @@ export function AnswerForm({ onSubmit, verdict, verdictCount, attemptsLeft, gene
           placeholder={impliedMake ? t.game.placeholderBrand(impliedMake) : generationMode ? t.game.placeholderGeneration : t.game.placeholder}
           aria-describedby={messageId}
           aria-invalid={wrong || undefined}
-          className={`input join-item input-lg w-full min-w-0 text-base sm:text-lg ${wrong ? "input-error" : ""}`}
+          className={`input join-item input-lg w-full min-w-0 border-base-content/20 text-base ${wrong ? "input-error" : ""}`}
         />
-        <button type="submit" className="btn btn-primary btn-lg join-item min-w-14 px-4 sm:px-6">
+        <button type="submit" className="btn btn-primary btn-lg join-item min-w-14 px-4 text-base sm:px-6">
           <span className="hidden sm:inline">{t.game.submit}</span>
-          <ArrowRight className="size-5" aria-hidden="true" />
+          <ArrowRight className="size-4" aria-hidden="true" />
           <span className="sr-only sm:hidden">{t.game.submit}</span>
         </button>
       </div>
-      {impliedMake && !message && <p className="text-xs text-base-content/65">{t.game.brandHint(impliedMake)}</p>}
+      {impliedMake && !message && <p className="text-xs text-base-content/60">{t.game.brandHint(impliedMake)}</p>}
       <p id={messageId} role="status" aria-live="polite" className="min-h-5 text-sm">
         {message && (
           <span key={verdictCount} className={`animate-fade-up inline-block ${message.tone}`}>

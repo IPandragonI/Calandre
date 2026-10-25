@@ -39,7 +39,7 @@ export const FIXTURE_CARS: Car[] = [
   makeCar({ id: "mercedes-300sl", make: "Mercedes-Benz", model: "300 SL", tags: ["classic"], difficulty: 2 }),
   makeCar({ id: "toyota-supra", make: "Toyota", model: "Supra", generation: "A80", region: "japan", difficulty: 2 }),
   makeCar({ id: "nissan-leaf", make: "Nissan", model: "Leaf", region: "japan", tags: ["electric", "everyday"], difficulty: 1, years: undefined, bodyType: undefined, clue: undefined }),
-  makeCar({ id: "ford-gt40", make: "Ford", model: "GT40", region: "usa", tags: ["racing"], difficulty: 4 }),
+  makeCar({ id: "ford-gt40", make: "Ford", model: "GT40", region: "usa", tags: ["racing"], difficulty: 3 }),
   makeCar({ id: "ford-gt", make: "Ford", model: "GT", region: "usa", tags: ["supercar"], difficulty: 3 }),
   makeCar({ id: "vw-golf-4", make: "Volkswagen", model: "Golf", generation: "Mk4", tags: ["everyday"], difficulty: 1 }),
   makeCar({ id: "vw-golf-7", make: "Volkswagen", model: "Golf", generation: "Mk7", tags: ["everyday"], difficulty: 1 }),

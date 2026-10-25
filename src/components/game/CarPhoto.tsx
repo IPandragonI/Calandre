@@ -45,7 +45,7 @@ export function CarPhoto({ car, number, revealed, zoom = 1, onReplace }: CarPhot
 
   return (
     <figure className="flex flex-col gap-1.5" data-car-id={car.id}>
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-box bg-base-300 shadow-sm ring-1 ring-base-content/10">
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-box bg-base-300 ring-1 ring-base-content/10">
         {status !== "error" && (
           // Plain <img>: the photo stays on Wikimedia's servers; an optimisation proxy would re-host it.
           // eslint-disable-next-line @next/next/no-img-element
@@ -115,7 +115,7 @@ export function CarPhoto({ car, number, revealed, zoom = 1, onReplace }: CarPhot
 
         <span
           aria-hidden="true"
-          className="font-display pointer-events-none absolute left-3 top-2.5 rounded-md bg-base-100/85 px-2 py-0.5 text-sm tabular-nums shadow-sm"
+          className="pointer-events-none absolute left-2.5 top-2.5 rounded-selector bg-base-100/85 px-1.5 py-0.5 text-xs font-semibold tabular-nums"
         >
           N°{String(number).padStart(2, "0")}
         </span>
@@ -126,12 +126,12 @@ export function CarPhoto({ car, number, revealed, zoom = 1, onReplace }: CarPhot
           onClick={() => setInfoOpen((open) => !open)}
           aria-expanded={infoOpen}
           aria-label={t.game.photoInfo}
-          className="btn btn-circle btn-sm absolute right-2.5 top-2.5 border-0 bg-base-100/85 shadow-sm"
+          className="btn btn-circle btn-sm absolute right-2.5 top-2.5 border-0 bg-base-100/85"
         >
           {infoOpen ? <X className="size-4" aria-hidden="true" /> : <Info className="size-4" aria-hidden="true" />}
         </button>
         {infoOpen && (
-          <div className="animate-fade-up absolute inset-x-2.5 bottom-2.5 rounded-field bg-base-100/95 p-3 text-xs shadow-md">
+          <div className="animate-fade-up absolute inset-x-2.5 bottom-2.5 rounded-field border border-base-content/10 bg-base-100/95 p-3 text-xs">
             <p className="font-semibold">{t.game.photoInfo}</p>
             <p>
               {t.game.photoBy} {image.author}

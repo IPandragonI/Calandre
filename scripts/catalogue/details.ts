@@ -84,7 +84,8 @@ function quantity(entity: Entity | undefined, property: string, units: Record<st
   return null;
 }
 
-function count(entity: Entity | undefined, property: string): number | null {
+/** A unitless count stated in Wikidata (e.g. P1092 units built). */
+export function statedCount(entity: Entity | undefined, property: string): number | null {
   for (const v of claimValues(entity, property)) {
     if (typeof v !== "object" || v === null || !("amount" in v)) continue;
     const { amount, unit } = v as { amount: string; unit: string };
@@ -113,7 +114,7 @@ export function factsFor(entity: Entity | undefined, entities: Map<string, Entit
   const fr = placeNames("fr");
   const en = placeNames("en");
   if (fr.length > 0 && en.length > 0) facts.assembly = { fr: fr.slice(0, 3).join(", "), en: en.slice(0, 3).join(", ") };
-  const produced = count(entity, "P1092");
+  const produced = statedCount(entity, "P1092");
   if (produced) facts.produced = produced;
   const mass = quantity(entity, "P2067", KG);
   if (mass && mass >= 300 && mass <= 6000) facts.massKg = mass;
@@ -127,7 +128,7 @@ export function factsFor(entity: Entity | undefined, entities: Map<string, Entit
 export async function writeDetails(
   cars: readonly Car[],
   entities: Map<string, Entity>,
-  { cacheDir, outDir }: { cacheDir: string; outDir: string },
+  { cacheDir, outDir, itemOf = (car) => car.wikidata }: { cacheDir: string; outDir: string; itemOf?: (car: Car) => string | undefined },
 ): Promise<{ withDescription: number; withFacts: number }> {
   const titles = (lang: Lang) => cars.map((c) => c.links?.[lang]).filter((u): u is string => Boolean(u)).map(articleTitle);
   const extracts = {
@@ -145,7 +146,8 @@ export async function writeDetails(
       const text = url ? trimExtract(extracts[lang][articleTitle(url)] ?? "") : null;
       if (text) description[lang] = text;
     }
-    const facts = factsFor(car.wikidata ? entities.get(car.wikidata) : undefined, entities);
+    const item = itemOf(car);
+    const facts = factsFor(item ? entities.get(item) : undefined, entities);
     const details: CarDetails = {
       ...(Object.keys(description).length > 0 ? { description } : {}),
       ...(Object.keys(facts).length > 0 ? { facts } : {}),

@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { classify, cleanMake, difficultyFor, fileExclusion, fileNamesModel, parseName, photoProblem, regionOf } from "./rules";
+import { classify, cleanMake, fileExclusion, fileNamesModel, parseName, photoProblem, regionOf } from "./rules";
 
 describe("parseName", () => {
+  it("keeps the whole make when a nickname is part of it", () => {
+    expect(parseName("Aston Martin Victor", ["Aston Martin"], null)).toEqual({ make: "Aston Martin", model: "Victor" });
+    expect(parseName("Alfa Romeo 164", ["Alfa Romeo"], null)).toEqual({ make: "Alfa Romeo", model: "164" });
+    expect(parseName("Rolls-Royce Phantom", ["Rolls-Royce"], null)).toEqual({ make: "Rolls-Royce", model: "Phantom" });
+  });
+
   it("splits make, model and generation", () => {
     expect(parseName("Toyota Supra (A80)", ["Toyota"], "Toyota Supra")).toEqual({ make: "Toyota", model: "Supra", generation: "A80" });
     expect(parseName("Porsche 993", ["Porsche"], "Porsche 911")).toEqual({ make: "Porsche", model: "911", generation: "993" });
@@ -67,15 +73,6 @@ describe("classification", () => {
     expect(classify(["car model", "concept car"]).tags.sort()).toEqual(["concept", "rare"]);
     expect(classify(["car model", "truck"]).excludedBy).toBe("truck");
     expect(classify(["car model", "Formula One car"]).excludedBy).toBe("Formula One car");
-  });
-
-  it("assigns difficulty from notability", () => {
-    expect(difficultyFor(60, 0, [])).toBe(1);
-    expect(difficultyFor(25, 0, [])).toBe(2);
-    expect(difficultyFor(4, 70, [])).toBe(1);
-    expect(difficultyFor(12, 0, [])).toBe(3);
-    expect(difficultyFor(6, 0, [])).toBe(4);
-    expect(difficultyFor(60, 0, ["concept"])).toBe(3);
   });
 
   it("maps countries to regions", () => {

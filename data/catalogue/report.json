@@ -4,42 +4,41 @@
     "curated": 72
   },
   "candidates": {
-    "accepted": 3447,
+    "accepted": 3429,
     "review": 1485,
-    "rejected": 1256,
+    "rejected": 1274,
     "duplicate": 131
   },
   "playable": {
-    "total": 3519,
+    "total": 3501,
     "curated": 72,
-    "imported": 3447,
+    "imported": 3429,
     "byDifficulty": {
-      "1": 166,
-      "2": 748,
-      "3": 1294,
-      "4": 1311
+      "1": 941,
+      "2": 965,
+      "3": 1595
     },
     "byRegion": {
-      "europe": 1693,
-      "usa": 626,
-      "japan": 676,
-      "korea": 118,
+      "europe": 1686,
+      "usa": 621,
+      "japan": 671,
+      "korea": 117,
       "china": 319,
       "other": 87
     },
-    "withYears": 470,
-    "withBodyType": 756,
-    "withClue": 794,
-    "withGeneration": 403
+    "withYears": 468,
+    "withBodyType": 752,
+    "withClue": 792,
+    "withGeneration": 401
   },
   "details": {
-    "withDescription": 3413,
-    "withFacts": 2503
+    "withDescription": 3397,
+    "withFacts": 2518
   },
   "images": {
-    "verifiedOk": 698,
-    "brokenRejected": 0,
-    "notChecked": 2821,
+    "verifiedOk": 1282,
+    "brokenRejected": 18,
+    "notChecked": 2219,
     "lastRunRateLimited": false
   },
   "reviewReasons": {
@@ -54,6 +53,7 @@
     "not a car for the game (…)": 100,
     "detail or non-car photo (…)": 97,
     "unsuitable framing (…)": 77,
+    "image unavailable (…)": 18,
     "unsupported format (…)": 7
   },
   "duplicateReasons": {

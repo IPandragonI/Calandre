@@ -7,7 +7,7 @@ import type { CommonsFileInfo } from "../lib/commons";
 import { claimIds, claimValues, claimYear, label, type Entity } from "../lib/wikidata";
 import type { FetchedData } from "./fetch";
 import { normalizeFileTitle } from "./fetch";
-import { classify, cleanMake, difficultyFor, fileExclusion, fileNamesModel, parseName, photoProblem, regionOf } from "./rules";
+import { classify, cleanMake, fileExclusion, fileNamesModel, parseName, photoProblem, regionOf } from "./rules";
 
 export type Status = "accepted" | "review" | "rejected" | "duplicate";
 
@@ -46,6 +46,8 @@ export interface BuildInput {
 
 export interface BuildResult {
   cars: Car[];
+  /** Wikidata item matching each curated car (same name or same photo). */
+  sources: Record<string, string>;
   decisions: Decision[];
   errors: string[];
 }
@@ -264,7 +266,8 @@ export function buildCatalogue({ fetched, curated, overrides, verified }: BuildI
       region: regionOf(country),
       ...(bodyType ? { bodyType } : {}),
       tags: finalTags,
-      difficulty: difficultyFor(row.sitelinks, row.seriesSitelinks, finalTags),
+      // Provisional: the difficulty phase (difficulty.ts) scores every car once all are known.
+      difficulty: 3,
       acceptedAnswers: [...new Set(aliases)],
       ...(clue ? { clue } : {}),
       wikidata: row.id,
@@ -294,6 +297,7 @@ export function buildCatalogue({ fetched, curated, overrides, verified }: BuildI
   const ranked = accepted
     .filter((a) => a.decision.status === "accepted")
     .sort((x, y) => Number(Boolean(y.car.generation)) - Number(Boolean(x.car.generation)) || y.sitelinks - x.sitelinks || (x.car.id < y.car.id ? -1 : 1));
+  const sources: Record<string, string> = {};
   const curatedByName = new Map(cars.map((c) => [nameKey(c), c]));
   const curatedByFile = new Map(cars.map((c) => [normalizeFileTitle(`File:${decodeURIComponent(c.image.sourcePage.split("File:")[1] ?? "")}`), c]));
   for (const a of ranked) {
@@ -302,11 +306,13 @@ export function buildCatalogue({ fetched, curated, overrides, verified }: BuildI
       markDuplicate(a, "same photo as another entry");
       const curatedCar = curatedByFile.get(a.file);
       if (curatedCar && !curatedCar.links && a.car.links) curatedCar.links = a.car.links;
+      if (curatedCar && !curatedCar.wikidata) sources[curatedCar.id] ??= a.car.wikidata!;
     } else if (takenNames.has(key)) {
       markDuplicate(a, "same car as another entry");
       // A curated car learns its Wikipedia articles from the matching Wikidata item.
       const curatedCar = curatedByName.get(key);
       if (curatedCar && !curatedCar.links && a.car.links) curatedCar.links = a.car.links;
+      if (curatedCar && !curatedCar.wikidata) sources[curatedCar.id] ??= a.car.wikidata!;
     }
     else {
       takenFiles.add(a.file);
@@ -331,5 +337,5 @@ export function buildCatalogue({ fetched, curated, overrides, verified }: BuildI
   }
 
   cars.sort((a, b) => (a.id < b.id ? -1 : 1));
-  return { cars, decisions, errors };
+  return { cars, sources, decisions, errors };
 }

@@ -50,57 +50,57 @@ export function ResultsScreen({ engine, state, previousBest, newlyFound, onPlayA
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pt-6">
-      <section className="animate-pop flex flex-col items-center gap-2 text-center" aria-labelledby="results-title">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 pt-8">
+      <section className="animate-fade-up flex flex-col items-center gap-2 text-center" aria-labelledby="results-title">
         <p className="eyebrow">{t.modes[mode].name}</p>
-        <h1 id="results-title" className="font-display text-3xl sm:text-4xl">
+        <h1 id="results-title" className="font-display text-2xl sm:text-3xl">
           {title}
         </h1>
-        <p className="mt-2 text-sm text-base-content/70">{t.results.finalScore}</p>
-        <p className="font-display text-6xl leading-none text-primary tabular-nums sm:text-7xl">{number(summary.score)}</p>
+        <p className="mt-3 text-sm text-base-content/60">{t.results.finalScore}</p>
+        <p className="font-display text-5xl leading-none tabular-nums sm:text-6xl">{number(summary.score)}</p>
         {newRecord ? (
-          <p className="badge badge-primary badge-lg mt-2 gap-1.5 font-semibold">
+          <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
             <Trophy className="size-4" aria-hidden="true" />
             {t.results.newRecord}
           </p>
         ) : (
-          previousBest > 0 && <p className="text-sm text-base-content/70">{t.results.personalBest(number(previousBest))}</p>
+          previousBest > 0 && <p className="text-sm text-base-content/60">{t.results.personalBest(number(previousBest))}</p>
         )}
         {newlyFound > 0 && (
-          <Link href="/garage" className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-accent link-hover">
+          <Link href="/garage" className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-base-content/70 link-hover">
             <Warehouse className="size-4" aria-hidden="true" />
             {t.results.newInGarage(newlyFound)}
           </Link>
         )}
       </section>
 
-      <dl className="grid grid-cols-3 gap-2 sm:gap-3">
+      <dl className="surface grid grid-cols-3 divide-x divide-base-content/10">
         {[
           [t.results.accuracy, summary.accuracy === null ? "—" : percent(summary.accuracy)],
           [t.results.correct, `${summary.correct}/${summary.answered}`],
           [t.results.bestStreak, String(summary.bestStreak)],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-box border border-base-content/10 bg-base-200 p-3 text-center">
-            <dt className="text-xs text-base-content/70 sm:text-sm">{label}</dt>
-            <dd className="font-wide text-xl font-bold tabular-nums sm:text-2xl">{value}</dd>
+          <div key={label} className="flex flex-col gap-0.5 p-3 text-center sm:p-4">
+            <dt className="text-xs text-base-content/60 sm:text-sm">{label}</dt>
+            <dd className="font-display text-xl tabular-nums sm:text-2xl">{value}</dd>
           </div>
         ))}
       </dl>
 
       <div className="flex flex-wrap justify-center gap-2">
         {onPlayAgain && (
-          <button type="button" className="btn btn-primary btn-lg" onClick={onPlayAgain} autoFocus>
-            <RotateCcw className="size-5" aria-hidden="true" />
+          <button type="button" className="btn btn-primary min-h-12 px-6" onClick={onPlayAgain} autoFocus>
+            <RotateCcw className="size-4" aria-hidden="true" />
             {t.results.playAgain}
           </button>
         )}
-        <Link href="/" className="btn btn-lg">
-          <Home className="size-5" aria-hidden="true" />
+        <Link href="/" className="btn min-h-12 border-base-content/20 bg-base-100 px-6">
+          <Home className="size-4" aria-hidden="true" />
           {t.results.home}
         </Link>
         {hydrated && canShare() && (
-          <button type="button" className="btn btn-lg btn-ghost" onClick={share}>
-            <Share2 className="size-5" aria-hidden="true" />
+          <button type="button" className="btn btn-ghost min-h-12 px-6" onClick={share}>
+            <Share2 className="size-4" aria-hidden="true" />
             {t.results.share}
           </button>
         )}
@@ -114,14 +114,14 @@ export function ResultsScreen({ engine, state, previousBest, newlyFound, onPlayA
           <h2 id="breakdown-title" className="eyebrow">
             {t.results.breakdown}
           </h2>
-          <ol className="flex flex-col gap-2">
+          <ol className="flex flex-col divide-y divide-base-content/10">
             {played.map((q, i) => {
               const car = engine.carsById.get(q.carId);
               if (!car) return null;
               const Icon = STATUS_ICON[q.status];
               const solved = q.status === "solved";
               return (
-                <li key={`${q.carId}-${i}`} className="flex gap-3 rounded-box border border-base-content/10 bg-base-100 p-2.5">
+                <li key={`${q.carId}-${i}`} className="flex gap-3 py-3 first:pt-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={thumbnailUrl(car.image, 330)}
@@ -137,7 +137,7 @@ export function ResultsScreen({ engine, state, previousBest, newlyFound, onPlayA
                   <div className="flex min-w-0 flex-1 flex-col gap-0.5">
                     <div className="flex items-start justify-between gap-2">
                       <p className="font-semibold leading-snug">{carName(car)}</p>
-                      <span className="font-wide shrink-0 text-sm font-bold tabular-nums">{t.common.points(q.points)}</span>
+                      <span className="shrink-0 text-sm font-semibold tabular-nums">{t.common.points(q.points)}</span>
                     </div>
                     <p className={`flex items-center gap-1 text-xs font-medium ${solved ? "text-success" : "text-error"}`}>
                       <Icon className="size-3.5" aria-hidden="true" />

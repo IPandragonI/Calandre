@@ -1160,15 +1160,12 @@
  {
   "id": "Q10331189",
   "label": "Mitsubishi Delica D:5",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 6,
   "file": "File:Mitsubishi Delica D5 003.JPG",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Mitsubishi_Delica_D5_003.JPG",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Mitsubishi_Delica_D5_003.JPG",
-  "proposed": {
-   "make": "Mitsubishi",
-   "model": "Delica D:5"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q10337976",
@@ -5598,15 +5595,12 @@
  {
   "id": "Q1120913",
   "label": "Fiat 525",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 15,
   "file": "File:Fiat 525 SS 1928.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Fiat_525_SS_1928.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/Fiat_525_SS_1928.jpg",
-  "proposed": {
-   "make": "Fiat",
-   "model": "525"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q11212731",
@@ -7609,15 +7603,12 @@
  {
   "id": "Q1143459",
   "label": "Peugeot 203",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 26,
   "file": "File:Peugeot 203 Coupe.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Peugeot_203_Coupe.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Peugeot_203_Coupe.jpg",
-  "proposed": {
-   "make": "Peugeot",
-   "model": "203"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1144123",
@@ -10880,15 +10871,12 @@
  {
   "id": "Q122064",
   "label": "Hyundai Scoupe",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 16,
   "file": "File:1991 Hyundai Scoupe 1.5i GTX Automatic 002.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:1991_Hyundai_Scoupe_1.5i_GTX_Automatic_002.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/1991_Hyundai_Scoupe_1.5i_GTX_Automatic_002.jpg",
-  "proposed": {
-   "make": "Hyundai",
-   "model": "Scoupe"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q122084812",
@@ -13298,15 +13286,12 @@
  {
   "id": "Q1284007",
   "label": "Mitsubishi RVR",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 12,
   "file": "File:Mitsubishi RVR 011.JPG",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Mitsubishi_RVR_011.JPG",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/Mitsubishi_RVR_011.JPG",
-  "proposed": {
-   "make": "Mitsubishi",
-   "model": "RVR"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1284432",
@@ -16358,15 +16343,12 @@
  {
   "id": "Q138305",
   "label": "Citroën Type B14",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 7,
   "file": "File:Citroen B14 1.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Citroen_B14_1.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Citroen_B14_1.jpg",
-  "proposed": {
-   "make": "Citroën",
-   "model": "Type B14"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q138508",
@@ -16420,15 +16402,12 @@
  {
   "id": "Q1388036",
   "label": "Pontiac Montana",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 15,
   "file": "File:Pontiac Montana LWB.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Pontiac_Montana_LWB.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Pontiac_Montana_LWB.jpg",
-  "proposed": {
-   "make": "Pontiac",
-   "model": "Montana"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1389152",
@@ -18109,15 +18088,12 @@
  {
   "id": "Q1436788",
   "label": "Ford Econovan",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 7,
   "file": "File:1984 Ford Econovan Maxi van (2009-02-05).jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:1984_Ford_Econovan_Maxi_van_(2009-02-05).jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/1984_Ford_Econovan_Maxi_van_%282009-02-05%29.jpg",
-  "proposed": {
-   "make": "Ford",
-   "model": "Econovan"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1436805",
@@ -18250,29 +18226,22 @@
  {
   "id": "Q1436869",
   "label": "Ford Ikon",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 14,
   "file": "File:Ford-Ikon.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Ford-Ikon.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Ford-Ikon.jpg",
-  "proposed": {
-   "make": "Ford",
-   "model": "Ikon"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1436877",
   "label": "Ford LTD II",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 13,
   "file": "File:Ford-LTD-II.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Ford-LTD-II.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Ford-LTD-II.jpg",
-  "proposed": {
-   "make": "Ford",
-   "model": "LTD",
-   "generation": "II"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1436879",
@@ -18729,15 +18698,12 @@
  {
   "id": "Q1446836",
   "label": "Nissan Pao",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 16,
   "file": "File:Nissan Pao 001.JPG",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Nissan_Pao_001.JPG",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Nissan_Pao_001.JPG",
-  "proposed": {
-   "make": "Nissan",
-   "model": "Pao"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1447622",
@@ -19218,15 +19184,12 @@
  {
   "id": "Q1468959",
   "label": "Hillman Husky",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 8,
   "file": "File:Hillman husky mark1.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Hillman_husky_mark1.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Hillman_husky_mark1.jpg",
-  "proposed": {
-   "make": "Hillman",
-   "model": "Husky"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1468987",
@@ -19986,15 +19949,12 @@
  {
   "id": "Q1487993",
   "label": "Volvo 740",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 13,
   "file": "File:1987 Volvo 740GLE.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:1987_Volvo_740GLE.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/1987_Volvo_740GLE.jpg",
-  "proposed": {
-   "make": "Volvo",
-   "model": "740"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q14927963",
@@ -20490,15 +20450,12 @@
  {
   "id": "Q1511468",
   "label": "Mercedes-Benz 190 SL",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 21,
   "file": "File:Mercedes-Benz 190 SL (W121 BII).jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_190_SL_(W121_BII).jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Mercedes-Benz_190_SL_%28W121_BII%29.jpg",
-  "proposed": {
-   "make": "Mercedes-Benz",
-   "model": "190 SL"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1512155",
@@ -20813,15 +20770,12 @@
  {
   "id": "Q1517099",
   "label": "Pontiac Phoenix",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 10,
   "file": "File:Phoenixwax.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Phoenixwax.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Phoenixwax.jpg",
-  "proposed": {
-   "make": "Pontiac",
-   "model": "Phoenix"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1517124",
@@ -20983,15 +20937,12 @@
  {
   "id": "Q1521859",
   "label": "Nissan Platina",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 5,
   "file": "File:Nissan Platina 01.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Nissan_Platina_01.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Nissan_Platina_01.jpg",
-  "proposed": {
-   "make": "Nissan",
-   "model": "Platina"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q152238",
@@ -21947,16 +21898,12 @@
  {
   "id": "Q1543320",
   "label": "Volkswagen Passat B1",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 13,
   "file": "File:Vw passat b1 facelift v sst.jpg",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Vw_passat_b1_facelift_v_sst.jpg",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Vw_passat_b1_facelift_v_sst.jpg",
-  "proposed": {
-   "make": "Volkswagen",
-   "model": "Passat",
-   "generation": "B1"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1543664",
@@ -24345,15 +24292,12 @@
  {
   "id": "Q1626771",
   "label": "Honda Zest",
-  "status": "accepted",
+  "status": "rejected",
   "sitelinks": 14,
   "file": "File:Honda Zest 001 (cropped).JPG",
   "sourcePage": "https://commons.wikimedia.org/wiki/File:Honda_Zest_001_(cropped).JPG",
   "thumbUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/Honda_Zest_001_%28cropped%29.JPG",
-  "proposed": {
-   "make": "Honda",
-   "model": "Zest"
-  }
+  "reason": "image unavailable (HTTP 0)"
  },
  {
   "id": "Q1627462",

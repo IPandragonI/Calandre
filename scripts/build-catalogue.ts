@@ -8,13 +8,20 @@
 // 2. verify  — (--verify) HEAD request on each accepted image URL, cached for 30 days.
 // 3. build   — classification with a reason for every candidate (accepted / review /
 //              rejected / duplicate), merge with the curated entries, manual overrides.
+// 4. details — Wikipedia intros and Wikidata key facts, sharded in public/details/.
+// 5. difficulty — recognisability score from page views, notability, production… and
+//              data/catalogue/recognition.json (curated tiers). See catalogue/difficulty.ts.
 // Outputs: public/catalogue.json, data/catalogue/decisions.json, data/catalogue/review.html,
+// data/catalogue/difficulty.tsv (every score and why),
 // data/catalogue/report.json, and a summary on the console. Idempotent: same inputs, same output.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { checkImageUrl, sleep } from "./lib/commons";
 import { buildCatalogue, type CuratedEntry, type Decision, type Override } from "./catalogue/build";
 import { writeDetails } from "./catalogue/details";
+import { articlesToMeasure, classifyCar, gatherSignals, THRESHOLDS, type CuratedRecognition } from "./catalogue/difficulty";
+import { fetchPageviews } from "./catalogue/popularity";
+import type { Car } from "../src/types/car";
 import { fetchAll } from "./catalogue/fetch";
 
 const path = (p: string) => fileURLToPath(new URL(`../${p}`, import.meta.url));
@@ -73,11 +80,49 @@ if (args.includes("--verify")) {
   result = buildCatalogue({ fetched, curated, overrides, verified: verified() });
 }
 
-const { cars, decisions, errors } = result;
-writeFileSync(path("public/catalogue.json"), JSON.stringify(cars));
+const { cars, sources, decisions, errors } = result;
+/** The Wikidata item behind a car: its own, or the one a curated car matched. */
+const itemOf = (car: Car) => car.wikidata ?? sources[car.id];
 
 // ── Details: descriptions and key facts, sharded for the car pages ─────────────
-const details = await writeDetails(cars, fetched.entities, { cacheDir: path("data/catalogue/cache"), outDir: path("public/details") });
+const details = await writeDetails(cars, fetched.entities, { cacheDir: path("data/catalogue/cache"), outDir: path("public/details"), itemOf });
+
+// ── Difficulty: recognisability score and tier for every car ───────────────────
+const viewsOf = await fetchPageviews(articlesToMeasure(cars, { entities: fetched.entities, itemOf }), path("data/catalogue/cache/pageviews.json"));
+const candidateById = new Map(fetched.candidates.map((c) => [c.id, c]));
+const signals = gatherSignals(cars, {
+  entities: fetched.entities,
+  itemOf,
+  views: viewsOf,
+  sitelinks: (item) => {
+    const row = item ? candidateById.get(item) : undefined;
+    return row ? { item: row.sitelinks, series: row.seriesSitelinks } : undefined;
+  },
+  extracts: {
+    fr: readJson<Record<string, string>>("data/catalogue/cache/extracts-fr.json", {}),
+    en: readJson<Record<string, string>>("data/catalogue/cache/extracts-en.json", {}),
+  },
+});
+const recognition = readJson<CuratedRecognition>("data/catalogue/recognition.json", {});
+const scoreRows: string[] = [];
+for (const car of cars) {
+  const r = classifyCar(car, signals.get(car.id)!, recognition);
+  car.difficulty = r.difficulty;
+  car.recognition = r.score;
+  scoreRows.push([car.id, `${car.make} ${car.model}${car.generation ? ` (${car.generation})` : ""}`, r.score, r.difficulty, r.why].join("\t"));
+}
+scoreRows.sort((a, b) => Number(b.split("\t")[2]) - Number(a.split("\t")[2]));
+const familyNames = new Set(cars.map((c) => `${c.make} ${c.model}`.toLowerCase()));
+const unmatched = Object.values(recognition.models ?? {})
+  .flat()
+  .filter((name) => !familyNames.has(name.toLowerCase()));
+if (unmatched.length > 0) console.log(`recognition.json: no car is named ${unmatched.map((n) => `"${n}"`).join(", ")}`);
+writeFileSync(
+  path("data/catalogue/difficulty.tsv"),
+  `# tiers: easy ≥ ${THRESHOLDS.easy}, medium ≥ ${THRESHOLDS.medium}, hard below; see scripts/catalogue/difficulty.ts\n` +
+    `id\tcar\tscore\ttier\twhy\n${scoreRows.join("\n")}\n`,
+);
+writeFileSync(path("public/catalogue.json"), JSON.stringify(cars));
 writeFileSync(path("data/catalogue/decisions.json"), JSON.stringify(decisions, null, 1) + "\n");
 
 // ── Report ──────────────────────────────────────────────────────────────────

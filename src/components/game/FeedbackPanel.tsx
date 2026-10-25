@@ -39,31 +39,29 @@ export function FeedbackPanel({ car, question, verdict, state, onNext }: Feedbac
 
   return (
     <section
-      className={`animate-pop flex flex-col gap-3 rounded-box border p-4 ${
-        solved ? "border-success/40 bg-success/10" : "border-base-content/15 bg-base-200"
-      }`}
+      className={`surface animate-pop flex flex-col gap-4 border-l-[3px] p-4 sm:p-5 ${solved ? "border-l-success" : "border-l-error/70"}`}
     >
-      <p className={`flex items-center gap-2 font-semibold ${solved ? "text-success" : "text-base-content/80"}`}>
-        <Icon className="size-5 shrink-0" aria-hidden="true" />
+      <p className={`flex items-center gap-2 text-sm font-semibold ${solved ? "text-success" : "text-error"}`}>
+        <Icon className="size-4 shrink-0" aria-hidden="true" />
         {headline}
-        {solved && <span className="ml-auto font-wide tabular-nums">{t.game.feedback.points(question.points)}</span>}
+        {solved && <span className="ml-auto tabular-nums">{t.game.feedback.points(question.points)}</span>}
       </p>
 
       <div>
-        <p className="text-sm text-base-content/70">{t.game.feedback.itWas}</p>
-        <p className="font-display text-2xl leading-tight sm:text-3xl">{carName(car)}</p>
-        {years && <p className="text-sm text-base-content/70 tabular-nums">{years}</p>}
+        <p className="text-sm text-base-content/60">{t.game.feedback.itWas}</p>
+        <p className="font-display text-2xl leading-tight">{carName(car)}</p>
+        {years && <p className="text-sm text-base-content/60 tabular-nums">{years}</p>}
       </div>
 
       {solved && verdict?.kind === "correct" && (verdict.precise || verdict.typoTolerated) && (
         <p className="flex items-center gap-1.5 text-sm">
-          <Sparkles className="size-4 text-primary" aria-hidden="true" />
+          <Sparkles className="size-4 text-base-content/50" aria-hidden="true" />
           {verdict.precise ? t.game.feedback.precise : t.game.feedback.typo}
         </p>
       )}
 
       {!timed && car.funFact && (
-        <div className="rounded-field bg-base-100 p-3 text-sm leading-relaxed">
+        <div className="border-l-2 border-base-content/15 pl-3 text-sm leading-relaxed">
           <p className="eyebrow mb-1">{t.game.funFact}</p>
           <p>{car.funFact[locale]}</p>
         </div>
@@ -86,9 +84,9 @@ export function FeedbackPanel({ car, question, verdict, state, onNext }: Feedbac
       )}
 
       {!(timed && solved) && (
-        <button ref={nextRef} type="button" onClick={onNext} className="btn btn-primary btn-lg w-full sm:w-auto sm:self-end">
+        <button ref={nextRef} type="button" onClick={onNext} className="btn btn-primary min-h-12 w-full px-6 sm:w-auto sm:self-end">
           {willEnd ? t.game.seeResults : t.game.next}
-          <ArrowRight className="size-5" aria-hidden="true" />
+          <ArrowRight className="size-4" aria-hidden="true" />
         </button>
       )}
     </section>

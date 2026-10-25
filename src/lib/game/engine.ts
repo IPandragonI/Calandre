@@ -4,7 +4,7 @@ import { hintKinds } from "@/lib/data/dataset";
 import { buildAnswerIndex, modelKey, validateAnswer, type AnswerIndex } from "./answer-validation";
 import { carInCategory, type CategoryId } from "./categories";
 import { dailyCarIds, DAILY_QUESTION_COUNT } from "./daily-challenge";
-import { endlessMaxDifficulty, pickNextCar, selectQuestions, type DifficultyFilter } from "./question-selection";
+import { effectiveDifficulty, endlessMaxDifficulty, pickNextCar, selectQuestions, type DifficultyFilter } from "./question-selection";
 import { createRandom, nextRandom } from "./random";
 import { questionScore, TIMED_BONUS_SECONDS } from "./scoring";
 
@@ -70,6 +70,11 @@ export function createEngineContext(cars: readonly Car[]): EngineContext {
   };
 }
 
+/** A pool with each car's difficulty as the mode experiences it (see effectiveDifficulty). */
+function rankedPool(ctx: EngineContext, config: GameConfig) {
+  return poolFor(ctx, config).map((c) => ({ ...c, difficulty: effectiveDifficulty(c, config.mode) }));
+}
+
 /** Cars a game may draw from: category, brand or generation mode narrow the catalogue. */
 export function poolFor(ctx: EngineContext, config: GameConfig): readonly Car[] {
   const { category, make, mode } = config;
@@ -86,9 +91,9 @@ function newQuestion(carId: string): QuestionState {
 /** Next car for open-ended modes: endless ramps the difficulty up, time attack stays brisk. */
 function pickOpenEnded(ctx: EngineContext, state: Pick<GameState, "config" | "questions" | "randomState">) {
   const index = state.questions.length;
-  const maxDifficulty = state.config.mode === "endless" ? endlessMaxDifficulty(index) : index < 10 ? 2 : 3;
+  const maxDifficulty = state.config.mode === "endless" ? endlessMaxDifficulty(index) : index < 10 ? 1 : 2;
   return pickNextCar(
-    poolFor(ctx, state.config),
+    rankedPool(ctx, state.config),
     state.questions.map((q) => q.carId),
     maxDifficulty,
     state.randomState,
@@ -108,7 +113,7 @@ export function createGame(
     queue = dailyCarIds(ctx.cars, config.dateKey);
   } else if (config.questionCount !== null) {
     const random = createRandom(seed);
-    queue = selectQuestions(poolFor(ctx, config), config.questionCount, random, { difficulty: config.difficulty, avoidIds });
+    queue = selectQuestions(rankedPool(ctx, config), config.questionCount, random, { difficulty: config.difficulty, avoidIds });
     randomState = nextRandom(seed)[1];
   }
 

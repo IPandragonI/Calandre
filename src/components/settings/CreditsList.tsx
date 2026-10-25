@@ -16,7 +16,7 @@ export function CreditsList() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 pt-6 sm:pt-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-display text-3xl sm:text-4xl">{t.credits.title}</h1>
+        <h1 className="font-display text-2xl sm:text-3xl">{t.credits.title}</h1>
         <p className="text-base-content/75">{t.credits.lead}</p>
       </header>
       <CatalogueGate>{({ cars }) => <Credits cars={cars} />}</CatalogueGate>

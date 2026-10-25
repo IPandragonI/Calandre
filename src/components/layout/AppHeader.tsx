@@ -14,7 +14,7 @@ export function AppHeader() {
   const { theme } = useSettings();
 
   return (
-    <header className="sticky top-0 z-30 bg-base-100/90 pt-[env(safe-area-inset-top)] backdrop-blur supports-[backdrop-filter]:bg-base-100/75">
+    <header className="sticky top-0 z-30 border-b border-base-content/10 bg-base-100/90 pt-[env(safe-area-inset-top)] backdrop-blur supports-[backdrop-filter]:bg-base-100/80">
       <a href="#content" className="btn btn-sm sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50">
         {t.nav.skipToContent}
       </a>
@@ -37,7 +37,7 @@ export function AppHeader() {
           </button>
           <button
             type="button"
-            className="btn btn-ghost btn-square min-h-11 min-w-11 text-sm font-bold font-wide"
+            className="btn btn-ghost btn-square min-h-11 min-w-11 text-xs font-semibold tracking-wide"
             onClick={() => updateSettings({ locale: locale === "fr" ? "en" : "fr" })}
             aria-label={locale === "fr" ? "Switch to English" : "Passer en français"}
             lang={locale === "fr" ? "en" : "fr"}
@@ -46,7 +46,6 @@ export function AppHeader() {
           </button>
         </nav>
       </div>
-      <div className="livery" aria-hidden="true" />
     </header>
   );
 }
@@ -60,16 +59,15 @@ function HeaderLinks({ pathname }: { pathname: string | null }) {
   const { t } = useI18n();
   return (
     <div className="hidden items-center gap-0.5 md:flex">
-      {NAV_ITEMS.filter((item) => item.href !== "/").map(({ href, label, Icon }) => {
+      {NAV_ITEMS.filter((item) => item.href !== "/").map(({ href, label }) => {
         const active = pathname !== null && (pathname === href || pathname.startsWith(`${href}/`));
         return (
           <Link
             key={href}
             href={href}
             aria-current={active ? "page" : undefined}
-            className={`btn btn-ghost min-h-11 px-3 text-sm ${active ? "bg-base-200" : ""}`}
+            className={`btn btn-ghost min-h-11 px-3 text-sm font-medium decoration-primary decoration-2 underline-offset-[0.6rem] ${active ? "bg-transparent! text-base-content underline" : "text-base-content/65"}`}
           >
-            <Icon className="size-4.5" aria-hidden="true" />
             {label(t)}
           </Link>
         );

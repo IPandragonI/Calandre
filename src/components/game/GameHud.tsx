@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Heart, Timer } from "lucide-react";
+import { Heart, Timer } from "lucide-react";
 import type { GameState } from "@/types/game";
 import { currentQuestion, TIMED_LIMIT_MS } from "@/lib/game/engine";
 import { useI18n } from "@/hooks/use-i18n";
@@ -22,7 +22,7 @@ export function GameHud({ state, remainingMs }: GameHudProps) {
       <div className="flex items-end justify-between gap-3">
         <div className="min-w-0">
           <p className="eyebrow">{t.modes[state.config.mode].name}</p>
-          <p className="font-wide text-sm font-semibold tabular-nums">
+          <p className="text-sm font-semibold tabular-nums">
             {fixed ? t.game.progress(position, state.queue.length) : t.game.progressOpen(position)}
           </p>
         </div>
@@ -44,14 +44,13 @@ export function GameHud({ state, remainingMs }: GameHudProps) {
           )}
           <div className="flex flex-col items-end">
             <dt className="eyebrow flex items-center gap-1">
-              <Flame className="size-3.5" aria-hidden="true" />
               {t.game.streak}
             </dt>
-            <dd className="font-wide text-lg font-bold leading-tight tabular-nums">{state.streak}</dd>
+            <dd className="text-lg font-semibold leading-tight tabular-nums">{state.streak}</dd>
           </div>
           <div className="relative flex flex-col items-end">
             <dt className="eyebrow">{t.game.score}</dt>
-            <dd className="font-wide text-lg font-bold leading-tight tabular-nums">{number(state.score)}</dd>
+            <dd className="text-lg font-semibold leading-tight tabular-nums">{number(state.score)}</dd>
             {justScored && question.points > 0 && (
               <span
                 key={state.verdictCount}
@@ -75,9 +74,9 @@ export function GameHud({ state, remainingMs }: GameHudProps) {
                   ? "bg-base-content/60"
                   : "bg-base-content/15"
                 : q.status === "solved"
-                  ? "bg-success"
-                  : "bg-error/70";
-            return <span key={`${id}-${i}`} className={`h-1.5 flex-1 rounded-full transition-colors ${tone}`} />;
+                  ? "bg-success/80"
+                  : "bg-error/60";
+            return <span key={`${id}-${i}`} className={`h-1 flex-1 rounded-full transition-colors ${tone}`} />;
           })}
         </div>
       )}
@@ -94,16 +93,16 @@ function TimerBar({ remainingMs }: { remainingMs: number }) {
   const ratio = Math.min(1, remainingMs / TIMED_LIMIT_MS);
   return (
     <div className="flex items-center gap-3" role="timer" aria-label={t.game.timeLeft(seconds)}>
-      <Timer className={`size-6 shrink-0 ${urgent ? "text-error" : ""}`} aria-hidden="true" />
-      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-base-300">
+      <Timer className={`size-5 shrink-0 text-base-content/60 ${urgent ? "text-error" : ""}`} aria-hidden="true" />
+      <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-base-300">
         <div
-          className={`h-full rounded-full transition-[width] duration-200 ease-linear ${urgent ? "bg-error" : "bg-primary"}`}
+          className={`h-full rounded-full transition-[width] duration-200 ease-linear ${urgent ? "bg-error" : "bg-base-content/70"}`}
           style={{ width: `${ratio * 100}%` }}
         />
       </div>
       <span
         aria-hidden="true"
-        className={`font-display min-w-[3.5ch] text-right text-3xl tabular-nums ${urgent ? "text-error" : ""}`}
+        className={`font-display min-w-[3.5ch] text-right text-2xl tabular-nums ${urgent ? "text-error" : ""}`}
       >
         {seconds}
       </span>

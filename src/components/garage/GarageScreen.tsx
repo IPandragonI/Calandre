@@ -25,7 +25,7 @@ export function GarageScreen() {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pt-6 sm:pt-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-display text-3xl sm:text-4xl">{t.garage.title}</h1>
+        <h1 className="font-display text-2xl sm:text-3xl">{t.garage.title}</h1>
         <p className="text-base-content/75">{t.garage.lead}</p>
       </header>
       <CatalogueGate>{({ cars }) => <Garage cars={cars} />}</CatalogueGate>
@@ -102,11 +102,11 @@ function Garage({ cars }: { cars: readonly Car[] }) {
 
   return (
     <>
-      <section className="flex flex-col gap-3 rounded-box border border-base-content/10 bg-base-200/60 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <section className="flex flex-col gap-3 surface p-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-1 flex-col gap-2">
-          <p className="font-wide text-lg font-bold tabular-nums">{t.garage.progress(number(found.length), number(cars.length))}</p>
-          <div className="h-2 overflow-hidden rounded-full bg-base-300" aria-hidden="true">
-            <div className="h-full rounded-full bg-primary" style={{ width: `${Math.max(ratio * 100, found.length > 0 ? 1 : 0)}%` }} />
+          <p className="font-display text-lg tabular-nums">{t.garage.progress(number(found.length), number(cars.length))}</p>
+          <div className="h-1.5 overflow-hidden rounded-full bg-base-300" aria-hidden="true">
+            <div className="h-full rounded-full bg-base-content/70" style={{ width: `${Math.max(ratio * 100, found.length > 0 ? 1 : 0)}%` }} />
           </div>
         </div>
         <div role="radiogroup" aria-label={t.garage.title} className="join self-start sm:self-center">
@@ -117,7 +117,7 @@ function Garage({ cars }: { cars: readonly Car[] }) {
               role="radio"
               aria-checked={scope === value}
               onClick={() => update(setScope)(value)}
-              className={`join-item btn btn-sm min-h-11 ${scope === value ? "btn-neutral" : ""}`}
+              className={`join-item btn btn-sm min-h-11 font-medium ${scope === value ? "border-neutral bg-neutral text-neutral-content" : "border-base-content/15 bg-base-100"}`}
             >
               {value === "mine" ? t.garage.scopeMine : t.garage.scopeAll}
             </button>
@@ -126,7 +126,7 @@ function Garage({ cars }: { cars: readonly Car[] }) {
       </section>
 
       {scope === "mine" && found.length === 0 ? (
-        <div className="flex flex-col items-center gap-4 rounded-box bg-base-200 p-8 text-center">
+        <div className="flex flex-col items-center gap-4 rounded-box border border-dashed border-base-content/15 p-8 text-center">
           <LogoMark className="h-14 w-20 text-base-content/40" />
           <p>{t.garage.empty}</p>
           <Link href="/play?mode=classic" className="btn btn-primary">
@@ -206,7 +206,7 @@ function Garage({ cars }: { cars: readonly Car[] }) {
           </section>
 
           {matches.length === 0 ? (
-            <p className="rounded-box bg-base-200 p-6 text-center text-sm text-base-content/70">{t.garage.noMatch}</p>
+            <p className="rounded-box border border-dashed border-base-content/15 p-6 text-center text-sm text-base-content/70">{t.garage.noMatch}</p>
           ) : (
             <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {shown.map((car) => (
@@ -233,7 +233,7 @@ function GarageCard({ car, foundOn }: { car: Car; foundOn?: string }) {
   return (
     <Link
       href={`/garage/${car.id}`}
-      className="group flex h-full flex-col overflow-hidden rounded-box border border-base-content/10 bg-base-100 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+      className="group flex h-full flex-col overflow-hidden surface transition-colors hover:border-base-content/25 hover:bg-base-200/60"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-base-300">
         {/* Remote thumbnail, loaded only when scrolled into view. */}

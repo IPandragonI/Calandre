@@ -1,7 +1,7 @@
 // Wikimedia Commons helpers for the catalogue builder.
 // Metadata only: photographs are never downloaded, the game hotlinks them.
 
-export const USER_AGENT = "CalandreCatalogBuilder/2.0 (offline car quiz; dataset maintenance script)";
+export const USER_AGENT = "CalandreCatalogBuilder/2.1 (https://github.com/IPandragonI/Calandre; offline car quiz dataset script)";
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
 
 /** Width of the thumbnail the game displays; Wikimedia serves it from its standard thumbnail steps. */

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Award, BarChart3, CalendarDays, Flame, Lock, Play, Target, Trophy } from "lucide-react";
+import { Award, BarChart3, CalendarDays, Lock, Play } from "lucide-react";
 import { GAME_MODES } from "@/types/game";
 import { CATEGORY_IDS } from "@/lib/game/categories";
 import { localDateKey } from "@/lib/game/daily-challenge";
@@ -36,10 +36,10 @@ export function StatsScreen() {
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pt-6 sm:pt-10">
-      <h1 className="font-display text-3xl sm:text-4xl">{t.stats.title}</h1>
+      <h1 className="font-display text-2xl sm:text-3xl">{t.stats.title}</h1>
 
       {stats.gamesPlayed === 0 ? (
-        <div className="flex flex-col items-center gap-4 rounded-box bg-base-200 p-8 text-center">
+        <div className="flex flex-col items-center gap-4 rounded-box border border-dashed border-base-content/15 p-8 text-center">
           <BarChart3 className="size-10 text-base-content/50" aria-hidden="true" />
           <p>{t.stats.empty}</p>
           <Link href="/play?mode=classic" className="btn btn-primary">
@@ -49,26 +49,23 @@ export function StatsScreen() {
         </div>
       ) : (
         <>
-          <dl className="grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
+          <dl className="surface grid grid-cols-2 sm:grid-cols-5 [&>div]:border-base-content/10 [&>div:not(:last-child)]:border-b sm:[&>div:not(:last-child)]:border-b-0 sm:[&>div:not(:last-child)]:border-r">
             {[
-              { label: t.stats.gamesPlayed, value: number(stats.gamesPlayed), Icon: Play },
-              { label: t.stats.correctAnswers, value: number(stats.correctAnswers), Icon: Target },
-              { label: t.stats.accuracy, value: accuracy === null ? "—" : percent(accuracy), Icon: Target },
-              { label: t.stats.currentStreak, value: number(stats.currentStreak), Icon: Flame },
-              { label: t.stats.bestStreak, value: number(stats.bestStreak), Icon: Trophy },
-            ].map(({ label, value, Icon }) => (
-              <div key={label} className="rounded-box border border-base-content/10 bg-base-200/60 p-3 last:col-span-2 sm:last:col-span-1">
-                <dt className="flex items-center gap-1.5 text-xs text-base-content/70 sm:text-sm">
-                  <Icon className="size-4 shrink-0" aria-hidden="true" />
-                  {label}
-                </dt>
-                <dd className="font-wide text-2xl font-bold tabular-nums">{value}</dd>
+              { label: t.stats.gamesPlayed, value: number(stats.gamesPlayed) },
+              { label: t.stats.correctAnswers, value: number(stats.correctAnswers) },
+              { label: t.stats.accuracy, value: accuracy === null ? "—" : percent(accuracy) },
+              { label: t.stats.currentStreak, value: number(stats.currentStreak) },
+              { label: t.stats.bestStreak, value: number(stats.bestStreak) },
+            ].map(({ label, value }) => (
+              <div key={label} className="px-4 py-3 last:col-span-2 sm:last:col-span-1">
+                <dt className="text-xs text-base-content/60 sm:text-sm">{label}</dt>
+                <dd className="font-display text-2xl tabular-nums">{value}</dd>
               </div>
             ))}
           </dl>
 
           {favorite && (
-            <p className="rounded-box border-l-4 border-primary bg-base-200/60 px-4 py-3">
+            <p className="border-l-2 border-base-content/20 py-1 pl-4">
               <span className="eyebrow block">{t.stats.favorite}</span>
               {t.stats.favoriteText(t.categories.names[favorite.id], favorite.tally.seen)}
             </p>
@@ -83,7 +80,7 @@ export function StatsScreen() {
                 {GAME_MODES.map((mode) => (
                   <li key={mode} className="flex items-center justify-between px-4 py-2.5">
                     <span>{t.modes[mode].name}</span>
-                    <span className="font-wide font-bold tabular-nums">
+                    <span className="font-semibold tabular-nums">
                       {stats.bestScores[mode] !== undefined ? t.common.points(stats.bestScores[mode]!) : t.stats.noRecord}
                     </span>
                   </li>
@@ -138,7 +135,7 @@ export function StatsScreen() {
                         </span>
                       </div>
                       <div className="h-2 rounded-full bg-base-300" aria-hidden="true">
-                        <div className="h-full rounded-full bg-accent" style={{ width: `${ratio * 100}%` }} />
+                        <div className="h-full rounded-full bg-base-content/60" style={{ width: `${ratio * 100}%` }} />
                       </div>
                     </li>
                   );
@@ -200,8 +197,7 @@ function AchievementList({ stats }: { stats: Parameters<typeof achievements>[0] 
   return (
     <section aria-labelledby="achievements-title" className="flex flex-col gap-3">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="achievements-title" className="eyebrow flex items-center gap-1.5">
-          <Award className="size-4" aria-hidden="true" />
+        <h2 id="achievements-title" className="eyebrow">
           {t.stats.achievements}
         </h2>
         <p className="text-sm text-base-content/70">{t.stats.achievementsHint(unlocked, list.length)}</p>
@@ -212,10 +208,10 @@ function AchievementList({ stats }: { stats: Parameters<typeof achievements>[0] 
           return (
             <li
               key={a.id}
-              className={`flex gap-3 rounded-box border p-3 ${a.unlocked ? "border-primary/40 bg-primary/5" : "border-base-content/10 bg-base-100"}`}
+              className={`surface flex gap-3 p-3 ${a.unlocked ? "border-base-content/25" : ""}`}
             >
               <span
-                className={`grid size-10 shrink-0 place-items-center rounded-full ${a.unlocked ? "bg-primary text-primary-content" : "bg-base-200 text-base-content/40"}`}
+                className={`grid size-6 shrink-0 place-items-center ${a.unlocked ? "text-primary" : "text-base-content/35"}`}
               >
                 {a.unlocked ? <Award className="size-5" aria-hidden="true" /> : <Lock className="size-4" aria-hidden="true" />}
               </span>
@@ -225,7 +221,7 @@ function AchievementList({ stats }: { stats: Parameters<typeof achievements>[0] 
                 {!a.unlocked && (
                   <span className="flex items-center gap-2">
                     <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-base-300" aria-hidden="true">
-                      <span className="block h-full rounded-full bg-accent" style={{ width: `${(a.progress / a.target) * 100}%` }} />
+                      <span className="block h-full rounded-full bg-base-content/60" style={{ width: `${(a.progress / a.target) * 100}%` }} />
                     </span>
                     <span className="text-[0.7rem] text-base-content/60 tabular-nums">
                       {number(a.progress)}/{number(a.target)}

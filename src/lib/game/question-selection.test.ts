@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { availableCategories, availableMakes, carInCategory } from "./categories";
-import { endlessMaxDifficulty, mixedPlan, pickNextCar, selectQuestions } from "./question-selection";
+import { effectiveDifficulty, endlessMaxDifficulty, mixedPlan, parseDifficultyFilter, pickNextCar, selectQuestions } from "./question-selection";
 import { createRandom } from "./random";
 import { FIXTURE_CARS, makeCar } from "./test-fixtures";
 
@@ -21,25 +21,54 @@ describe("selectQuestions", () => {
     expect(new Set(ids).size).toBe(FIXTURE_CARS.length);
   });
 
-  it("prefers the chosen difficulty and tops up with the closest tiers", () => {
+  it("prefers the chosen difficulty and only borrows from the neighbouring tier", () => {
     const easy = FIXTURE_CARS.filter((c) => c.difficulty === 1).length;
     expect(selectQuestions(FIXTURE_CARS, easy, createRandom(4), { difficulty: "easy" }).every((id) => difficultyOf(id) === 1)).toBe(true);
-    const topped = selectQuestions(FIXTURE_CARS, easy + 2, createRandom(4), { difficulty: "easy" });
-    expect(topped).toHaveLength(easy + 2);
-    // The top-up comes from "medium" (2) before "hard" or "expert".
-    expect(topped.filter((id) => difficultyOf(id) !== 1).every((id) => difficultyOf(id) === 2)).toBe(true);
-    expect(selectQuestions(FIXTURE_CARS, 1, createRandom(4), { difficulty: "expert" }).map(difficultyOf)).toEqual([4]);
+    const topped = selectQuestions(FIXTURE_CARS, 50, createRandom(4), { difficulty: "easy" });
+    // Easy is topped up with medium cars, never hard ones: the game is shorter instead.
+    expect(topped.length).toBe(FIXTURE_CARS.filter((c) => c.difficulty <= 2).length);
+    expect(topped.some((id) => difficultyOf(id) === 2)).toBe(true);
+    expect(topped.every((id) => difficultyOf(id) <= 2)).toBe(true);
+    expect(selectQuestions(FIXTURE_CARS, 1, createRandom(4), { difficulty: "hard" }).map(difficultyOf)).toEqual([3]);
   });
 
   it("spreads a mixed game over every tier", () => {
-    expect(mixedPlan(10)).toEqual({ 1: 4, 2: 3, 3: 2, 4: 1 });
-    expect(mixedPlan(5)).toEqual({ 1: 2, 2: 1, 3: 1, 4: 1 });
+    expect(mixedPlan(10)).toEqual({ 1: 4, 2: 4, 3: 2 });
+    expect(mixedPlan(5)).toEqual({ 1: 2, 2: 2, 3: 1 });
     expect(Object.values(mixedPlan(7)).reduce((a, b) => a + b, 0)).toBe(7);
-    const pool = Array.from({ length: 40 }, (_, i) => makeCar({ id: `c${i}`, make: "X", model: `M${i}`, difficulty: ((i % 4) + 1) as 1 | 2 | 3 | 4 }));
+    const pool = Array.from({ length: 45 }, (_, i) => makeCar({ id: `c${i}`, make: `Make${i % 9}`, model: `M${i}`, difficulty: ((i % 3) + 1) as 1 | 2 | 3 }));
     const ids = selectQuestions(pool, 10, createRandom(3));
     const tiers = ids.map((id) => pool.find((c) => c.id === id)!.difficulty);
     expect(tiers.filter((d) => d === 1)).toHaveLength(4);
-    expect(tiers.filter((d) => d === 4)).toHaveLength(1);
+    expect(tiers.filter((d) => d === 3)).toHaveLength(2);
+  });
+
+  it("varies makes and model families within a game", () => {
+    // 12 Volkswagens (6 Golf generations) and 12 cars from 12 other makes, all easy.
+    const pool = [
+      ...Array.from({ length: 6 }, (_, i) => makeCar({ id: `golf-${i}`, make: "Volkswagen", model: "Golf", generation: `Mk${i + 1}`, difficulty: 1 })),
+      ...Array.from({ length: 6 }, (_, i) => makeCar({ id: `vw-${i}`, make: "Volkswagen", model: `Model${i}`, difficulty: 1 })),
+      ...Array.from({ length: 12 }, (_, i) => makeCar({ id: `other-${i}`, make: `Brand${i}`, model: "One", difficulty: 1 })),
+    ];
+    for (const seed of [1, 2, 3, 4, 5]) {
+      const cars = selectQuestions(pool, 10, createRandom(seed), { difficulty: "easy" }).map((id) => pool.find((c) => c.id === id)!);
+      expect(cars.filter((c) => c.model === "Golf").length).toBeLessThanOrEqual(1);
+      expect(cars.filter((c) => c.make === "Volkswagen").length).toBeLessThanOrEqual(3);
+    }
+    // A single-make pool (brand challenge) is not capped by make, but still one car per family.
+    const vw = pool.filter((c) => c.make === "Volkswagen");
+    const brand = selectQuestions(vw, 7, createRandom(1)).map((id) => vw.find((c) => c.id === id)!);
+    expect(brand).toHaveLength(7);
+    expect(brand.filter((c) => c.model === "Golf")).toHaveLength(1);
+  });
+
+  it("reads the former expert tier as hard, and rates generations a step harder", () => {
+    expect(parseDifficultyFilter("expert")).toBe("hard");
+    expect(parseDifficultyFilter("medium")).toBe("medium");
+    expect(parseDifficultyFilter("silly")).toBeNull();
+    expect(effectiveDifficulty({ difficulty: 1, generation: "IV" }, "generation")).toBe(2);
+    expect(effectiveDifficulty({ difficulty: 3, generation: "IV" }, "generation")).toBe(3);
+    expect(effectiveDifficulty({ difficulty: 1, generation: "IV" }, "classic")).toBe(1);
   });
 
   it("puts recently seen cars last", () => {
@@ -59,13 +88,13 @@ describe("pickNextCar", () => {
     const seen: string[] = [];
     let state = 7;
     for (let i = 0; i < FIXTURE_CARS.length; i++) {
-      const [id, next] = pickNextCar(FIXTURE_CARS, seen, 4, state);
+      const [id, next] = pickNextCar(FIXTURE_CARS, seen, 3, state);
       expect(id).not.toBeNull();
       expect(seen).not.toContain(id);
       seen.push(id!);
       state = next;
     }
-    expect(pickNextCar(FIXTURE_CARS, seen, 4, state)[0]).not.toBeNull();
+    expect(pickNextCar(FIXTURE_CARS, seen, 3, state)[0]).not.toBeNull();
   });
 
   it("respects the difficulty ceiling while possible", () => {
@@ -77,8 +106,18 @@ describe("pickNextCar", () => {
     expect(pickNextCar([], [], 3, 1)[0]).toBeNull();
   });
 
-  it("ramps endless difficulty up to expert", () => {
-    expect([0, 6, 15, 30].map(endlessMaxDifficulty)).toEqual([1, 2, 3, 4]);
+  it("ramps endless difficulty up to hard", () => {
+    expect([0, 5, 6, 14, 15, 40].map(endlessMaxDifficulty)).toEqual([1, 1, 2, 2, 3, 3]);
+  });
+
+  it("avoids the make and model family of the last cars when it can", () => {
+    const pool = [
+      makeCar({ id: "golf-1", make: "Volkswagen", model: "Golf", generation: "Mk1", difficulty: 1 }),
+      makeCar({ id: "golf-2", make: "Volkswagen", model: "Golf", generation: "Mk2", difficulty: 1 }),
+      makeCar({ id: "polo", make: "Volkswagen", model: "Polo", difficulty: 1 }),
+      makeCar({ id: "clio", make: "Renault", model: "Clio", difficulty: 1 }),
+    ];
+    for (const state of [1, 2, 3, 4, 5, 6]) expect(pickNextCar(pool, ["golf-1"], 1, state)[0]).toBe("clio");
   });
 });
 

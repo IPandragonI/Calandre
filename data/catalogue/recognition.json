@@ -1,0 +1,38 @@
+{
+  "_about": "Curated difficulty for important models, applied by scripts/catalogue/difficulty.ts on top of the computed recognisability score. 'models' match 'Make Model' exactly (every generation of the model); a curated easy model's generations from before 1990 count as medium, and a car the score rates hard is at most lifted to medium. 'cars' pins one car id to a tier (1 easy, 2 medium, 3 hard). Unmatched names are listed by pnpm catalogue.",
+  "models": {
+    "easy": [
+      "Renault Clio", "Renault Twingo", "Renault Mégane", "Renault Espace", "Renault Scénic", "Renault 5",
+      "Peugeot 205 GTI", "Peugeot 206", "Peugeot 207", "Peugeot 208", "Peugeot 2008", "Peugeot 308", "Peugeot 3008", "Peugeot 107",
+      "Citroën 2CV", "Citroën DS", "Citroën C3", "Citroën Berlingo", "Citroën Traction Avant", "Citroën Saxo",
+      "Volkswagen Golf", "Volkswagen Golf GTI", "Volkswagen Polo", "Volkswagen Beetle", "Volkswagen New Beetle", "Volkswagen Transporter", "Volkswagen Passat", "Volkswagen Up!",
+      "Ford Fiesta", "Ford Mustang", "Ford Model T", "Ford Escort", "Ford Transit Custom", "Ford Bronco",
+      "Toyota Corolla", "Toyota Yaris", "Toyota Prius", "Toyota RAV4", "Toyota Land Cruiser", "Toyota Hilux", "Toyota Camry", "Toyota C-HR",
+      "Honda Civic", "Honda CR-V", "Honda Accord",
+      "BMW 3 Series", "BMW 1 Series", "BMW X5", "BMW M3",
+      "Mercedes-Benz C-Class", "Mercedes-Benz E-Class", "Mercedes-Benz S-Class", "Mercedes-Benz G-Class", "Mercedes-Benz A-Class",
+      "Audi A3", "Audi A4", "Audi A6", "Audi TT", "Audi Q7", "Audi R8",
+      "Fiat 500", "Fiat Panda",
+      "Tesla Model 3", "Tesla Model S", "Tesla Cybertruck",
+      "Porsche 911", "Porsche Cayenne", "Porsche Boxster", "Porsche Macan", "Porsche Taycan",
+      "Ferrari F40", "Ferrari Testarossa", "Ferrari Enzo", "Ferrari LaFerrari", "Ferrari 458",
+      "Lamborghini Countach", "Lamborghini Aventador", "Lamborghini Huracán", "Lamborghini Urus", "Lamborghini Gallardo", "Lamborghini Murciélago",
+      "Mini Hatch", "Smart Fortwo",
+      "Land Rover Defender", "Jeep Wrangler",
+      "Chevrolet Corvette", "Chevrolet Camaro",
+      "DeLorean DMC-12", "Bugatti Veyron",
+      "Nissan GT-R", "Nissan Leaf", "Nissan Juke",
+      "Dacia Sandero/Renault Sandero", "Dacia Logan", "Dacia Spring",
+      "Opel Corsa", "Opel Astra",
+      "Mazda MX-5",
+      "Škoda Octavia", "Škoda Fabia",
+      "Hyundai Tucson", "Kia Sportage",
+      "Suzuki Swift", "Suzuki Jimny",
+      "Volvo XC90",
+      "Aston Martin DB5", "Jaguar E-Type", "Rolls-Royce Phantom"
+    ],
+    "medium": [],
+    "hard": []
+  },
+  "cars": {}
+}

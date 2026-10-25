@@ -14,7 +14,7 @@ import { LogoMark } from "@/components/ui/Logo";
 import { useHydrated, useStatistics } from "@/hooks/use-persistent";
 import { useI18n } from "@/hooks/use-i18n";
 
-const LEVELS = ["easy", "medium", "hard", "expert"] as const;
+const LEVELS = ["easy", "medium", "hard"] as const;
 /** Tags shown as categories, mapped to their category label. */
 const TAG_LABEL: Partial<Record<CarTag, CategoryId>> = {
   hypercar: "supercar",
@@ -67,7 +67,7 @@ function CarPage({ car }: { car: Car | null }) {
     return (
       <>
         {back}
-        <div className="flex flex-col items-center gap-4 rounded-box bg-base-200 p-10 text-center">
+        <div className="flex flex-col items-center gap-4 rounded-box border border-dashed border-base-content/15 p-10 text-center">
           <LogoMark className="h-14 w-20 text-base-content/40" />
           <p>{t.carPage.notFound}</p>
         </div>
@@ -114,7 +114,7 @@ function CarPage({ car }: { car: Car | null }) {
       <article className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
         <figure className="flex flex-col gap-2 lg:sticky lg:top-24">
           <div
-            className="relative w-full overflow-hidden rounded-box bg-base-300 shadow-md ring-1 ring-base-content/10"
+            className="relative w-full overflow-hidden rounded-box bg-base-300 ring-1 ring-base-content/10"
             style={{ aspectRatio: `${car.image.width} / ${car.image.height}` }}
           >
             {/* Hotlinked from Wikimedia Commons, like every photo in the game. */}
@@ -192,7 +192,7 @@ function CarPage({ car }: { car: Car | null }) {
               !car.funFact && <p className="text-sm text-base-content/60">{t.carPage.noDescription}</p>
             )}
             {car.funFact && (
-              <div className="rounded-field border-l-4 border-primary bg-base-200/70 p-3 text-sm leading-relaxed">
+              <div className="border-l-2 border-base-content/20 py-0.5 pl-3 text-sm leading-relaxed">
                 <p className="eyebrow mb-1">{t.game.funFact}</p>
                 <p>{car.funFact[locale]}</p>
               </div>
@@ -203,7 +203,7 @@ function CarPage({ car }: { car: Car | null }) {
             <h2 id="facts-title" className="eyebrow">
               {t.carPage.facts}
             </h2>
-            <dl className="divide-y divide-base-content/10 rounded-box border border-base-content/10 bg-base-100">
+            <dl className="divide-y divide-base-content/10 surface">
               {rows
                 .filter((row): row is [string, string] => Boolean(row[1]))
                 .map(([label, value]) => (

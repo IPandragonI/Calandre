@@ -8,15 +8,20 @@ The emblem is a chrome swan mascot redrawn as vectors from the reference artwork
 neck with the head bowed, a layered wing swept back like a hood ornament's, a long streamlined hull. It is
 defined once in `src/lib/brand/ornament.ts` (full mark, plus a simplified two-feather symbol for small sizes)
 and used for the header logo with its spaced-capitals wordmark, loaders, favicon and PWA icons (`pnpm icons`,
-chrome gradient on ink). The palette follows it: ivory and ink, coachbuilder's bordeaux, chrome steel-blue.
+chrome gradient on ink).
+
+The interface is deliberately understated: ivory paper and ink with a single accent (deep bordeaux; a muted
+rose in dark mode) kept for primary actions and the active state, greys for everything else. Flat surfaces
+with hairline borders (`.surface` in `globals.css`), small radii, no drop shadows or hover lift, one heading
+scale, short fades instead of bouncy animations, and the photo always given the most room.
 
 ## Modes
 
 | Mode | Rules |
 |---|---|
-| Classique | 10 cars, 3 attempts each, hints, difficulty filter (Mixte / Facile / Moyen / Difficile / Expert) |
+| Classique | 10 cars, 3 attempts each, hints, difficulty filter (Mixte / Facile / Moyen / Difficile) |
 | Défi du jour | 5 cars, identical for everyone on a given local date, once per day, shareable emoji grid |
-| Sans fin | One attempt per car, 3 lives, difficulty ramps from easy to expert |
+| Sans fin | One attempt per car, 3 lives, difficulty ramps from easy to hard |
 | Contre-la-montre | 60 s, +5 s per correct answer (capped at 90 s remaining), skip freely |
 | Générations | Models with several generations in the catalogue; the exact generation must be named |
 | Zoom | Classic rules, but the photo starts as a close-up and widens with each attempt or hint |
@@ -98,9 +103,27 @@ Every candidate gets a decision with a reason in `data/catalogue/decisions.json`
 
 ### Difficulty rule
 
-Difficulty comes from notability: the number of Wikipedia editions describing the model (or its model family, for
-a generation). 40+ → Facile, 20–39 → Moyen, 10–19 → Difficile, fewer → Expert; concepts and race cars are at least
-Difficile. Curated cars keep their editorial level. "Mixte" games draw 35 % / 30 % / 20 % / 15 % from the four tiers.
+Difficulty measures how recognisable the *model* is to a broad audience — not its age or price. The catalogue
+build (`scripts/catalogue/difficulty.ts`) gives every car a recognisability score from 0 to 100:
+
+| Signal | Weight | Source |
+| --- | --- | --- |
+| Popularity: Wikipedia page views (fr + en, 12 months) of the car's article, or of its model family's for a generation or variant | 65 % | Wikimedia pageviews API, cached in `data/catalogue/cache/pageviews.json` |
+| Notability: Wikipedia editions describing the car or its family | 25 % | Wikidata sitelinks |
+| Brand: page views of the brand's article (a nudge, not a free pass) | 10 % | Wikimedia pageviews API |
+| Adjustments: units built (stated only), pre-war / early post-war, concept, race car | ± | Wikidata P1092, production years (Wikidata, else the first year in the Wikipedia intro) |
+
+Older generations inherit less of their family's fame (a 1976 Fiesta looks nothing like today's), variants
+less still. Tiers: **easy ≥ 58**, **medium ≥ 36**, **hard** below; concepts are always hard, race cars at least
+medium. Important models are curated in `data/catalogue/recognition.json` (e.g. Clio, Golf, 208, Corolla,
+911, F40); a curated easy model's pre-1990 generations count as medium, and a car the score rates hard is lifted
+to medium at most. Every score and its reasons are listed in `data/catalogue/difficulty.tsv`.
+
+In game: a chosen difficulty only borrows from the neighbouring tier when it runs short (Facile never shows hard
+cars; the game is shorter instead), "Mixte" draws 40 % / 35 % / 25 %, a game holds one car per model family and at
+most a quarter from one make (brand challenges excepted), endless ramps easy → medium → hard and avoids the last
+makes seen, and Generations mode counts every car one tier harder (naming the exact generation is harder than
+recognising the model). Saved "Expert" preferences and links read as Difficile.
 
 ### Car pages: descriptions and key facts
 

@@ -56,7 +56,7 @@ export function CategoryPicker() {
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pt-6 sm:pt-10">
       <header className="flex flex-col gap-2">
         <p className="eyebrow">{t.modes.category.name}</p>
-        <h1 className="font-display text-3xl sm:text-4xl">{t.categories.title}</h1>
+        <h1 className="font-display text-2xl sm:text-3xl">{t.categories.title}</h1>
         <p className="text-base-content/75">{t.categories.lead}</p>
       </header>
       <CatalogueGate>{({ cars }) => <Sections cars={cars} />}</CatalogueGate>
@@ -81,13 +81,13 @@ function Sections({ cars }: { cars: readonly Car[] }) {
       <li key={id}>
         <Link
           href={playHref({ mode: "category", category: id })}
-          className="flex h-full items-center gap-3 rounded-box border border-base-content/10 bg-base-100 p-3.5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"
+          className="flex h-full items-center gap-3 surface p-3.5 transition-colors hover:border-base-content/25 hover:bg-base-200/60"
         >
-          <span className="grid size-11 shrink-0 place-items-center rounded-field bg-primary/10 text-primary">
+          <span className="grid size-6 shrink-0 place-items-center text-base-content/45">
             <Icon className="size-5" aria-hidden="true" />
           </span>
           <span className="flex min-w-0 flex-col">
-            <span className="font-wide font-bold">{t.categories.names[id]}</span>
+            <span className="font-semibold">{t.categories.names[id]}</span>
             <span className="text-sm text-base-content/70">
               {t.categories.count(count)}
               {plays > 0 && ` · ${t.categories.played(plays)}`}
@@ -143,7 +143,7 @@ function Sections({ cars }: { cars: readonly Car[] }) {
                 <Link
                   href={playHref({ mode: "category", make })}
                   aria-label={t.categories.brandChallenge(make)}
-                  className="flex h-full min-h-11 flex-col justify-center rounded-field border border-base-content/10 bg-base-100 px-3 py-2 transition hover:border-primary/40 hover:bg-base-200/60"
+                  className="flex h-full min-h-11 flex-col justify-center rounded-field border border-base-content/10 bg-base-100 px-3 py-2 transition-colors hover:border-base-content/25 hover:bg-base-200/60 hover:bg-base-200/60"
                 >
                   <span className="truncate font-semibold">{make}</span>
                   <span className="text-xs text-base-content/60 tabular-nums">{t.categories.count(count)}</span>

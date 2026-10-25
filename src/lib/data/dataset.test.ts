@@ -120,6 +120,6 @@ describe("generated catalogue (public/catalogue.json)", () => {
 
   it("offers many categories across difficulties", () => {
     expect(availableCategories(cars).length).toBeGreaterThanOrEqual(15);
-    for (const level of [1, 2, 3, 4]) expect(cars.filter((c) => c.difficulty === level).length).toBeGreaterThan(30);
+    for (const level of [1, 2, 3]) expect(cars.filter((c) => c.difficulty === level).length).toBeGreaterThan(30);
   });
 });

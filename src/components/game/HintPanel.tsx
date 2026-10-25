@@ -33,7 +33,7 @@ export function HintPanel({ car, hintsUsed, onHint, disabled, makeKnown = false 
           type="button"
           onClick={onHint}
           disabled={disabled || remaining <= 0}
-          className="btn btn-sm btn-outline min-h-11 gap-1.5"
+          className="btn btn-sm min-h-11 gap-1.5 border-base-content/20 bg-base-100 font-medium"
         >
           <Lightbulb className="size-4" aria-hidden="true" />
           {t.game.hint}
@@ -43,7 +43,7 @@ export function HintPanel({ car, hintsUsed, onHint, disabled, makeKnown = false 
       {shown.length > 0 && (
         <ol className="flex flex-col gap-1.5" aria-live="polite">
           {shown.map((hint) => (
-            <li key={hint.kind} className="animate-fade-up flex gap-2 rounded-field bg-base-200 px-3 py-2 text-sm">
+            <li key={hint.kind} className="animate-fade-up flex gap-3 border-l-2 border-base-content/20 py-1 pl-3 text-sm">
               <span className="eyebrow shrink-0 pt-px">{t.game.hintLabels[hint.kind]}</span>
               <span>{hint.text}</span>
             </li>

@@ -25,6 +25,23 @@ test.describe("remote photos", () => {
   });
 });
 
+test.describe("difficulty", () => {
+  test("an easy game only shows easy cars, one per model", async ({ page }) => {
+    await page.goto("/");
+    await page.getByText("Facile", { exact: true }).click();
+    await page.getByRole("link", { name: "Jouer" }).click();
+    await expect(page).toHaveURL(/difficulty=easy/);
+    const seen = [];
+    for (let i = 0; i < 10; i++) {
+      seen.push(await currentCar(page));
+      await answerCorrectly(page);
+      await page.getByRole("button", { name: /Voiture suivante|Voir les résultats/ }).click();
+    }
+    expect(seen.every((c) => c.difficulty === 1)).toBe(true);
+    expect(new Set(seen.map((c) => `${c.make} ${c.model}`)).size).toBe(seen.length);
+  });
+});
+
 test.describe("new modes", () => {
   test("generations mode asks for the generation", async ({ page }) => {
     await page.goto("/play?mode=generation");

@@ -1,6 +1,6 @@
 // Pure classification rules for the catalogue builder (unit-tested in rules.test.ts).
 import { normalizeAnswer } from "../../src/lib/game/answer-validation";
-import type { BodyType, CarTag, Difficulty, Region } from "../../src/types/car";
+import type { BodyType, CarTag, Region } from "../../src/types/car";
 
 // ── Names ────────────────────────────────────────────────────────────────────
 
@@ -20,14 +20,17 @@ export function stripPrefix(text: string, prefix: string): string | null {
   const p = normalizeAnswer(prefix).split(" ");
   if (p.length === 0 || p.length > t.length || !p.every((w, i) => t[i] === w)) return null;
   // Rebuild the remainder from the original text, keeping its spelling and punctuation.
+  // Take the longest run of words that normalises to the prefix: nicknames expand ("Aston"
+  // alone reads as "aston martin"), so the shortest match would leave "Martin" behind.
   const words = text.trim().split(/\s+/);
-  let consumed = 0;
-  let index = 0;
-  while (index < words.length && consumed < p.length) {
-    consumed += normalizeAnswer(words[index]).split(" ").filter(Boolean).length;
-    index++;
+  const target = p.join(" ");
+  let end: number | null = null;
+  for (let index = 1; index <= words.length; index++) {
+    const head = normalizeAnswer(words.slice(0, index).join(" "));
+    if (head === target) end = index;
+    else if (head.split(" ").length > p.length) break;
   }
-  return consumed === p.length ? words.slice(index).join(" ") : null;
+  return end === null ? null : words.slice(end).join(" ");
 }
 
 const TRAILING_GENERATION = /^(.*\S)\s+((?:mk|mark)\s*[ivx\d]+|[IVX]{1,4}|\d{1,2}(?:st|nd|rd|th) generation)$/i;
@@ -130,17 +133,6 @@ export function regionOf(country: string): Region {
   if (country === "KR") return "korea";
   if (country === "CN") return "china";
   return "other";
-}
-
-/**
- * Difficulty from notability: how many Wikipedia editions describe the model (or its
- * model family, for a generation). Concepts and race cars are at least "hard".
- */
-export function difficultyFor(sitelinks: number, seriesSitelinks: number, tags: readonly CarTag[]): Difficulty {
-  const n = Math.max(sitelinks, seriesSitelinks);
-  let level: Difficulty = n >= 40 ? 1 : n >= 20 ? 2 : n >= 10 ? 3 : 4;
-  if ((tags.includes("concept") || tags.includes("racing")) && level < 3) level = 3;
-  return level;
 }
 
 export interface ClassInfo {

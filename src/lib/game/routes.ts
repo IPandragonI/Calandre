@@ -1,7 +1,7 @@
 import type { GameConfig, GameMode } from "@/types/game";
 import { GAME_MODES } from "@/types/game";
 import { isCategoryId, type CategoryId } from "./categories";
-import { DIFFICULTY_FILTERS, type DifficultyFilter } from "./question-selection";
+import { parseDifficultyFilter, type DifficultyFilter } from "./question-selection";
 
 export interface PlayParams {
   mode: GameMode;
@@ -38,7 +38,7 @@ export function parsePlayParams(search: { get(name: string): string | null }): P
     mode: GAME_MODES.includes(mode as GameMode) ? (mode as GameMode) : "classic",
     category: isCategoryId(category) ? category : null,
     make: make && make.length <= 60 ? make : null,
-    difficulty: DIFFICULTY_FILTERS.includes(difficulty as DifficultyFilter) ? (difficulty as DifficultyFilter) : "mixed",
+    difficulty: parseDifficultyFilter(difficulty) ?? "mixed",
     resume: search.get("resume") === "1",
   };
 }

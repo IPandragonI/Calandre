@@ -33,7 +33,7 @@ export function dailyNumber(dateKey: string): number {
  * first, so the order of entries in cars.json does not matter.
  */
 export function dailyCarIds(
-  cars: readonly Pick<Car, "id" | "difficulty" | "region" | "tags">[],
+  cars: readonly Pick<Car, "id" | "difficulty" | "make" | "model" | "region" | "tags">[],
   dateKey: string,
   count = DAILY_QUESTION_COUNT,
 ): string[] {
